@@ -371,29 +371,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902061621101_NewCodes.cs" />
-    <Compile Include="Migrations\201902061621101_NewCodes.Designer.cs">
-      <DependentUpon>201902061621101_NewCodes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902070501547_AddedAppliedJobModel.cs" />
-    <Compile Include="Migrations\201902070501547_AddedAppliedJobModel.Designer.cs">
-      <DependentUpon>201902070501547_AddedAppliedJobModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902070631136_AddedAppliedJobModelUpdated.cs" />
-    <Compile Include="Migrations\201902070631136_AddedAppliedJobModelUpdated.Designer.cs">
-      <DependentUpon>201902070631136_AddedAppliedJobModelUpdated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902070633034_AddedAppliedJobModelEdited.cs" />
-    <Compile Include="Migrations\201902070633034_AddedAppliedJobModelEdited.Designer.cs">
-      <DependentUpon>201902070633034_AddedAppliedJobModelEdited.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902070839206_RemovedAppliedJobModelEdited.cs" />
-    <Compile Include="Migrations\201902070839206_RemovedAppliedJobModelEdited.Designer.cs">
-      <DependentUpon>201902070839206_RemovedAppliedJobModelEdited.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902071436174_Mergedwork.cs" />
-    <Compile Include="Migrations\201902071436174_Mergedwork.Designer.cs">
-      <DependentUpon>201902071436174_Mergedwork.cs</DependentUpon>
+    <Compile Include="Migrations\201902071626000_FreshMerge.cs" />
+    <Compile Include="Migrations\201902071626000_FreshMerge.Designer.cs">
+      <DependentUpon>201902071626000_FreshMerge.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -490,23 +470,8 @@
     <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902061621101_NewCodes.resx">
-      <DependentUpon>201902061621101_NewCodes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902070501547_AddedAppliedJobModel.resx">
-      <DependentUpon>201902070501547_AddedAppliedJobModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902070631136_AddedAppliedJobModelUpdated.resx">
-      <DependentUpon>201902070631136_AddedAppliedJobModelUpdated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902070633034_AddedAppliedJobModelEdited.resx">
-      <DependentUpon>201902070633034_AddedAppliedJobModelEdited.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902070839206_RemovedAppliedJobModelEdited.resx">
-      <DependentUpon>201902070839206_RemovedAppliedJobModelEdited.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902071436174_Mergedwork.resx">
-      <DependentUpon>201902071436174_Mergedwork.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902071626000_FreshMerge.resx">
+      <DependentUpon>201902071626000_FreshMerge.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

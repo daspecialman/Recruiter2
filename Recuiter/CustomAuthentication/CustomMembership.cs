@@ -107,19 +107,23 @@ namespace Recruiter.CustomAuthentication
 				var user = (from us in dbContext.Users.Include(x => x.Roles)
 							where string.Compare(email, us.Email, StringComparison.OrdinalIgnoreCase) == 0
 							select us).FirstOrDefault();
-				List<UserRole> roles = (from r in dbContext.UserRoles.Include(x => x.Role)
-										where r.UserId == user.Id
-										select r).ToList();
 
-				user.Roles = roles;
+               
+                List<UserRole> roles = (from r in dbContext.UserRoles.Include(x => x.Role)
+                                        where r.UserId == user.Id
+                                        select r).ToList();
 
-				if (user == null)
-				{
-					return null;
-				}
-				var selectedUser = new CustomMembershipUser(user);
 
-				return selectedUser;
+                user.Roles = roles;
+
+                if (user == null)
+                {
+                    return null;
+                }
+            
+                var selectedUser = new CustomMembershipUser(user);
+
+                return selectedUser;
 			}
 		}
 
