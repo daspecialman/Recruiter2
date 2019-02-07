@@ -1,0 +1,463 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #171717;
+    
+}
+
+.landingpage-bg{
+    height:100vh;
+    background-image: url(../Content/images/landingpage.svg);
+    background-position: right top;
+    background-size: auto;
+    background-repeat: no-repeat;
+}
+.navbar-light{
+    background-color: #fff !important;
+    padding-left: 97px;
+    padding-right: 97px;
+    
+    
+}
+#imagebox{
+    height: 484px;
+}
+
+#header1{
+    background: transparent;
+    padding-left: 97px;
+    padding-right: 97px;
+           
+ }
+
+ #headliner{
+   
+        width: 263px;
+        height: 36px;
+        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 26px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        letter-spacing: normal;
+        text-align: left;
+        margin-bottom: 0;
+        color: #171717;
+     
+}
+
+.form-control {
+    display: block;
+  
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#sub-header{
+    width: 298px;
+    height: 19px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #171717;
+}
+
+.bar1 p{
+    padding:10px;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    }
+
+    button.signbtn{
+        color:white;
+        width: 143.2px;
+        height: 50px;
+        background-color: #313366; 
+        margin-right: 15px;
+      
+      
+      }
+      
+      button.signbtn a{
+      color:#fff;
+       }
+       #btn_login{
+           color: #ef6737
+       }
+       #brands{
+           margin-bottom: 9px;
+       }
+       .login1{
+        margin-bottom: 3px;
+       }
+      
+    
+    .midtop{
+      
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 48px;
+        font-weight: 600;
+        line-height: 1.35;
+        text-align: center;
+        padding-top: 5.0rem;
+}
+.midtext{
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 16px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.38;
+        letter-spacing: normal;
+        text-align: center;
+     
+      
+}
+
+.midbottom{
+    
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        text-align: center;
+     
+      
+}
+
+.location{
+    padding-left: 70px;
+}
+
+input#checkbox1{
+    margin-left: 0px;
+}
+label.form-check-label-a{
+    padding-left: 1rem;
+}
+
+.rela {
+    min-height:52rem;
+}
+
+#signin p{
+            
+    width: 128px;
+    height: 39px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #171717;
+    margin-bottom: 1rem;   
+}
+#reg_btn{
+color: #ef6737
+}
+
+p.footnote{
+    text-align: center;
+     
+  }
+
+  footer {
+    background-color: #fafafa;
+    margin-top: 30px;
+    padding: 30px 60px;    
+    }
+    div.pageFoot{
+        padding-top: 8.5px;
+        display: block;
+        justify-content: center;
+        width: 100%;
+    }
+
+    
+ .footer {
+    /*position: fixed;*/
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    background-color: #25316d;
+    padding: 30px 60px;
+    display:block;
+ 
+
+  }
+
+.topbanner {
+    min-height: 120px;
+    width: 100%
+}
+
+.alpha {
+    padding: 15px 45px;
+}
+
+#profile {
+    color: grey;
+    opacity: .4;
+}
+
+.btn-II {
+    display: block;
+    height: 45px;
+    background-color: #313366;
+    color: #fff;
+}
+
+.btn-outline-secondary {
+    display: block;
+    width: 138.3px;
+    height: 40px;
+    border-color: #f16722;
+    color: #f16722
+}
+.btn-2 {
+    display: block;
+    height: 45px;
+    background-color: #313366;
+    color: #fff;
+}
+
+.btn-II {
+    display: block;
+    width: 138.3px;
+    height: 40px;
+    background-color: #313366;
+    color: #fff;
+}
+
+.beta {
+    width: 866.4px;
+    height: 60px;
+    border-radius: 5px;
+    border: 1px solid #e4e4e4;
+    padding: 1rem;
+}
+
+#mint {
+    color: #999999;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#bot {
+    font-size: 12px;
+}
+
+.hero {
+    background-color: #fdfdfd;
+}
+
+
+
+.card-body {
+    background-color: #fdfdfd;
+}
+.card-body2 {
+    /* height: 71px; */
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    background-color: #fafafa;
+    padding: 0;
+}
+
+
+.edu {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sub_head {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#mainee {
+    color: #717171;
+    font-size: 12px;
+}
+
+@media only screen and (max-width:900px) {
+    div.underlined {
+        display: none !important;
+    }
+}
+
+#pass_change {
+    color: grey;
+    opacity: .4;
+}
+
+.form-group {
+    width: 430px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+}
+.body {
+	background-color: #fafafa;
+}
+.img-banner {
+	background-image: url(images/UserInterface.png);
+	object-fit: contain;
+	background-size: contain;
+	min-height: 10rem;
+	background-repeat: no-repeat;
+}
+
+.top {
+	height: 19px;
+	font-size: 14px;
+	font-weight: 600;
+}
+.btn-III {
+	display: block;
+	background-color: #313366;
+	color: #fff;
+	margin-bottom: 19.5px;
+	margin-top: 8px;
+}
+
+.fab {
+	padding-top: 0.2rem;
+}
+
+.btn-outline-secondary {
+
+	padding: 0.5px;
+	font-size: 14px;
+	width: 124px;
+	height: 33px;
+	border-color: #707070;
+	border-radius: 17px;
+	color: #000000;
+}
+
+.btn-outline-secondaryy {
+	padding: 0.5px;
+	font-size: 14px;
+	width: 70px;
+	height: 25px;
+	border-color: #f16722;
+	border-radius: 13px;
+	background-color: #ffffff;
+}
+
+.btn-primary {
+	width: 100px;
+	height: 28px;
+	border-radius: 14px;
+	background-color: #313366;
+	border-color: #313366;
+	margin-left: 1rem;
+}
+.decoy {
+    margin-bottom: 16px;
+}
+
+#rectangle {
+    min-height: 87rem;
+}
+
+#square {
+    height: 560px;
+}
+.head {
+	font-size: 20px;
+	padding-top: 1rem;
+}
+
+.header-primary {
+	color: #fff;
+	padding-top: 2rem;
+	margin-left: 2rem;
+}
+
+.new {
+	font-weight: 600;
+}
+
+.easy {
+	font-size: 12px;
+	color: #999999;
+}
+
+.edu {
+	font-weight: 600;
+}
+
+.new {
+	font-weight: 600;
+}
+
+.easy {
+	font-size: 12px;
+	color: #999999;
+}
+
+.edu {
+	font-weight: 600;
+}
+
+}
+
+#mint {
+	color: #999999;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+#resume {
+	color: grey;
+	opacity: .4;
+}
+
+.btn-outline-secondary {
+	display: block;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	width: 80px;
+	height: 35px;
+	border-color: #f16722;
+	color: #f16722
+}
+
+.btn {
+	display: block;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	width: 160px;
+	height: 35px;
+	border-color: #f16722;
+	color: #f16722
+}

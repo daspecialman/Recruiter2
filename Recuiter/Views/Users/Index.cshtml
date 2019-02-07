@@ -1,0 +1,124 @@
+﻿@model IEnumerable<Data.Models.User>
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+
+<img src="~/Content/images/UserInterface.png" class="img-fluid topbanner mb-4" alt="user Interface">
+<div class="container-fluid">
+	<h2>HR/Admin's Dashboard</h2>
+	<div class="row">
+		<div class="col-sm-3" style="background-color: #fafafa; margin:20px; min-height:40rem;">
+			<ul class="nav flex-column">
+				<li class="nav-item border-bottom">
+					@*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("Index", "HR")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Home</a>
+				</li>
+				<li class="nav-item border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>*@ <a href="@Url.Action("Create", "Jobs")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Create Jobs</a>
+				</li>
+				<li class="nav-item border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@ <a href="@Url.Action("Create", "Departments")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Create Departments</a>
+				</li>
+				<li class="nav-item border-bottom" id="profile">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Shortlisted Jobs</a>*@<a href="@Url.Action("Create", "Users")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Create User</a>
+				</li>
+
+				<li class="nav-item  border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Upload CV</a>*@ <a href="@Url.Action("Create", "Roles")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Create Roles</a>
+				</li>
+
+
+			</ul>
+		</div>
+		<div class="col-sm-8">
+
+		<h2>Users</h2>
+
+		<p>
+			@Html.ActionLink("Create New", "Create")
+		</p>
+		<table class="table">
+			<tr>
+				
+				<th>
+					@Html.DisplayNameFor(model => model.Department.Name)
+				</th>
+			
+				<th>
+					@Html.DisplayNameFor(model => model.CreatedDate)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.LastModifiedDate)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.IsDeleted)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Username)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.FirstName)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.LastName)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Email)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Password)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.IsActive)
+				</th>
+				<th></th>
+			</tr>
+
+			@foreach (var item in Model)
+			{
+				<tr>
+					
+					<td>
+						@Html.DisplayFor(modelItem => item.Department.Name)
+					</td>
+				
+					<td>
+						@Html.DisplayFor(modelItem => item.CreatedDate)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.LastModifiedDate)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.IsDeleted)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Username)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.FirstName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.LastName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Email)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Password)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.IsActive)
+					</td>
+					<td>
+						@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+						@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+						@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+					</td>
+				</tr>
+			}
+
+		</table>
+</div>
+</div>
+</div>

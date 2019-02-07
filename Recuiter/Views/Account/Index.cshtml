@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Activation Account";
+}
+
+<h2>Activation Account</h2>
+<p>@User.Identity.Name</p>
+<p>@ViewBag.userName</p>
+<p>@ViewBag.Status</p>
+
+
+@if(ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong>  Your account has been activated successfully.
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong>@ViewBag.Message
+    </div>
+}
+

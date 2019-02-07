@@ -1,0 +1,335 @@
+﻿@model Recruiter.ViewModels.ApplicantResumeVM
+@{
+	ViewBag.Title = "ApplicantResumeProfile";
+	Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+<img src="~/Content/images/UserInterface.png" class="img-fluid topbanner mb-4" alt="user Interface">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3" style="background-color: #fafafa;">
+			<ul class="nav flex-column">
+				<li class="nav-item border-bottom">
+					<a class="nav-link  text-dark" href="#"><i class="fas fa-user mr-1"></i></i>My Profile</a>
+				</li>
+				<li class="nav-item border-bottom" id="resume">
+					<a class="nav-link active text-dark" href="@Url.Action("ApplicantResumeProfile","Applicants")"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
+				</li>
+				<li class="nav-item border-bottom" id="app_jobs">
+					<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>
+				</li>
+				<li class="nav-item border-bottom" id="short_job">
+					<a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Jobs In View</a>
+				</li>
+				<li class="nav-item  border-bottom"
+					id="pass_change">
+					<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>
+				</li>
+			</ul>
+		</div>
+
+
+		<div class="col-sm-9">
+			<h2 id="head_">MY RESUME</h2>
+			<p class="edu"><i class="fas fa-graduation-cap  mr-1" style="color:#313366"></i><span style="color:#313366;">EDUCATION</span><span style="color:#ff0000">*</span></p>
+			@if (Model != null)
+			{
+				foreach (var education in Model.Education)
+				{
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Qualification</th>
+								<th scope="col"></th>
+								<th scope="col">Dates</th>
+								<th scope="col">Institution</th>
+								<th scope="col" class="del_head">Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td scope="row"><b>@Html.DisplayFor(x => education.Qualification) In @Html.DisplayFor(x => education.CourseStudies)</b></td>
+								<td></td>
+								<td>@Html.DisplayFor(x => education.FromDate) - @Html.DisplayFor(x => education.ToDate)</td>
+								<td>@Html.DisplayFor(x => education.Institution)</td>
+								<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+							</tr>
+						</tbody>
+
+					</table>
+
+
+				}
+			}
+
+
+			@if (Model != null)
+			{
+				foreach (var work in Model.Experience)
+				{
+					<div>
+						<span class="close">x</span>
+					</div>
+					<div class="row mb-4">
+						<div class="col mt-3">
+							<select class="form-control">
+								<option>Name of Institute</option>
+							</select>
+						</div>
+						<div class="col mt-3">
+							<select class="form-control">
+								<option>Select qualification</option>
+							</select>
+						</div>
+					</div>
+					<div class="row mb-4">
+						<div class="col-6 mt-3">
+							<input class="form-control" type="text" placeholder="From date*">
+						</div>
+						<div class="col-6 mt-3">
+							<input class="form-control" type="text" placeholder="To date*">
+						</div>
+					</div>
+					<input class="form-control" type="text" placeholder="Course Studied">
+					<div>
+						<button type="button" class="btn btn-outline-secondary mx-1">Update</button>
+					</div>
+					<div>
+						<a class="new" href="#"><span style="color:#f16722">+Add New</span></a>
+					</div>
+
+					<div>
+						<p class="edu mt-3"><i class="fas fa-briefcase mr-1" style="color:#313366"></i><span style="color:#313366;">Work Experience</span><span style="color:#ff0000">*</span></p>
+					</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Role</th>
+								<th scope="col"></th>
+								<th scope="col">Company</th>
+								<th scope="col">Dates</th>
+								<th scope="col" class="del_head">Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td scope="row"><b>@Html.DisplayFor(x => work.Title)</b></td>
+								<td></td>
+								<td>@Html.DisplayFor(x => work.Company)</td>
+								<td>@Html.DisplayFor(x => work.FromDate)-@Html.DisplayFor(x => work.ToDate)</td>
+								<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+							</tr>
+						</tbody>
+					</table>
+				}
+			}
+
+					<div>
+						<span class="close">x</span>
+					</div>
+					<p class="easy">Input your experience in chronological order from present to past</p>
+					<input class="form-control" type="text" placeholder="Roles">
+					<div class="row mb-4">
+						<div class="col-4 mt-3">
+							<input class="form-control" type="text" placeholder="From date*">
+						</div>
+						<div class="col-4 mt-3">
+							<input class="form-control" type="text" placeholder="To date*">
+
+						</div>
+						<br><span class="form-check col">
+							Present <br> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+						</span>
+					</div>
+					<input class="form-control" type="text" placeholder="Company">
+					<div>
+						<button type="button" class="btn btn-outline-secondary mx-1">Add Experience</button>
+					</div>
+					<div>
+						<a class="new" href="#"><span style="color:#f16722">+Add New</span></a>
+					</div>
+
+			
+					<div>
+						<p class="edu mt-3"><i class="fas fa-certificate mr-1" style="color:#313366"></i><span style="color:#313366;">Certificates</span><span style="color:#ff0000">*</span></p>
+					</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Certificate</th>
+								<th scope="col">Title</th>
+								<th scope="col"></th>
+								<th scope="col"></th>
+								<th scope="col" class="del_head">Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td scope="row"><b>BACHELORS IN FINE ART</b></td>
+								<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+							</tr>
+						</tbody>
+					</table>
+					<!--<h5>Upload Certificate</h5>-->
+					<div>
+						<span class="close">x</span>
+					</div>
+					<!--<form>
+			<div class="beta">
+				<div class="form-group">
+				   <label for="exampleFormControlFile1">Example file input</label>
+				  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+				</div>
+			</div>
+			  </form>
+			  <p id="mint">Max file size is 1MB, Minimum dimension: 180x135 And Suitable files are .jpg & .png</p>
+			  <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Upload</button>-->
+					<div>
+						<a class="new" href="#"><span style="color:#f16722">+Add New</span></a>
+					</div>
+					<div>
+						<p class="edu mt-3"><i class="fas fa-street-view  mr-1" style="color:#313366"></i><span style="color:#313366;">Skills</span><span style="color:#ff0000">*</span></p>
+					</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Skills</th>
+								<th scope="col"></th>
+								<th scope="col">Level</th>
+								<th scope="col"></th>
+								<th scope="col" class="del_head">Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td scope="row"><b>Application Testing</b></td>
+								<td></td>
+								<td>Intermediate</td>
+								<td></td>
+								<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td scope="row"><b>Solutions Analyst</b></td>
+								<td></td>
+								<td>Beginner</td>
+								<td></td>
+								<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td scope="row"><b>Graphic Design </b></td>
+								<td></td>
+								<td>Expert</td>
+								<td></td>
+								<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+							</tr>
+						</tbody>
+					</table>
+					<div>
+						<span class="close">x</span>
+					</div>
+					<div class="row mb-4">
+						<div class="col-4 mt-3">
+							<input class="form-control2" type="text" placeholder="Skill Title">
+						</div>
+						<div class="col-4 mt-3">
+							<select class="form-control2" type="text" placeholder="To date*">
+								<option>Beginner</option>
+								<option>Intermediate</option>
+								<option>Expert</option>
+							</select>
+						</div>
+						<div class="col-sm-3 mt-3">
+							<button type="button" class="btn btn-outline-secondary mx-1 mb-4">Add Skills</button>
+						</div>
+					</div>
+					<div>
+						<p class="edu mt-3"><i class="fas fa-award  mr-1" style="color:#313366"></i><span style="color:#313366;">Achievements</span><span style="color:#ff0000">*</span></p>
+					</div>
+					<div class="form-group">
+						<!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+					</div>
+					</form>
+					<button type="button" class="btn btn-outline-secondary mx-1 mb-4">Update</button>
+					<button type="button" class="btn btn-II ">Submit Application</button>
+
+
+
+
+
+
+
+
+
+					@using (Html.BeginForm())
+					{
+						@Html.AntiForgeryToken()
+
+
+						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+						foreach (var education in Model.Education)
+						{
+							<div class="row mb-4">
+								<div class="col">
+									@Html.LabelFor(x => education.Qualification)
+									@Html.EditorFor(x => education.Qualification, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+									@Html.ValidationMessageFor(x => education.Qualification, "", new { @class = "text-danger" })
+									@Html.LabelFor(x => education.CourseStudies)
+									@Html.EditorFor(x => education.CourseStudies, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+									@Html.ValidationMessageFor(x => education.CourseStudies, "", new { @class = "text-danger" })
+									@Html.LabelFor(x => education.Institution)
+									@Html.EditorFor(x => education.Institution, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+									@Html.ValidationMessageFor(x => education.Institution, "", new { @class = "text-danger" })
+									@Html.LabelFor(x => education.FromDate)
+									@Html.EditorFor(x => education.FromDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+									@Html.ValidationMessageFor(x => education.FromDate, "", new { @class = "text-danger" })
+									@Html.LabelFor(x => education.ToDate)
+									@Html.EditorFor(x => education.ToDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+									@Html.ValidationMessageFor(x => education.ToDate, "", new { @class = "text-danger" })
+								</div>
+							</div>
+						}
+
+						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+						foreach (var experience in Model.Experience)
+						{
+							<div class="row mb-4">
+								<div class="col">
+									@Html.LabelFor(x => experience.Title)
+									@Html.EditorFor(x => experience.Title, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Roles" })
+									@Html.ValidationMessageFor(x => experience.Title, "", new { @class = "text-danger" })
+									@Html.LabelFor(x => experience.Company)
+									@Html.EditorFor(x => experience.Company, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+									@Html.ValidationMessageFor(x => experience.Title, "", new { @class = "text-danger" })
+									@Html.LabelFor(x => experience.FromDate)
+									@Html.EditorFor(x => experience.FromDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+									@Html.ValidationMessageFor(x => experience.FromDate, "", new { @class = "text-danger" })
+									@Html.LabelFor(x => experience.ToDate)
+									@Html.EditorFor(x => experience.ToDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+									@Html.ValidationMessageFor(x => experience.ToDate, "", new { @class = "text-danger" })
+								</div>
+							</div>
+						}
+
+						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+						foreach (var skill in Model.Skill)
+						{
+							<div class="row mb-4">
+								<div class="col">
+									@Html.LabelFor(x => skill.Skilllevel)
+									@Html.EditorFor(x => skill.Skilllevel, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+									@Html.ValidationMessageFor(x => skill.Skilllevel, "", new { @class = "text-danger" })
+									@Html.LabelFor(x => skill.Achievement)
+									@Html.EditorFor(x => skill.Achievement, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+									@Html.ValidationMessageFor(x => skill.Achievement, "", new { @class = "text-danger" })
+
+								</div>
+							</div>
+						}
+
+					}
+					<button type="submit" class="btn btn-II mx-1">Submit Application</button>

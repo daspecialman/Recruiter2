@@ -1,0 +1,159 @@
+﻿@model Data.Models.LoginView
+
+@{
+	ViewBag.Title = "Sign In";
+}
+
+
+
+<div class="container rela" style="min-height: 34rem;">
+	<div class="row" id="imagebox">
+		<div class="col-sm-5 col-xs-12 d-none d-sm-block">
+
+			<div>
+				<br>
+			</div>
+			<img src="~/Content/images/account_logo.svg" class="img-fluid" style="object-fit:contain;">
+			<div>
+				<br>
+				<p>By logging in you agree to SBSC recruiter’s <span style="color:#f16722;">Terms & Conditions</span> and <span style="color:#f16722;">Privacy Policies.</span></p>
+			</div>
+
+
+		</div>
+
+		<div class="col-sm-2 col-xs-1 d-none d-sm-block">
+			<div style="width:1px;height:80%;background-color:#495057;opacity:.2;margin: 0 auto;">
+
+			</div>
+		</div>
+
+		<div class="col-sm-5 col-xs-6">
+			<p><b id="signin">Sign in with</b></p>
+
+			<div class="login">
+				<a href="#" id="brandLogo"> <img src="~/Content/images/facebook.svg" height="40.9"></a>
+				<a href="#" id="brandLogo"> <img src="~/Content/images/twitter.svg" height="40.9"></a>
+				<a href="#" id="brandLogo"> <img src="~/Content/images/linkedIn.svg" height="40.9"></a>
+
+				<div style="display:flex;width:100%;">
+					<hr style="width:45%;">
+					<p style="width:10%;text-align: center;">or</p>
+					<hr style="width:45%;">
+				</div>
+
+			</div>
+			<form method="post" >
+				@Html.AntiForgeryToken()
+
+				<div style="display:flex;justify-content:space-between;">
+				</div>
+
+
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				<div class="form-group">
+					@Html.LabelFor(model => model.Email)
+					<div>
+						@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter a valid email address." } })
+						@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Password)
+					<div>
+
+						@Html.PasswordFor(model => model.Password, htmlAttributes: new { @class = "form-control", @placeholder = "**********" })
+						@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+
+				<div style="display:flex;justify-content:space-between;">
+					<div class="form-group form-check-a">
+						@Html.CheckBoxFor(model => model.RememberMe)
+						@Html.LabelFor(model => model.RememberMe)
+					</div>
+					<h6 style=color:#313366> @Html.ActionLink("Forgot Password", "ForgotPassword")</h6>
+
+				</div>
+				<div>
+					<button type="submit" value="Log in" class="btn signbtn">Login</button>
+					<div>
+						<span>Don't have an account?<a href="registration" style="color: #ef6737"> Register</a></span>
+					</div>
+
+				</div>
+
+
+
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="form-horizontal">
+			<h4>LoginView</h4>
+			<hr />
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			<div class="form-group">
+				@Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+
+					@Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.PasswordFor(model => model.Password, htmlAttributes: new { @class = "form-control" })
+
+					@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					<div class="checkbox">
+						@Html.EditorFor(model => model.RememberMe)
+						@Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" value="Log In" class="btn btn-default" />
+				</div>
+			</div>
+		</div>
+	}
+
+	<div>
+		@Html.ActionLink("Back to List", "Index")
+	</div>*@
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

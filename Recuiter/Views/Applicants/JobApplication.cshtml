@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "JobApplication";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Job Application</h2><br><br />
+@if (!string.IsNullOrEmpty(ViewBag.JobApplicationSuccess))
+{
+    <h4 class="success">@ViewBag.JobApplicationSuccess</h4>
+    <P>Go to my <a href="~/Applicants/Dashboard">Dashboard</a></P>
+}
+else
+{
+    <h4 class="has-error">@ViewBag.JobApplicationError</h4>
+}
+

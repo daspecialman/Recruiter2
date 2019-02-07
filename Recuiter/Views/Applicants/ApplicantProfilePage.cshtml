@@ -1,0 +1,160 @@
+﻿@model Recruiter.ViewModels.ApplicantProfileViewModels
+@{
+	ViewBag.Title = "Applicant Profile Page";
+	Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+@*<h2>ApplicantProfilePage</h2>*@
+
+@*<img src="@Url.Content(Model.ImagePath)" class="img-fluid topbanner mb-4" alt="user Interface">*@
+<img src="~/Content/images/UserInterface.png" class="img-fluid topbanner mb-4" alt="user Interface">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-3" style="background-color: #fafafa;">
+			<ul class="nav flex-column">
+				<li class="nav-item border-bottom" id="profile">
+					@*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("ApplicantProfilePage", "Applicants")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>My Profile</a>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>
+				</li>
+				<li class="nav-item border-bottom">
+					<a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Shortlisted Jobs</a>
+				</li>
+				<li class="nav-item  border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>*@ <a href="@Url.Action("ChangePassword", "Account")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Change Password</a>
+				</li>
+				<li class="nav-item  border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Upload CV</a>*@ <a href="@Url.Action("Index", "Document")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Upload CV</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-sm-9 alpha" style="min-height: 92rem;">
+			<div class="media">
+				<img src="@Url.Content(Model.ImagePath)" width="150" height="150" class="align-self-start mr-3" alt="passport">
+				<div class="media-body">
+					<h5 class="mt-0">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h5>
+					<p>@Html.DisplayFor(model => model.JobTitle)</p>
+					<div class="d-flex justify-content-between border-bottom underlined">
+						<p>About</p>
+						<p>Education</p>
+						<p>Work Experience</p>
+						<p>Professional Skills</p>
+						<p>Awards</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-3">
+							<p><b>@Html.LabelFor(model => model.YearsOfExperience)</b></p>
+							<p>@Html.DisplayFor(model => model.YearsOfExperience)</p>
+						</div>
+						<div class="col-sm-3">
+							<p><b>@Html.LabelFor(model => model.Age)</b></p>
+							<p>@Html.DisplayFor(model => model.Age)</p>
+						</div>
+					</div>
+					<div>
+						<p>@Html.DisplayFor(model => model.Bio)</p>
+					</div>
+
+
+
+					<div>
+
+						@if (Model != null)
+						{
+							foreach (var item in Model.PastEducation)
+							{
+
+								<!-- <div class="row"> -->
+								<div class="col-sm-3">
+									<p class="edu"><i class="fas fa-graduation-cap  mr-1" style="color:#f16722"></i><span style="color:#313366;">EDUCATION</span></p>
+									<p class="sub_head">@Html.DisplayFor(m => item.Qualification) In @Html.DisplayFor(m => item.CourseStudies)</p>
+									<p id="mainee">@Html.DisplayFor(m => item.Institution)</p>
+
+								</div>
+
+							}
+						}
+
+						@if (Model != null)
+						{
+							foreach (var item in Model.WorkExperience)
+							{
+
+
+								<div class="col-sm-3">
+									<p class="edu"><i class="fas fa-briefcase  mr-2" style="color:#f16722"></i><span style="color:#313366;">WORK EXPERIENCE</span></p>
+									<p class="sub_head">@Html.DisplayFor(m => item.Title)</p>
+
+								</div>
+							}
+						}
+
+						@if (Model != null)
+						{
+							foreach (var item in Model.Skills)
+							{
+
+								<div class="col-sm-3">
+									<p class="edu"><i class="fas fa-street-view  mr-2" style="color:#f16722"></i><span style="color:#313366;">SKILLS</span></p>
+									<p class="sub_head">@Html.DisplayFor(m => item.Skilllevel)</p>
+
+
+								</div>
+
+
+								<div class="col-sm-12">
+									<div class="row">
+										<p class="edu"><i class="fas fa-medal  mr-2" style="color:#f16722"></i><span style="color:#313366;">ACHIEVEMENTS</span></p>
+										<p class="sub_head">@Html.DisplayFor(m => item.Achievement)</p>
+
+									</div>
+
+									@*<div style="display:flex;justify-content:space-between;">
+										<button type="button" class="btn btn-II ">Edit Profile</button>
+										 </div>*@
+									<div style="display:flex;justify-content:space-between;">
+										<a class="btn btn-II" href="@Url.Action("ApplicantProfileEdit", "Applicants", new { id = Model.Id })">Edit Profile</a>
+									</div>
+
+
+								</div>
+
+
+							}
+						}
+
+
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+
+		</div>
+
+
+		@*<p>
+				@Html.ActionLink("Edit", "ApplicantProfileEdit", new { id = Model.Id }) |
+				@Html.ActionLink("Back to List", "Index")
+			</p>*@
+
+
+	</div>
+</div>
+
+
+@*<div style="display:flex;justify-content:space-between;">
+		<a class="btn btn-II" href="@Url.Action("Edit", "ApplicantProfileEdit", new { id = Model.Id })">Edit Profile</a>
+	</div>*@
+
+

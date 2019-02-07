@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Activation Account";
+}
+
+
+@*<h2>Activation Account</h2>*@
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+<div class="alert alert-success">
+    <strong>Success!</strong>  Your account has been activated successfully.
+    <div class="text-center m-auto w-50">
+        <p>Welcome back, Yousuph</p>
+        <h3 class="mb-3">Email verification was successful.</h3>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-II mx-1">Continue application</button>
+            <button type="button" class="btn btn-outline-secondary mx-1">See available jobs</button>
+        </div>
+    </div>
+</div>
+}
+else
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong>@ViewBag.Message
+    </div>
+}
+

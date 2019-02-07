@@ -1,0 +1,84 @@
+﻿@model Data.Models.Role
+
+@{
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+
+<img src="~/Content/images/UserInterface.png" class="img-fluid topbanner mb-4" alt="user Interface">
+<div class="container-fluid">
+	<h2>HR/Admin's Dashboard</h2>
+	<div class="row">
+		<div class="col-sm-3" style="background-color: #fafafa; margin:20px; min-height:30rem;">
+			<ul class="nav flex-column">
+				<li class="nav-item border-bottom">
+					@*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("Index", "HR")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Home</a>
+				</li>
+				<li class="nav-item border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>*@ <a href="@Url.Action("Create", "Jobs")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Create Jobs</a>
+				</li>
+				<li class="nav-item border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@ <a href="@Url.Action("Create", "Departments")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Create Departments</a>
+				</li>
+				<li class="nav-item border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Shortlisted Jobs</a>*@<a href="@Url.Action("Create", "Users")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Create User</a>
+				</li>
+
+				<li class="nav-item  border-bottom" id="profile">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Upload CV</a>*@ <a href="@Url.Action("Create", "Roles")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Create Roles</a>
+				</li>
+
+
+			</ul>
+		</div>
+
+
+		
+
+		<div>
+			<h4>Details</h4>
+			<h3>Role</h3>
+			<hr />
+			<dl class="dl-horizontal">
+				
+				<dt>
+					@Html.DisplayNameFor(model => model.Name)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.Name)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.IsDeleted)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.IsDeleted)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.CreatedDate)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.CreatedDate)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.LastModifiedDate)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.LastModifiedDate)
+				</dd>
+
+			</dl>
+			<p>
+				@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+				@Html.ActionLink("Back to List", "Index")
+			</p>
+		</div>
+		
+</div>
+</div>

@@ -1,0 +1,126 @@
+﻿@model Recruiter.ViewModels.JobViewModel
+@{
+    ViewBag.Title = "JobDetails";
+    Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+<div class="img-banner">
+    <div class="header-primary">
+        
+        <h4>@Html.DisplayFor(m => m.Title)</h4>
+        <button type="button" class="btn btn-primary btn-sm">@Html.DisplayFor(m => m.ContractClass)</button>
+
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-7 p-3 bg-white" id="rectangle">
+            <h2 class="head">@Html.DisplayFor(m => m.Title)</h2>
+            <p><i class="far fa-calendar mr-2" style="color:#077dbe"></i>Application deadline: @Html.DisplayFor(m => m.ExpiryDate)</p>
+            <hr>
+            <P>
+                @Html.DisplayFor(m => m.Description)
+            </P>
+            <h5>@Html.LabelFor(m => m.Responsibility)</h5>
+            <ul>
+                <p class="decoy">@Html.DisplayFor(m => m.Responsibility)</p>
+
+            </ul>
+            <h5>@Html.LabelFor(m => m.Characteristics)</h5>
+            <ul>
+                <p class="decoy">@Html.DisplayFor(m => m.Characteristics)</p>
+                
+            </ul>
+            <h5>@Html.LabelFor(m => m.SkillSet)</h5>
+            <p>@Html.DisplayFor(m => m.SkillSet)</p>
+            <div class="class d-flex">
+                <button type="button" class="btn btn-outline-secondary mx-1 mb-4">@Html.DisplayFor(m => m.SkillSet)</button>
+                <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Photoshop</button>
+                <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Adobe XD</button>
+                <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Sketch</button>
+                <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Invision</button>
+            </div>
+            <h5>REQUIREMENT</h5>
+            <p><b>@Html.LabelFor(m => m.ExperienceLevel):</b> @Html.DisplayFor(m => m.ExperienceLevel)</p>
+            <p><b>Availability:</b> @Html.DisplayFor(m => m.ContractClass)</p>
+            <p><b>@Html.LabelFor(m => m.MinimumQualification):</b> @Html.DisplayFor(m => m.MinimumQualification)</p>
+            @*<button type="button" class="btn btn-II mx-1 mb-4">Apply Now</button>*@ @Html.ActionLink("Apply Now", "ApplicantProfileEdit", "Applicants", new { id = Model.Id, @class = "btn btn-II mx-1 mb-4" })
+        </div>
+
+        <div class="col-sm-1">
+
+        </div>
+        <div class="col-sm-4 bg-white p-3" id="square">
+            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", new { id = Model.Id, @class = "btn btn-II mx-1 mb-4" })
+            <div class="omega  d-flex justify-content-between mx-0">
+                <p>Share this job:</p>
+                <i class="fab fa-facebook-square"></i>
+                <i class="fab fa-google-plus"></i>
+                <i class="fab fa-linkedin"></i>
+                <i class="fab fa-twitter-square"></i>
+                <i class="fab fa-instagram"></i>
+            </div>
+            <div>
+                <p class="top">Top Applied Jobs</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="d-flex card-body2">
+                            <div class="deets">
+                                <p>Accountant</p>
+                                <p><small>Posted: 2days, 2hrs ago</small></p>
+                                <p>Job fuction: Accounting and Auditing</p>
+                            </div>
+                            <button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- <div class="row"> -->
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="d-flex justify-content-between card-body2">
+                            <div class="deets">
+                                <p>Business System Analyst</p>
+                                <p><small>Posted: 2days, 2hrs ago</small></p>
+                                <p>Job fuction: Business Analyst</p>
+                            </div>
+                            <button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- <div class="row"> -->
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="d-flex justify-content-between card-body2">
+                            <div class="deets">
+                                <p>Quality Assurance</p>
+                                <p><small>Posted: 2days, 2hrs ago</small></p>
+                                <p>Job fuction: Application Testing</p>
+                            </div>
+                            <button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="text-right">
+                    <a href="#">see more</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<p>
+        @Html.ActionLink("Apply for this Job", "ApplicantProfileEdit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

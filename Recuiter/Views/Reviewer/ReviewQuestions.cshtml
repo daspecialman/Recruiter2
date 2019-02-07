@@ -1,0 +1,162 @@
+﻿@model Recruiter.ViewModels.AssessmentVM
+
+
+<style>
+    .AssessmentCaption {
+        color:coral;
+        font-weight:bold;
+    }
+</style>
+
+@{
+    ViewBag.Title = "ReviewQuestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Review", "Reviewer"))
+{
+    <h3>Applicant Review</h3>
+    <div class="form-group">
+        <input name="ApplicantId" type="number" value=@TempData["ApplicantId"] class="col-md-2" hidden="hidden" />
+        <div class="col-md-12">
+            <span class="AssessmentCaption">Appearance</span>
+            <p>
+                Untidy:
+                <input name="Appearance" type="radio" value=2 class="col-md-2" />
+                Fairly Neat:
+                <input name="Appearance" type="radio" value=3 class="col-md-2" />
+                Neat:
+                <input name="Appearance" type="radio" value=4 class="col-md-2" />
+                Very Neat:
+                <input name="Appearance" type="radio" value=5 class="col-md-2" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <span class="AssessmentCaption">Disposition</span>
+            <p>
+                Poor:
+                <input name="Disposition" type="radio" value=2 class="col-md-2" />
+                Normal:
+                <input name="Disposition" type="radio" value=3 class="col-md-2" />
+                Pleasant:
+                <input name="Disposition" type="radio" value=4 class="col-md-2" />
+                Very Pleasant:
+                <input name="Disposition" type="radio" value=5 class="col-md-2" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <span class="AssessmentCaption">Ability to Communicate</span>
+            <p>
+                Poor:
+                <input name="Communication" type="radio" value=4 class="col-md-2" />
+                Normal:
+                <input name="Communication" type="radio" value=6 class="col-md-2" />
+                Good:
+                <input name="Communication" type="radio" value=8 class="col-md-2" />
+                Very Good:
+                <input name="Communication" type="radio" value=10 class="col-md-2" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <span class="AssessmentCaption">Educational Qualification</span>
+            <p>
+                Below Requirement:
+                <input name="EducationalQualification" type="radio" value=8 class="col-md-1" />
+                Fair:
+                <input name="EducationalQualification" type="radio" value=12 class="col-md-2" />
+                As Required:
+                <input name="EducationalQualification" type="radio" value=16 class="col-md-2" />
+                Above Requirement:
+                <input name="EducationalQualification" type="radio" value=20 class="col-md-2" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <span class="AssessmentCaption">Relevant Experience</span>
+            <p>
+                Poor
+                <input name="RelevantExperience" type="radio" value=8 class="col-md-2" />
+                Average:
+                <input name="RelevantExperience" type="radio" value=12 class="col-md-2" />
+                Above Average:
+                <input name="RelevantExperience" type="radio" value=16 class="col-md-2" />
+                Very Good:
+                <input name="RelevantExperience" type="radio" value=20 class="col-md-2" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <span class="AssessmentCaption">Relevant Technical Experience</span>
+            <p>
+                Poor
+                <input name="RelevantTechnicalExperience" type="radio" value=8 class="col-md-2" />
+                Average:
+                <input name="RelevantTechnicalExperience" type="radio" value=12 class="col-md-2" />
+                Above Average:
+                <input name="RelevantTechnicalExperience" type="radio" value=16 class="col-md-2" />
+                Very Good:
+                <input name="RelevantTechnicalExperience" type="radio" value=20 class="col-md-2" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <span class="AssessmentCaption">Analytical Reasoning Ability</span>
+            <p>
+                Poor
+                <input name="AnalyticalReasoningAbility" type="radio" value=4 class="col-md-2" />
+                Average:
+                <input name="AnalyticalReasoningAbility" type="radio" value=6 class="col-md-2" />
+                Above Average:
+                <input name="AnalyticalReasoningAbility" type="radio" value=8 class="col-md-2" />
+                Very Good:
+                <input name="AnalyticalReasoningAbility" type="radio" value=10 class="col-md-2" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <span class="AssessmentCaption">General Knowledge</span>
+            <p>
+                Poor
+                <input name="GeneralKnowledge" type="radio" value=4 class="col-md-2" />
+                Average:
+                <input name="GeneralKnowledge" type="radio" value=6 class="col-md-2" />
+                Above Average:
+                <input name="GeneralKnowledge" type="radio" value=8 class="col-md-2" />
+                Very Good:
+                <input name="GeneralKnowledge" type="radio" value=10 class="col-md-2" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <span class="AssessmentCaption">Estimate of Intelligence</span>
+            <p>
+                Poor
+                <input name="EstimateOfIntelligence" type="radio" value=4 class="col-md-2" />
+                Average:
+                <input name="EstimateOfIntelligence" type="radio" value=6 class="col-md-2" />
+                Above Average:
+                <input name="EstimateOfIntelligence" type="radio" value=8 class="col-md-2" />
+                Very Good:
+                <input name="EstimateOfIntelligence" type="radio" value=10 class="col-md-2" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <p class="AssessmentCaption">General Remark</p>
+            <textarea name="GeneralRemark" type="text" value="Submit Assesment" class="col-md-12">
+            </textarea>
+        </div>
+        <div class="col-md-12">
+            <span class="AssessmentCaption">Recommendation</span>
+            <p>
+                Not Recommended:
+                <input name="Recommendation" type="radio" value="Not Recommended" class="col-md-1" />
+                Could be Considered/KIV:
+                <input name="Recommendation" type="radio" value="Could be Considered/KIV" class="col-md-1" />
+                Recommended:
+                <input name="Recommendation" type="radio" value="Recommended" class="col-md-1" />
+                Highly Recommended:
+                <input name="Recommendation" type="radio" value="Highly Recommended" class="col-md-1" />
+            </p>
+        </div>
+        <div class="col-md-12">
+            <br /><input name="review" type="submit" value="Submit Assesment" />
+        </div>
+    </div>
+}

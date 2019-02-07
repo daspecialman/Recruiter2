@@ -1,0 +1,223 @@
+﻿@model IEnumerable<Data.Models.Job>
+@{
+    ViewBag.Title = "Vacancy List";
+    Layout = "~/Views/Shared/ApplicantLayout.cshtml";
+}
+@*<h3>Job Vacancies and Careers in SBSC Nigeria</h3>
+    @using (Html.BeginForm())
+    {
+
+
+        <p>
+            Find by Job Title: @Html.TextBox("SearchString")
+        </p>
+
+        <p>
+            Find by Skill Set: @Html.TextBox("SearchSkills")
+        </p>
+
+
+        <p>
+            Find by Job Type:
+            <select name="ContractClass">
+                <option value="">All</option>
+                <option value="1">Full time</option>
+                <option value="2">Internship</option>
+                <option value="3">Contract</option>
+            </select>
+        </p>
+
+        <p>
+            Find by Experience Level:
+            <select name="ExperienceLevel">
+                <option value="">All</option>
+                <option value="1">Expert</option>
+                <option value="2">Intermediate</option>
+                <option value="3">Beginner</option>
+            </select>
+        </p>
+        <input type="submit" value="Search" />
+    }*@
+
+<section>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h2 class="h32">Vacancies in SBSC Nigeria</h2>
+            <h4 class="h42">Sign up today to find Job opportunities near you</h4>
+        </div>
+    </div>
+</section>
+
+<section class="search-sec">
+    <div class="container">
+        <form action="#" method="post" novalidate="novalidate">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                            <select class="form-control" id="exampleFormControlSelect1" style="background-color:white; border-radius: 0px; font-size:12px; width:100%;">
+                                <option>Job Functions</option>
+                                <option>Software Developer</option>
+                                <option>UI/UX Designer</option>
+                                <option>Front-End Developer</option>
+                                <option>Business System Analyst</option>
+                                <option>Business Developer</option>
+                                <option>Projeect Manager</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                            <select class="form-control" id="exampleFormControlSelect1" style="background-color:white; border-radius: 0px; font-size:12px; width:100%;">
+                                <option>Specialization</option>
+                                <option>Software Developer</option>
+                                <option>UI/UX Designer</option>
+                                <option>Front-End Developer</option>
+                                <option>Business System Analyst</option>
+                                <option>Business Developer</option>
+                                <option>Projeect Manager</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                            <button type="submit" class="btn btn-II mx-1">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</section>
+
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 sidenav">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5>Filters</h5>
+                </div>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <h5>Clear all</h5>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5>Skills</h5>
+                </div>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <h5>Clear all</h5>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="skills" aria-describedby="emailHelp" placeholder="Skills" style="background-color:white; border:1px solid #ccc; padding: 6px 12px;">
+                </div>
+            </form>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5>Job type</h5>
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+                    <h5>Clear</h5>
+                </div>
+            </div>
+            <form>
+                <ul class="nav nav-pills nav-stacked">
+                    <div class="checkbox">
+                        <label>
+                            @*@Html.CheckBoxFor(m => <ContractClassType>)*@
+                            <input type="checkbox"> Full time
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox"> Internship</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox"> Contract</label>
+                    </div>
+                    <br />
+                    <span>
+                        <h5>Experience &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                        <p>
+                            <div class="checkbox">
+                                <label><input type="checkbox"> Beginner</label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label><input type="checkbox">Intermediate</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox">Expert</label>
+                            </div>
+                        </p>
+                    </span>
+
+                </ul>
+            </form><br>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5>Showing All</h5>
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="inputPassword6">Sort by:</label>
+                            <input type="text" id="inputPassword6" class="form-control mx-sm-3 down1" aria-describedby="passwordHelpInline" placeholder="Most recent" style="padding-left:10px; box-shadow: 0px 0px 2px 0px #ccc">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <hr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+
+                    <div class="col-sm-6">
+
+
+                        <div class="card border-dark mb-3" style="width:500px">
+                            <div class="card-body">
+                                <h4 class="card-title">@Html.DisplayFor(m => item.Title)</h4>
+
+                                <p class="card-text">Posted on: @Html.DisplayFor(m => item.CreatedDate)</p>
+                                <p class="card-text">Application Deadline: @Html.DisplayFor(m => item.ExpiryDate)</p>
+                                <p class="card-text">@Html.DisplayFor(m => item.Description)</p>
+
+                                <form class="form-inline">
+                                    <a class="btn btn-primary mb-2" href="@Url.Action("JobDetails", "Applicants", new { id = item.Id })">Apply Now</a>
+                                </form>
+                            </div>
+
+                        </div>
+                        @if (item.Id % 2 == 0)
+                        {
+                            <br />
+                        }
+                    </div>
+
+
+                }
+
+
+            }
+
+        </div>
+    </div>
+</div>

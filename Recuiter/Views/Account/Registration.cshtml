@@ -1,0 +1,161 @@
+﻿@model Data.Models.RegistrationView
+
+@{
+    ViewBag.Title = "Registration";
+}
+
+@*<h2>Registration</h2>*@
+
+
+<div class="container rela" style="min-height:45rem;">
+
+    <div class="row" id="imagebox">
+        <div class="col-sm-5 col-xs-12 d-none d-sm-block">
+            <h1 id="headliner">Create your account</h1>
+            <h2 id="sub-header">You need to sign up to begin your application.</h2>
+            <div>
+                <br>
+            </div>
+            <img src="~/Content/images/join.svg" class="img-fluid" style="object-fit:contain;">
+            <div>
+                <br>
+                <p>By logging in you agree to SBSC recruiter’s <span style="color:#f16722;">Terms & Conditions</span> and <span style="color:#f16722;">Privacy Policies.</span></p>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-2 col-xs-1 d-none d-sm-block">
+            <div style="width:1px;height:100%;background-color:#495057;opacity:.2;margin: 0 auto;">
+
+            </div>
+        </div>
+
+        <div class="col-sm-5 col-xs-6">
+            <b>Quickly sign up with:</b>
+            <div class="login1">
+                <div class="login" id="brands">
+                    <a href="#" id="brandLogo"> <img src="~/Content/images/facebook.svg" height="40.9"></a>
+                    <a href="#" id="brandLogo"> <img src="~/Content/images/twitter.svg" height="40.9"></a>
+                    <a href="#" id="brandLogo"> <img src="~/Content/images/linkedIn.svg" height="40.9"></a>
+                </div>
+
+                <p><b>or</b></p>
+            </div>
+
+            @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+            {
+                if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-success">
+                        <strong>Success!</strong> @ViewBag.Message
+                    </div>
+                }
+            }
+
+
+            else
+            {
+                using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <form class="mb-5">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Username)
+                            <div>
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter username" } })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstName)
+                            <div>
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter first name" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LastName)
+                            <div>
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter surname" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email)
+                            <div>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter a valid email address" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                @Html.ValidationMessage("Email Already Exists", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password)
+                            <div>
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter password" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ConfirmPassword)
+                            <div>
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirm your password" } })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div>
+                            <button type="submit" class="btn  signbtn"> Submit</button>
+                            <span>Have an account? <a id="btn_login" href="login">Login</a></span>
+                        </div>
+
+                        @* <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>*@
+                    </form>
+
+                    if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-danger">
+                            <strong>Error!</strong> @ViewBag.Message
+                        </div>
+                    }
+
+                }
+            }
+
+
+
+            @*<div>
+                    @Html.ActionLink("Login", "Login")
+                </div>*@
+
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

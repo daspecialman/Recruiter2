@@ -1,0 +1,148 @@
+﻿@model Recruiter.ViewModels.JobViewModel
+
+@{
+	ViewBag.Title = "Create";
+	Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+
+
+<img src="~/Content/images/UserInterface.png" class="img-fluid topbanner mb-4" alt="user Interface">
+<div class="container-fluid">
+	<h2>HR/Admin's Dashboard</h2>
+	<div class="row">
+		<div class="col-sm-3" style="background-color: #fafafa;">
+			<ul class="nav flex-column">
+				<li class="nav-item border-bottom">
+					@*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("Index", "HR")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Home</a>
+				</li>
+				<li class="nav-item border-bottom" id="profile">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>*@ <a href="@Url.Action("Create", "Jobs")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Create Jobs</a>
+				</li>
+				<li class="nav-item border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@ <a href="@Url.Action("Create", "Departments")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Create Departments</a>
+				</li>
+				<li class="nav-item border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Shortlisted Jobs</a>*@<a href="@Url.Action("Create", "Users")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>Create User</a>
+				</li>
+
+				<li class="nav-item  border-bottom">
+					@*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Upload CV</a>*@ <a href="@Url.Action("Create", "Roles")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Create Roles</a>
+				</li>
+
+
+			</ul>
+		</div>
+
+
+
+
+		
+
+
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+
+		<div class="form-horizontal" style="min-height:120rem; padding: 20px;">
+			<h2>Create</h2>
+			<h4>Job</h4>
+			<hr />
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Responsibility, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Responsibility, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Responsibility, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Characteristics, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Characteristics, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Characteristics, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.SkillSet, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EnumDropDownListFor(model => model.SkillSet, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.SkillSet, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.MinimumQualification, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EnumDropDownListFor(model => model.MinimumQualification, htmlAttributes: new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.MinimumQualification, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.ExperienceLevel, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EnumDropDownListFor(model => model.ExperienceLevel, htmlAttributes: new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.ExperienceLevel, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.ContractClass, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EnumDropDownListFor(model => model.ContractClass, htmlAttributes: new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.ContractClass, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" value="Create" class="btn btn-default" />
+				</div>
+			</div>
+
+			<div>
+				@Html.ActionLink("Back to List", "Index")
+			</div>
+
+
+		</div>
+
+
+		}
+	</div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
