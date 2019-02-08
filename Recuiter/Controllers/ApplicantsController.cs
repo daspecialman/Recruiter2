@@ -13,6 +13,7 @@ using Recruiter.App_Start.Filters;
 using Recruiter.Context;
 using Recruiter.CustomAuthentication;
 using Recruiter.ViewModels;
+using PagedList;
 
 namespace Recruiter.Controllers
 {
@@ -23,7 +24,7 @@ namespace Recruiter.Controllers
 
 
 		[HttpGet]
-		public ActionResult Index(string searchString, string searchSkills, string searchContract, int? ContractClass, int? ExperienceLevel)
+		public ActionResult Index(string searchString, string searchSkills, string searchContract, int? ContractClass, int? ExperienceLevel, int? page)
 		{
 			var jobss = from j in db.Jobs/*.Include(x => x.Department)*/ select j;
 
@@ -202,7 +203,7 @@ namespace Recruiter.Controllers
 
 
 		[HttpPost]
-		[PreventUncompletedProfileAttribute]
+		[PreventUncompletedProfile]
 		public ActionResult ApplicantProfileEdit(Applicant applicantProfileViewModel)
 		{
 			if (ModelState.IsValid)
@@ -225,22 +226,22 @@ namespace Recruiter.Controllers
 
 						dbContext.SaveChanges();
 					}
-					else if (applicant == null)
-					{
-						var appnew = new Applicant()
-						{
-							PhoneNumber = applicant.PhoneNumber,
-							Address = applicant.Address,
-							Age = applicant.Age,
-							Country = applicant.Country,
-							City = applicant.City,
-							Bio = applicant.Bio,
-							EducationLevel = applicant.EducationLevel,
-							YearsOfExperience = applicant.YearsOfExperience,
-						};
-						dbContext.Applicants.Add(appnew);
-						dbContext.SaveChanges();
-					}
+					//else if (applicant == null)
+					//{
+					//	var appnew = new Applicant()
+					//	{
+					//		PhoneNumber = applicant.PhoneNumber,
+					//		Address = applicant.Address,
+					//		Age = applicant.Age,
+					//		Country = applicant.Country,
+					//		City = applicant.City,
+					//		Bio = applicant.Bio,
+					//		EducationLevel = applicant.EducationLevel,
+					//		YearsOfExperience = applicant.YearsOfExperience,
+					//	};
+					//	dbContext.Applicants.Add(appnew);
+					//	dbContext.SaveChanges();
+					//}
 					else
 					{
 						ModelState.AddModelError("Warning Error", "Information is not correct");

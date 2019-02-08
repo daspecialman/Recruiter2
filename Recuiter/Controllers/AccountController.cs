@@ -128,7 +128,7 @@ namespace Recruiter.Controllers
 				var IsEmailExist = Membership.GetUserNameByEmail(registrationView.Email);
 				if (!string.IsNullOrEmpty(IsEmailExist))
 				{
-					ModelState.AddModelError("Warning Email", "Sorry: Email already Exists");
+					ModelState.AddModelError("", "Sorry: Email already Exists");
 					return View(registrationView);
 				}
 

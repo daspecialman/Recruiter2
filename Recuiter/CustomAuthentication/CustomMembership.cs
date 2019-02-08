@@ -133,7 +133,7 @@ namespace Recruiter.CustomAuthentication
 			using (RecruiterContext dbContext = new RecruiterContext())
 			{
 				string username = (from u in dbContext.Users
-								   where string.Compare(email, u.Username) == 0
+								   where string.Compare(email, u.Email) == 0
 								   select u.Username).FirstOrDefault();
 
 				return !string.IsNullOrEmpty(username) ? username : string.Empty;
