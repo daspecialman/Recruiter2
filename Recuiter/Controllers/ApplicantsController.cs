@@ -167,7 +167,7 @@ namespace Recruiter.Controllers
 		[HttpGet]
 		[Authorize]
 		// GET: Applicants
-		public ActionResult ApplicantProfileEdit()
+		public ActionResult ApplicantProfileEdit(int Id)
 		{
 			var currentUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
 			using (RecruiterContext dbContext = new RecruiterContext())
@@ -176,6 +176,7 @@ namespace Recruiter.Controllers
 							 where p.UserId == currentUserId
 							 select new ApplicantProfileViewModels
 							 {
+                                 Id = p.Id,
 								 Age = p.Age,
 								 Bio = p.Bio,
 								 PhoneNumber = p.PhoneNumber,
@@ -184,9 +185,17 @@ namespace Recruiter.Controllers
 								 Country = p.Country,
 								 CompleteAddress = p.Address,
 								 YearsOfExperience = p.YearsOfExperience,
+                                 ExperienceLevel = p.ExperienceLevel,
 								 EducationLevel = p.EducationLevel,
 								 FirstName = p.User.FirstName,
 								 LastName = p.User.LastName,
+                                 Specialization = p.Specialization,
+                                 JobTitle = p.JobTitle,
+                                 Language = p.Languages,
+                                 ImagePath = p.User.ImagePath,
+
+
+
 
 								 Certificates = (from files in dbContext.ApplicantDocuments
 												 where files.ApplicantId == p.Id && files.Type == FileType.Certificate && !files.IsActive
@@ -197,14 +206,15 @@ namespace Recruiter.Controllers
 													 Type = files.Type
 												 }).ToList()
 							 }).FirstOrDefault();
-				return View(query);
+                
+                return View(query);
 			}
 		}
 
 
 		[HttpPost]
 		[PreventUncompletedProfile]
-		public ActionResult ApplicantProfileEdit(Applicant applicantProfileViewModel)
+		public ActionResult ApplicantProfileEdit( ApplicantProfileViewModels applicantProfileVM, string ImageUpload, string SaveAndContinue )
 		{
 			if (ModelState.IsValid)
 			{
@@ -212,20 +222,56 @@ namespace Recruiter.Controllers
 				using (RecruiterContext dbContext = new RecruiterContext())
 				{
 					var applicant = dbContext.Applicants.Where(a => a.UserId == currentUserId).FirstOrDefault();
+                    var user = dbContext.Users.Where(u => u.Id == currentUserId).FirstOrDefault();
 					if (applicant != null)
 					{
-						applicant.PhoneNumber = applicantProfileViewModel.PhoneNumber;
-						applicant.Address = applicantProfileViewModel.Address;
-						applicant.Age = applicantProfileViewModel.Age;
-						applicant.Country = applicantProfileViewModel.Country;
-						applicant.City = applicantProfileViewModel.City;
-						applicant.Languages = applicantProfileViewModel.Languages;
-						applicant.Bio = applicantProfileViewModel.Bio;
-						applicant.EducationLevel = applicantProfileViewModel.EducationLevel;
-						applicant.YearsOfExperience = applicantProfileViewModel.YearsOfExperience;
+                        if(!string.IsNullOrEmpty(ImageUpload) && !(applicantProfileVM.ImageFile is null))
+                        {
+                            applicantProfileVM.ImagePath = UploadImage(applicantProfileVM.ImageFile);
+                            if(string.IsNullOrEmpty(applicantProfileVM.ImagePath))
+                            {
+                                ModelState.AddModelError("", "Image upload failed");
+                                return View(applicantProfileVM);
+                            } else
+                            {
+                                user.ImagePath = applicantProfileVM.ImagePath;
+                                dbContext.Entry(user).State = EntityState.Modified;
+                                ViewBag.Success = "Image Uploaded Successfully";
+                                dbContext.SaveChanges();
+                                return View(applicantProfileVM);
+                            }
+                        } else if (!string.IsNullOrEmpty(SaveAndContinue)) {
 
-						dbContext.SaveChanges();
-					}
+                            try
+                            {
+                                applicant.JobTitle = applicantProfileVM.JobTitle;
+                                applicant.Specialization = applicantProfileVM.Specialization;
+                                applicant.PhoneNumber = applicantProfileVM.PhoneNumber;
+                                applicant.Address = applicantProfileVM.CompleteAddress;
+                                applicant.Age = applicantProfileVM.Age;
+                                applicant.Country = applicantProfileVM.Country;
+                                applicant.City = applicantProfileVM.City;
+                                applicant.Languages = applicantProfileVM.Language;
+                                applicant.EducationLevel = (MinimumQualificationType)
+                                applicantProfileVM.EducationLevel;
+                                applicant.ExperienceLevel = (ExperienceLevelType) applicantProfileVM.ExperienceLevel;
+                                applicant.Bio = applicantProfileVM.Bio;
+
+
+                                dbContext.Entry(user).State = EntityState.Modified;
+                                dbContext.SaveChanges();
+                                ViewBag.Success = "Image Uploaded Successfully";
+
+                                return RedirectToAction("ApplicantResumeProfile", new { id = applicantProfileVM.Id });
+
+                            } catch(Exception e) {
+                                ModelState.AddModelError("", e + ". Applicant upload failed");
+                            }
+
+                        }
+
+
+                    }
 					//else if (applicant == null)
 					//{
 					//	var appnew = new Applicant()
@@ -245,11 +291,11 @@ namespace Recruiter.Controllers
 					else
 					{
 						ModelState.AddModelError("Warning Error", "Information is not correct");
-						return View(applicantProfileViewModel);
+						return View(applicantProfileVM);
 					}
 				}
 			}
-			return RedirectToAction("ApplicantProfilePage");
+			return View(applicantProfileVM);
 		}
 		[HttpGet]
 		public ActionResult ApplicantResumeProfile(int id)
@@ -618,6 +664,25 @@ namespace Recruiter.Controllers
 			return RedirectToAction("ApplicantProfilePage");
 
 		}
+
+        public string UploadImage( HttpPostedFileBase ImageFile )
+		{
+			try
+			{
+				string extension = Path.GetExtension(ImageFile.FileName);
+				var filename = "~/UploadedImages/" + DateTime.Now.ToString("yymmssfff") + extension;
+                ImageFile.SaveAs(Server.MapPath(filename));
+                return filename;
+            }
+			catch(Exception e)
+			{
+                ModelState.AddModelError("Warning Error", "Information is not correct. "+ e.Message);
+                return "";
+			}
+            
+            //return RedirectToAction("ApplicantProfilePage");
+
+        }
 
 		[HttpGet]
 		public ActionResult AppliedJobs(int Id)

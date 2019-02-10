@@ -46,14 +46,15 @@
             <p><b>@Html.LabelFor(m => m.ExperienceLevel):</b> @Html.DisplayFor(m => m.ExperienceLevel)</p>
             <p><b>Availability:</b> @Html.DisplayFor(m => m.ContractClass)</p>
             <p><b>@Html.LabelFor(m => m.MinimumQualification):</b> @Html.DisplayFor(m => m.MinimumQualification)</p>
-            @*<button type="button" class="btn btn-II mx-1 mb-4">Apply Now</button>*@ @Html.ActionLink("Apply Now", "ApplicantProfileEdit", "Applicants", new { id = Model.Id, @class = "btn btn-II mx-1 mb-4" })
+            @*<button type="button" class="btn btn-II mx-1 mb-4">Apply Now</button>*@ 
+            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", "Applicants", new { Id = Model.Id }, new { @class = "btn btn-II mx-1 mb-4" })
         </div>
 
         <div class="col-sm-1">
 
         </div>
         <div class="col-sm-4 bg-white p-3" id="square">
-            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", new { id = Model.Id, @class = "btn btn-II mx-1 mb-4" })
+            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", new { Id = Model.Id, @class = "btn btn-II mx-1 mb-4" })
             <div class="omega  d-flex justify-content-between mx-0">
                 <p>Share this job:</p>
                 <i class="fab fa-facebook-square"></i>
