@@ -23,6 +23,7 @@ namespace Recruiter.ViewModels
 		public string Institution { get; set; }
 
 		public string CourseStudies { get; set; }
+
         public int Id { get; set; }
     }
 

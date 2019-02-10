@@ -88,7 +88,7 @@ namespace Recruiter.Controllers
 			{
 				var userId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
 				var applicantId = (db.Applicants.Where(a => a.UserId == userId).FirstOrDefault()).Id;
-				var application = new Application
+				var application = new Data.Models.Application
 				{
 					ApplicantId = applicantId,
 					CreatedById = userId,
@@ -622,13 +622,28 @@ namespace Recruiter.Controllers
 		[HttpGet]
 		public ActionResult AppliedJobs(int Id)
 		{
-
-			var loggedInUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
+			var currentUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
+			var returnObject = new ApplicationVM();
 			using (RecruiterContext dbContext = new RecruiterContext())
 			{
+				var applicantEntity = dbContext.Applicants
+										.Where(a => a.UserId == currentUserId)
+										.Include(x => x.User)
+										.Include(x => x.Applications).FirstOrDefault();
+				returnObject = new ApplicationVM
+				{
+					AppliedJobs = applicantEntity.Applications.Select(x =>
+					new ViewModels.Application
+					{
+						JobTitle = x.JobTitle,
+						Date = x.Date,
+						Status = x.Status,
+					}).ToList(),
+				};
 
 			}
-			return View();
+
+			return View(returnObject);
 		}
 
 		[HttpPost]
@@ -646,7 +661,6 @@ namespace Recruiter.Controllers
 											.Include(x => x.Applications).FirstOrDefault();
 
 					if (applicantEntity == null)
-					//var   returnapp = new ApplicantResumeVM
 					{
 						var jobsFromDb = applicantEntity.Applications.ToList();
 						foreach (var vmjob in applicationVM.Applications)
@@ -655,7 +669,7 @@ namespace Recruiter.Controllers
 							//is new
 							if (dbjob == null)
 							{
-								dbjob = new Application
+								dbjob = new Data.Models.Application
 								{
 									JobTitle = vmjob.Job.Title,
 									Status = vmjob.Status,
