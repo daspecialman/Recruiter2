@@ -314,7 +314,7 @@ namespace Recruiter.Controllers
 				returnObject = new ApplicantResumeVM
 				{
 					Education = applicantEntity.PastEducation.Select(x =>
-					new Recruiter.ViewModels.Education
+					new Recruiter.ViewModels.EducationVM
 					{
 						CourseStudies = x.CourseStudied,
 						FromDate = x.FromDate,

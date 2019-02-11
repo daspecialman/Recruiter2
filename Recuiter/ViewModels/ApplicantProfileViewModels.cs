@@ -83,7 +83,7 @@ namespace Recruiter.ViewModels
 		public HttpPostedFileBase ImageFile { get; set; }
 
 
-		public List<Education> PastEducation { get; set; }
+		public List<EducationVM> PastEducation { get; set; }
 
 		public List<Experience> WorkExperience { get; set; }
 
@@ -91,7 +91,7 @@ namespace Recruiter.ViewModels
 
 		public List<Skill> Skills { get; set; }
 
-		public List<Education> Educations { get; set; }
+		public List<EducationVM> Educations { get; set; }
 
 		public List<Institution> Institutions { get; set; }
 
