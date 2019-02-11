@@ -1,6 +1,7 @@
 ﻿
 using Data.Enums;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Data.Models
 {
@@ -10,14 +11,17 @@ namespace Data.Models
 
         public Applicant Applicant { get; set; }
 
-		public string JobTitle { get; set; }
+        [Display(Name = "Job Title")]
+        public string JobTitle { get; set; }
 
 		public Job Job { get; set; }
 
-		public DateTime? Date { get; set; }
+        [Display(Name = "Date Applied")]
+        public DateTime? Date { get; set; }
 
 		public int JobId { get; set; }
 
-		public JobApplicationWorkFlow Status { get; set; }
+        [Display(Name = "Job Status")]
+        public JobApplicationWorkFlow Status { get; set; }
 	}
 }

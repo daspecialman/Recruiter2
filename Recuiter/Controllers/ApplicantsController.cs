@@ -100,7 +100,7 @@ namespace Recruiter.Controllers
 				ViewBag.JobApplicationSuccess = "You applied Successfully";
 				return View();
 			}
-			ViewBag.JobApplicationError = "Error! Select a Job to apply for. Thank you.";
+			ViewBag.JobApplicationError = "Error! Select a job to apply for. Thank you.";
 			return View();
 		}
 

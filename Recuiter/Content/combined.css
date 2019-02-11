@@ -461,3 +461,24 @@ p.footnote{
 	border-color: #f16722;
 	color: #f16722
 }*/
+
+#app_jobs {
+    color: grey;
+    opacity: .4;
+}
+
+.del {
+    margin-left: 3rem;
+}
+
+.del_head {
+    opacity: .0;
+}
+
+.navbar {
+    margin-bottom: 45px;
+}
+
+.center_body {
+    text-align: center;
+}
