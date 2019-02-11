@@ -38,7 +38,8 @@
         <div class="col-sm-9 alpha" style="min-height: 98rem;">
             <h5 class="mt-0">WELCOME STEELE</h5>
             <div class="media">
-                <img src="@Url.Content(Model.ImagePath)" class="align-self-start mr-3" alt="passport" style ="width:270px; height: 210px">
+                @if (!string.IsNullOrEmpty(Model.ImagePath))
+                { <img src="@Url.Content(Model.ImagePath)" class="align-self-start mr-3" alt="passport" style ="width:270px; height: 210px">}
                 <div class="media-body">
                     <div style=" padding-top: 5rem;">
                         <button type="button" class="btn btn-II ">Browse</button>
