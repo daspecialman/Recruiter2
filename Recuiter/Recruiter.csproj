@@ -385,17 +385,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902071626000_FreshMerge.cs" />
-    <Compile Include="Migrations\201902071626000_FreshMerge.Designer.cs">
-      <DependentUpon>201902071626000_FreshMerge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel.cs" />
-    <Compile Include="Migrations\201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel.Designer.cs">
-      <DependentUpon>201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902101807573_ApplicanAddedJobTItleAndSpecialization.cs" />
-    <Compile Include="Migrations\201902101807573_ApplicanAddedJobTItleAndSpecialization.Designer.cs">
-      <DependentUpon>201902101807573_ApplicanAddedJobTItleAndSpecialization.cs</DependentUpon>
+    <Compile Include="Migrations\201902102222438_NewlyPullUpdate.cs" />
+    <Compile Include="Migrations\201902102222438_NewlyPullUpdate.Designer.cs">
+      <DependentUpon>201902102222438_NewlyPullUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -491,14 +483,8 @@
     <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902071626000_FreshMerge.resx">
-      <DependentUpon>201902071626000_FreshMerge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel.resx">
-      <DependentUpon>201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902101807573_ApplicanAddedJobTItleAndSpecialization.resx">
-      <DependentUpon>201902101807573_ApplicanAddedJobTItleAndSpecialization.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902102222438_NewlyPullUpdate.resx">
+      <DependentUpon>201902102222438_NewlyPullUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

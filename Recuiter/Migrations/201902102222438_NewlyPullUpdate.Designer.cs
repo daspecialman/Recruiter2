@@ -7,13 +7,13 @@ namespace Recruiter.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ApplicantAndAppiicantVmAddedExperienceLevel : IMigrationMetadata
+    public sealed partial class NewlyPullUpdate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ApplicantAndAppiicantVmAddedExperienceLevel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(NewlyPullUpdate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel"; }
+            get { return "201902102222438_NewlyPullUpdate"; }
         }
         
         string IMigrationMetadata.Source
