@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 public enum FileType
@@ -56,4 +57,5 @@ public enum ContractClassType
     [Display(Name = "Contract")]
     Contract
 }
+
 

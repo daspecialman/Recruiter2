@@ -23,13 +23,18 @@ namespace Data.Models
 		public string Country { get; set; }
 
 		public string City { get; set; }
+        
+		public ExperienceLevelType ExperienceLevel { get; set; }
 
-		[DisplayName("Years Of Experience")]
-		public ExperienceLevelType YearsOfExperience { get; set; }
+		public int YearsOfExperience { get; set; }
 
 		public int Age { get; set; }
 
-		public string Languages { get; set; }
+        public string JobTitle { get; set; }
+
+        public string Specialization { get; set; }
+
+        public string Languages { get; set; }
 
 		[DisplayName("Education Level")]
 		public MinimumQualificationType EducationLevel { get; set; }

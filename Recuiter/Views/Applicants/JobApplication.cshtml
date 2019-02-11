@@ -1,16 +1,35 @@
 ﻿@{
-    ViewBag.Title = "JobApplication";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    /**/
 
-<h2>Job Application</h2><br><br />
+    ViewBag.Title = "JobApplication";
+    Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+@*<h2>Job Application</h2><br><br />*@
 @if (!string.IsNullOrEmpty(ViewBag.JobApplicationSuccess))
 {
-    <h4 class="success">@ViewBag.JobApplicationSuccess</h4>
-    <P>Go to my <a href="~/Applicants/Dashboard">Dashboard</a></P>
+
+    <div class="row mx-0">
+        <div class="center_body col-sm-10 offset-sm-1">
+            <div class="bg-white h-100 m-auto py-2 px-4" style="min-height: 382px;">
+                <img src="~/Content/images/handshake .svg" alt="handshake" style="margin-top:3rem">
+                <h2 class="midtop mb-1"> THANKS FOR APPLYING</h2>
+                <p class="midtext mb-3">We’ve received your resume and will review it shortly. Only successful candidates will be contacted for via SMS/ Mail.</p>
+                <p class="midbottom">You have successfully applied for a vacancy.</p>
+            </div>
+        </div>
+    </div>
 }
 else
 {
-    <h4 class="has-error">@ViewBag.JobApplicationError</h4>
-}
+    <div class="row mx-0">
+        <div class="center_body col-sm-10 offset-sm-1">
+            <div class="bg-white h-100 m-auto py-2 px-4" style="min-height: 382px;">
 
+                <h2 class="midtop mb-1"> You have not applied for a job!</h2>
+                <h4 class="has-error">@ViewBag.JobApplicationError</h4>
+
+            </div>
+        </div>
+    </div>
+    @*<h4 class="has-error">@ViewBag.JobApplicationError</h4>*@
+}

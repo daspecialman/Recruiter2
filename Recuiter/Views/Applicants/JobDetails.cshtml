@@ -46,14 +46,15 @@
             <p><b>@Html.LabelFor(m => m.ExperienceLevel):</b> @Html.DisplayFor(m => m.ExperienceLevel)</p>
             <p><b>Availability:</b> @Html.DisplayFor(m => m.ContractClass)</p>
             <p><b>@Html.LabelFor(m => m.MinimumQualification):</b> @Html.DisplayFor(m => m.MinimumQualification)</p>
-            @*<button type="button" class="btn btn-II mx-1 mb-4">Apply Now</button>*@ @Html.ActionLink("Apply Now", "ApplicantProfileEdit", "Applicants", new { id = Model.Id, @class = "btn btn-II mx-1 mb-4" })
+            @*<button type="button" class="btn btn-II mx-1 mb-4">Apply Now</button>*@ 
+            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", "Applicants", new { Id = Model.Id }, new { @class = "btn btn-II mx-1 mb-4" })
         </div>
 
         <div class="col-sm-1">
 
         </div>
         <div class="col-sm-4 bg-white p-3" id="square">
-            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", new { id = Model.Id, @class = "btn btn-II mx-1 mb-4" })
+            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", new { Id = Model.Id, @class = "btn btn-II mx-1 mb-4" })
             <div class="omega  d-flex justify-content-between mx-0">
                 <p>Share this job:</p>
                 <i class="fab fa-facebook-square"></i>
@@ -74,7 +75,7 @@
                                 <p><small>Posted: 2days, 2hrs ago</small></p>
                                 <p>Job fuction: Accounting and Auditing</p>
                             </div>
-                            <button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>
+                            @*<button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>*@
                         </div>
 
 
@@ -89,7 +90,7 @@
                                 <p><small>Posted: 2days, 2hrs ago</small></p>
                                 <p>Job fuction: Business Analyst</p>
                             </div>
-                            <button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>
+                            @*<button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>*@
                         </div>
 
 
@@ -104,14 +105,14 @@
                                 <p><small>Posted: 2days, 2hrs ago</small></p>
                                 <p>Job fuction: Application Testing</p>
                             </div>
-                            <button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>
+                            @*<button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>*@
                         </div>
 
 
                     </div>
                 </div>
                 <div class="text-right">
-                    <a href="#">see more</a>
+                    @*<a href="#">see more</a>*@
                 </div>
 
 
