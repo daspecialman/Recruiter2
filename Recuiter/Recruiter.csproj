@@ -346,13 +346,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-3.4.2.debug.js" />
-    <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\moment-with-locales.js" />
-    <Content Include="Scripts\moment-with-locales.min.js" />
-    <Content Include="Scripts\moment.js" />
-    <Content Include="Scripts\moment.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -385,21 +379,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902071626000_FreshMerge.cs" />
-    <Compile Include="Migrations\201902071626000_FreshMerge.Designer.cs">
-      <DependentUpon>201902071626000_FreshMerge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel.cs" />
-    <Compile Include="Migrations\201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel.Designer.cs">
-      <DependentUpon>201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902101807573_ApplicanAddedJobTItleAndSpecialization.cs" />
-    <Compile Include="Migrations\201902101807573_ApplicanAddedJobTItleAndSpecialization.Designer.cs">
-      <DependentUpon>201902101807573_ApplicanAddedJobTItleAndSpecialization.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utitlity\Constants.cs" />
+    <Compile Include="Utitlity\Helper.cs" />
     <Compile Include="ViewModels\ApplicantDocumentViewModel.cs" />
     <Compile Include="ViewModels\ApplicantProfileViewModels.cs" />
     <Compile Include="ViewModels\ApplicantResumeVM.cs" />
@@ -408,6 +392,7 @@
     <Compile Include="ViewModels\DashboardVM.cs" />
     <Compile Include="ViewModels\JobViewModel.cs" />
     <Compile Include="ViewModels\LoginView.cs" />
+    <Compile Include="ViewModels\PastEducationViewModel.cs" />
     <Compile Include="ViewModels\UserVM.cs" />
     <Compile Include="ViewModels\DepartmentVM.cs" />
   </ItemGroup>
@@ -469,11 +454,11 @@
     <Content Include="Views\Reviewer\Index.cshtml" />
     <Content Include="Views\Reviewer\ReviewQuestions.cshtml" />
     <Content Include="Views\Applicants\JobApplication.cshtml" />
+    <Content Include="Views\Applicants\JobDetails.cshtml" />
     <Content Include="Views\Applicants\ApplicantResumeProfile.cshtml" />
     <Content Include="Views\Hr\Index.cshtml" />
     <Content Include="Views\Shared\HomeLayout.cshtml" />
     <Content Include="Views\Shared\ApplicantLayout.cshtml" />
-    <Content Include="Views\Applicants\AppliedJobs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -490,17 +475,6 @@
   <ItemGroup>
     <Folder Include="App_Data\UploadedFiles\" />
     <Folder Include="UploadedImages\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902071626000_FreshMerge.resx">
-      <DependentUpon>201902071626000_FreshMerge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel.resx">
-      <DependentUpon>201902101747306_ApplicantAndAppiicantVmAddedExperienceLevel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902101807573_ApplicanAddedJobTItleAndSpecialization.resx">
-      <DependentUpon>201902101807573_ApplicanAddedJobTItleAndSpecialization.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
