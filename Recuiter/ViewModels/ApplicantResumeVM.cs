@@ -7,12 +7,12 @@ namespace Recruiter.ViewModels
 {
 	public class ApplicantResumeVM
 	{
-		public  List<Education> Education { get; set; }
+		public  List<EducationVM> Education { get; set; }
 		public List<Experience> Experience { get; set; }
 		public List<Skill> Skill { get; set; }
 	}
 
-	public class Education
+	public class EducationVM
 	{
 		public string Qualification { get; set; }
 
