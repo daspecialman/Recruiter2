@@ -51,9 +51,12 @@ namespace Recruiter.ViewModels
         public string Specialization { get; set; }
 
         [DisplayName("Experience")]
-		public ExperienceLevelType  YearsOfExperience { get; set; }
+		public ExperienceLevelType  ExperienceLevel { get; set; }
 
-		public int Age { get; set; }
+        [DisplayName("Year(s) of Experience")]
+        public int YearsOfExperience { get; set; }
+
+        public int Age { get; set; }
 
 		public string Language { get; set; }
 

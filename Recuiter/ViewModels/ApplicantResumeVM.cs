@@ -25,6 +25,7 @@ namespace Recruiter.ViewModels
         public bool IsPresent { get; set; }
 
 		public string CourseStudies { get; set; }
+
         public int Id { get; set; }
     }
 
