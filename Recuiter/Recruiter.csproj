@@ -459,6 +459,9 @@
     <Content Include="Views\Hr\Index.cshtml" />
     <Content Include="Views\Shared\HomeLayout.cshtml" />
     <Content Include="Views\Shared\ApplicantLayout.cshtml" />
+    <Content Include="Views\Applicants\Dashboard.cshtml" />
+    <Content Include="Views\Applicants\AppliedJobs.cshtml" />
+    <Content Include="Views\Applicants\GetTopAppliedJobs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

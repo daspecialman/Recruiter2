@@ -13,10 +13,9 @@ namespace Data.Models
 		public string JobTitle { get; set; }
 
 		public Job Job { get; set; }
+		public int JobId { get; set; }
 
 		public DateTime? Date { get; set; }
-
-		public int JobId { get; set; }
 
 		public JobApplicationWorkFlow Status { get; set; }
 	}

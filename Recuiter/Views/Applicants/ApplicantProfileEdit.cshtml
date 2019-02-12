@@ -60,6 +60,7 @@
 
                 <div>
 
+
                     <h3>Upload Image</h3>
                     <div class="form-group">
                         @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-10-" })
@@ -81,7 +82,7 @@
                             Cancel (Client Side)
                         </button>*@
 
-                            <button name="AddImage" type="button"
+                            @*<button name="AddImage" type="button"
                                     onclick=" document.location.href = $('#UploadImage').attr('href');"
                                     class="btn btn-primary"
                                     formenctype="multipart/form-data"
@@ -89,7 +90,7 @@
                                 Upload
                             </button>
                             <a id="UploadImage" href="@Html.AttributeEncode(Url.Action("AddImage", "Applicants"))"
-                               style="display:none;"></a>
+                               style="display:none;"></a>*@
 
                         </div>
                     </div>
@@ -253,6 +254,8 @@
 
 
                 @*<a href="@Url.Action("ApplicantProfileEdit", "Applicants", new { id = Model.Id })" class="btn btn-II mx-1">Save and Continue</a>*@
+                
+                @Html.Hidden("jobId", new { jobId = ViewBag.jobId})
                 <input type="submit" name="SaveAndContinue" value="Save and Contnue" class="btn btn-II mx-1" />
 
                 @*<button name="ClientCancel"

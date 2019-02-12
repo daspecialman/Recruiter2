@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Recruiter.ViewModels.ApplicationVM>
+@{
+    ViewBag.Title = "AppliedJobs";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+
+<h2>Applied Jobs</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+    </tr>
+
+    @foreach (var application in Model)
+    {
+        <tr>
+
+
+
+            <td>
+                @Html.DisplayFor(modelItem => application.JobTitle)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => application.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => application.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = application.Id }) |
+                @Html.ActionLink("Cancel", "Delete", new { id = application.Id })
+            </td>
+        </tr>
+    }
+
+</table>
