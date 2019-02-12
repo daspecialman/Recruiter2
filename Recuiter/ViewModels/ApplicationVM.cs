@@ -5,14 +5,16 @@ using System.Collections.Generic;
 
 namespace Recruiter.ViewModels
 {
-    public class ApplicationVM
+    public class ApplicationListVM
     {
-        public List<Application>AppliedJobs{ get; set; }
+        public List<ApplicationVM>AppliedJobs{ get; set; }
     }
 
-	public class Application
+	public class ApplicationVM
 	{
-		public string JobTitle { get; set; }
+        public int Id { get; set; }
+
+        public string JobTitle { get; set; }
 
 		public DateTime? Date { get; set; }
 

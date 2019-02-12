@@ -69,5 +69,6 @@ namespace Data.Models
         public bool IsApproved { get; set; }
 
         public bool IsPublished { get; set; }
+
     }
 }
