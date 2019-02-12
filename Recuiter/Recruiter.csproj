@@ -225,6 +225,11 @@
     <Content Include="Content\assets\js\vendor\jquery.nice-select.min.js" />
     <Content Include="Content\assets\js\vendor\owl-carousel.min.js" />
     <Content Include="Content\assets\js\vendor\wow.min.js" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap\css\.DS_Store" />
@@ -284,6 +289,7 @@
     <Content Include="Content\images\UserInterface.png" />
     <Content Include="Content\images\welcome_icon.svg" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\profile.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
@@ -338,6 +344,8 @@
     <Content Include="Content\assets\sass\setting\_mixin.scss" />
     <Content Include="Content\assets\sass\setting\_variable.scss" />
     <Content Include="Content\assets\sass\style.scss" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
+    <Content Include="Content\bootstrap-datepicker.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -358,6 +366,7 @@
     <Compile Include="Context\Map\DocumentMap.cs" />
     <Compile Include="Context\RecruiterContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\ApplicantController.cs" />
     <Compile Include="Controllers\api\NotificationApiController.cs" />
     <Compile Include="Controllers\ApplicantsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
@@ -379,11 +388,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
+    <Compile Include="Migrations\201902110909168_Monday11.cs" />
+    <Compile Include="Migrations\201902110909168_Monday11.Designer.cs">
+      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
+    <Compile Include="Migrations\201902091844444_initial.cs" />
+    <Compile Include="Migrations\201902091844444_initial.Designer.cs">
+      <DependentUpon>201902091844444_initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utitlity\Constants.cs" />
     <Compile Include="Utitlity\Helper.cs" />
+    <Compile Include="ViewModels\ApiResult.cs" />
     <Compile Include="ViewModels\ApplicantDocumentViewModel.cs" />
     <Compile Include="ViewModels\ApplicantProfileViewModels.cs" />
     <Compile Include="ViewModels\ApplicantResumeVM.cs" />
@@ -441,7 +458,6 @@
     <Content Include="Views\Applicants\ApplicantProfileEdit.cshtml" />
     <Content Include="Views\Applicants\Index.cshtml" />
     <Content Include="Views\Applicants\ApplicantProfileEditReadOnly.cshtml" />
-    <Content Include="Views\Applicants\ApplicantProfilePage.cshtml" />
     <Content Include="Views\Shared\ProfileLayout.cshtml" />
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Reviewer\Index.cshtml" />
@@ -455,13 +471,10 @@
     <Content Include="Views\Reviewer\ReviewQuestions.cshtml" />
     <Content Include="Views\Applicants\JobApplication.cshtml" />
     <Content Include="Views\Applicants\JobDetails.cshtml" />
-    <Content Include="Views\Applicants\ApplicantResumeProfile.cshtml" />
     <Content Include="Views\Hr\Index.cshtml" />
     <Content Include="Views\Shared\HomeLayout.cshtml" />
     <Content Include="Views\Shared\ApplicantLayout.cshtml" />
-    <Content Include="Views\Applicants\Dashboard.cshtml" />
     <Content Include="Views\Applicants\AppliedJobs.cshtml" />
-    <Content Include="Views\Applicants\GetTopAppliedJobs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -478,6 +491,13 @@
   <ItemGroup>
     <Folder Include="App_Data\UploadedFiles\" />
     <Folder Include="UploadedImages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902110909168_Monday11.resx">
+      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902091844444_initial.resx">
+      <DependentUpon>201902091844444_initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

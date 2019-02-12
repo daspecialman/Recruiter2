@@ -42,9 +42,9 @@
                 { <img src="@Url.Content(Model.ImagePath)" class="align-self-start mr-3" alt="passport" style ="width:270px; height: 210px">}
                 <div class="media-body">
                     <div style=" padding-top: 5rem;">
-                        <button type="button" class="btn btn-II ">Browse</button>
+                        @*<button type="button" class="btn btn-II ">Browse</button>*@
                         <div>
-                            <p id="bot">Max file size is 1MB, Minimum dimension 270x210 and suitable files are jpg & png</p>
+                           
                         </div>
                     </div>
 
@@ -60,7 +60,6 @@
 
                 <div>
 
-
                     <h3>Upload Image</h3>
                     <div class="form-group">
                         @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-10-" })
@@ -72,26 +71,23 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.ImagePath, new { @class = "control -label col-md-5" })
                         <div class="col-md-10">
-
                             <input type="file" name="ImageFile" />
                             <br /><br />
                             <input type="submit" value="Upload" class="btn btn-primary" name="ImageUpload" />
-
+                            <p id="bot">Max file size is 1MB, Minimum dimension 270x210 and suitable files are jpg & png</p>
                             @*<button name="ClientCancel" type="button"
-                                onclick=" document.location.href = $('#cancelUrl').attr('href');">
-                            Cancel (Client Side)
-                        </button>*@
-
+                onclick=" document.location.href = $('#cancelUrl').attr('href');">
+            Cancel (Client Side)
+        </button>*@
                             @*<button name="AddImage" type="button"
-                                    onclick=" document.location.href = $('#UploadImage').attr('href');"
-                                    class="btn btn-primary"
-                                    formenctype="multipart/form-data"
-                                    formmethod="post">
-                                Upload
-                            </button>
-                            <a id="UploadImage" href="@Html.AttributeEncode(Url.Action("AddImage", "Applicants"))"
-                               style="display:none;"></a>*@
-
+                onclick=" document.location.href = $('#UploadImage').attr('href');"
+                class="btn btn-primary"
+                formenctype="multipart/form-data"
+                formmethod="post">
+            Upload
+        </button>
+        <a id="UploadImage" href="@Html.AttributeEncode(Url.Action("AddImage", "Applicants"))"
+           style="display:none;"></a>*@
                         </div>
                     </div>
                 </div>
@@ -254,8 +250,6 @@
 
 
                 @*<a href="@Url.Action("ApplicantProfileEdit", "Applicants", new { id = Model.Id })" class="btn btn-II mx-1">Save and Continue</a>*@
-                
-                @Html.Hidden("jobId", new { jobId = ViewBag.jobId})
                 <input type="submit" name="SaveAndContinue" value="Save and Contnue" class="btn btn-II mx-1" />
 
                 @*<button name="ClientCancel"

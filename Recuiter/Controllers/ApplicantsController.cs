@@ -124,7 +124,7 @@ namespace Recruiter.Controllers
                     return View();
                 }
 			}
-			ViewBag.JobApplicationError = "Error! Select a Job to apply for. Thank you.";
+			ViewBag.JobApplicationError = "Error! Select a job to apply for. Thank you.";
 			return View();
 		}
 

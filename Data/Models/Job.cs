@@ -63,6 +63,7 @@ namespace Data.Models
 
 		[Display(Name = "Expiry Date")]
         [Required]
+        [DataType(DataType.Date)]
         public DateTime ExpiryDate { get; set; }
 
         public bool IsApproved { get; set; }

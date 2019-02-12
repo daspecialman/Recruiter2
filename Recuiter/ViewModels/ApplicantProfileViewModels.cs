@@ -28,44 +28,54 @@ namespace Recruiter.ViewModels
 
 		[DisplayName("Phone Number")]
 		[DataType(DataType.PhoneNumber)]
-		public string PhoneNumber { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Phone number is required")]
+        public string PhoneNumber { get; set; }
 
 		[Display(Name = "E-mail Address")]
-		[Required(AllowEmptyStrings = false, ErrorMessage = "E-mail Address is required")]
+		[Required(AllowEmptyStrings = false, ErrorMessage = "Your email is required")]
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }
 
 		[Display(Name = "Country")]
-		public string Country { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter country")]
+        public string Country { get; set; }
 
         [Display(Name = "City")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter city")]
         public string City { get; set; }
 
 		[DisplayName("Complete Address")]
-		public string CompleteAddress { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please input address")]
+        public string CompleteAddress { get; set; }
 
         [DisplayName("Job Title")]
         public string JobTitle { get; set; }
 
         [DisplayName("Specialization")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Enter specialization e.g. PHP")]
         public string Specialization { get; set; }
 
         [DisplayName("Experience")]
-		public ExperienceLevelType  ExperienceLevel { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please select your experience level")]
+        public ExperienceLevelType  ExperienceLevel { get; set; }
 
         [DisplayName("Year(s) of Experience")]
         public int YearsOfExperience { get; set; }
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Your age is required")]
         public int Age { get; set; }
 
-		public string Language { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "What languages do you speak?")]
+        public string Language { get; set; }
 
 		public List<string> LanguageList => Language.Split(',').ToList();
 
 		[DisplayName("Education Level")]
-		public MinimumQualificationType EducationLevel { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please select highest education level")]
+        public MinimumQualificationType EducationLevel { get; set; }
 
-		public string Bio { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please tell us about yourself")]
+        public string Bio { get; set; }
 
 		public List<ApplicantDocumentViewModel> Certificates { get; set; }
 
