@@ -41,5 +41,50 @@ namespace Recruiter.Controllers.api
 
 
         }
+
+        public IHttpActionResult GetExperience(int Id)
+        {
+            var experience = db.Experiences.Where(x => x.Id == Id).FirstOrDefault();
+            var result = new ApiResult<ExperienceVM>();
+            if (experience != null)
+            {
+                var experienceModel = new ExperienceVM
+                {
+
+                };
+
+                result.HasError = false;
+                result.Message = "Successusfully Entered Experience";
+                result.Data = experienceModel;
+            }
+            else
+            {
+                return NotFound();
+            }
+            return Json(result);
+        }
+
+        public IHttpActionResult GetSkill(int Id)
+        {
+            var skill = db.Skills.Where(x => x.Id == Id).FirstOrDefault();
+            var result = new ApiResult<SkillVM>();
+            if (skill != null)
+            {
+                var skillModel = new SkillVM
+                {
+
+                };
+
+                result.HasError = false;
+                result.Message = "Successusfully Entered Skills";
+                result.Data = skillModel;
+            }
+            else
+            {
+                return NotFound();
+
+            }
+            return Json(result);
+        }
     }
 }
