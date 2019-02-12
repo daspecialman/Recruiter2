@@ -1,62 +1,48 @@
-﻿@model IEnumerable<Data.Models.Application> 
+﻿@model IEnumerable<Recruiter.ViewModels.ApplicationVM>
 @{
     ViewBag.Title = "AppliedJobs";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+
     Layout = "~/Views/Shared/ProfileLayout.cshtml";
 }
 
-@*<h2>AppliedJobs</h2>*@
+<h2>Applied Jobs</h2>
 
-<img src="~/Content/images/UserInterface.png" class="img-fluid topbanner mb-4" alt="user Interface">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3" style="background-color: #fafafa;">
-            <ul class="nav flex-column">
-                <li class="nav-item border-bottom">
-                    <a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
-                </li>
-                <li class="nav-item border-bottom" id="app_jobs">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Shortlisted Jobs</a>
-                </li>
-                <li class="nav-item  border-bottom"
-                    id="pass_change">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-9">
-            <h2>APPLIED JOBS</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">@Html.DisplayNameFor(model => model.JobTitle)</th>
-                        <th scope="col"></th>
-                        <th scope="col">@Html.DisplayNameFor(model => model.Status)</th>
-                        <th scope="col">@Html.DisplayNameFor(model => model.Date)</th>
-                        <th scope="col" class="del_head">Delete</th>
-                    </tr>
-                </thead>
-                @foreach (var item in Model)
-                {
-                    <tbody>
-                        <tr>
-                            <td scope="row">@Html.DisplayFor(model => item.JobTitle)</td>
-                            <td></td>
-                            <td>@Html.DisplayFor(model => item.Status)</td>
-                            <td>@Html.DisplayFor(model => item.Date)</td>
-                            <td class="del">Delete</td>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
 
-                        </tr>
-                        
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+    </tr>
 
-                    </tbody>
-                }
-            </table>
-</div>
-        </div>
-    </div>
+    @foreach (var application in Model)
+    {
+        <tr>
+
+
+
+            <td>
+                @Html.DisplayFor(modelItem => application.JobTitle)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => application.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => application.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = application.Id }) |
+                @Html.ActionLink("Cancel", "Delete", new { id = application.Id })
+            </td>
+        </tr>
+    }
+
+</table>

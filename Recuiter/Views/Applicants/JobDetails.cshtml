@@ -47,7 +47,7 @@
             <p><b>Availability:</b> @Html.DisplayFor(m => m.ContractClass)</p>
             <p><b>@Html.LabelFor(m => m.MinimumQualification):</b> @Html.DisplayFor(m => m.MinimumQualification)</p>
             @*<button type="button" class="btn btn-II mx-1 mb-4">Apply Now</button>*@ 
-            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", "Applicants", new { Id = Model.Id }, new { @class = "btn btn-II mx-1 mb-4" })
+            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", "Applicants", new { jobId = Model.Id }, new { @class = "btn btn-II mx-1 mb-4" })
         </div>
 
         <div class="col-sm-1">

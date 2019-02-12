@@ -9,6 +9,6 @@ namespace Recruiter.ViewModels
     public class DashboardVM
     {
         public int ApplicantId { get; set; }
-        public ICollection<ApplicationVM> Application { get; set; }
+        public ICollection<ApplicationListVM> Application { get; set; }
     }
 }
