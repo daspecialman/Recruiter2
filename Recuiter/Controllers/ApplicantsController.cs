@@ -353,7 +353,7 @@ namespace Recruiter.Controllers
 						ToDate = x.ToDate
 					}).ToList(),
 					Experience = applicantEntity.WorkExperience.Select(x =>
-					   new Recruiter.ViewModels.Experience
+					   new Recruiter.ViewModels.ExperienceVM
 					   {
 						   Title = x.Title,
 						   FromDate = x.FromDate,
@@ -361,7 +361,7 @@ namespace Recruiter.Controllers
 						   ToDate = x.ToDate
 					   }).ToList(),
 					Skill = applicantEntity.Skills.Select(x =>
-					   new Recruiter.ViewModels.Skill
+					   new Recruiter.ViewModels.SkillVM
 					   {
 						   Skilllevel = x.Skilllevel,
 						   Achievement = x.Achievement,
