@@ -494,14 +494,7 @@
     <Folder Include="App_Data\UploadedFiles\" />
     <Folder Include="UploadedImages\" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902110909168_Monday11.resx">
-      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902091844444_initial.resx">
-      <DependentUpon>201902091844444_initial.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+  
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
