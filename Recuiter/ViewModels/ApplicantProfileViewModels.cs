@@ -49,6 +49,7 @@ namespace Recruiter.ViewModels
         public string CompleteAddress { get; set; }
 
         [DisplayName("Job Title")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Enter your job title")]
         public string JobTitle { get; set; }
 
         [DisplayName("Specialization")]
@@ -95,11 +96,11 @@ namespace Recruiter.ViewModels
 
 		public List<EducationVM> PastEducation { get; set; }
 
-		public List<Experience> WorkExperience { get; set; }
+		public List<ExperienceVM> WorkExperience { get; set; }
 
 		public List<ApplicantDocument> ApplicantDocuments { get; set; }
 
-		public List<Skill> Skills { get; set; }
+		public List<SkillVM> Skills { get; set; }
 
 		public List<EducationVM> Educations { get; set; }
 

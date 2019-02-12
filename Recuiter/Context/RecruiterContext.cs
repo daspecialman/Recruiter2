@@ -25,6 +25,12 @@ namespace Recruiter.Context
 
         public IDbSet<Education> Educations { get; set; }
 
+        // referenced in api/ApplicantController
+        public IDbSet<Experience> Experiences { get; set; }
+
+        // referenced in api/ApplicantController
+        public IDbSet<Skill> Skills { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{

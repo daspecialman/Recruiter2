@@ -10,57 +10,56 @@
 
 <img src="~/Content/images/UserInterface.png" class="img-fluid topbanner mb-4" alt="user Interface">
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-sm-3" style="background-color: #fafafa;">
-			<ul class="nav flex-column">
-				<li class="nav-item border-bottom" id="profile">
-					@*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("ApplicantProfilePage", "Applicants")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>My Profile</a>
-				</li>
-				<li class="nav-item border-bottom">
-					<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
-				</li>
-				<li class="nav-item border-bottom">
-					@*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@<a href="@Url.Action("AppliedJobs", "Applicants")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Change Password</a>
-				</li>
-				<li class="nav-item border-bottom">
-					<a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Shortlisted Jobs</a>
-				</li>
-				<li class="nav-item  border-bottom">
-					@*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>*@ <a href="@Url.Action("ChangePassword", "Account")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Change Password</a>
-				</li>
-				<li class="nav-item  border-bottom">
-					@*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Upload CV</a>*@ <a href="@Url.Action("Index", "Document")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Upload CV</a>
-				</li>
+    <div class="row">
+        <div class="col-sm-3" style="background-color: #fafafa;">
+            <ul class="nav flex-column">
+                <li class="nav-item border-bottom" id="profile">
+                    @*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("ApplicantProfilePage", "Applicants")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>My Profile</a>
+                </li>
+                <li class="nav-item border-bottom">
+                    <a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
+                </li>
+                <li class="nav-item border-bottom">
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@<a href="@Url.Action("AppliedJobs", "Applicants")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Change Password</a>
+                </li>
+                <li class="nav-item border-bottom">
+                    <a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Shortlisted Jobs</a>
+                </li>
+                <li class="nav-item  border-bottom">
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>*@ <a href="@Url.Action("ChangePassword", "Account")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Change Password</a>
+                </li>
+                <li class="nav-item  border-bottom">
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Upload CV</a>*@ <a href="@Url.Action("Index", "Document")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Upload CV</a>
+                </li>
 
-
-			</ul>
-		</div>
+            </ul>
+        </div>
         <div class="col-sm-9 alpha" style="min-height: 98rem;">
             <h5 class="mt-0">WELCOME STEELE</h5>
             <div class="media">
                 @if (!string.IsNullOrEmpty(Model.ImagePath))
-                { <img src="@Url.Content(Model.ImagePath)" class="align-self-start mr-3" alt="passport" style ="width:270px; height: 210px">}
+                {<img src="@Url.Content(Model.ImagePath)" class="align-self-start mr-3" alt="passport" style="width:270px; height: 210px">}
                 <div class="media-body">
                     <div style=" padding-top: 5rem;">
                         @*<button type="button" class="btn btn-II ">Browse</button>*@
                         <div>
-                           
+
                         </div>
                     </div>
-
                 </div>
             </div>
-
             @using (Html.BeginForm("ApplicantProfileEdit", "Applicants", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
 
 
+                @Html.Hidden("jobId", new { ViewBag.jobId })
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div>
+                    <h3> Upload Image </h3>
 
-                    <h3>Upload Image</h3>
+
                     <div class="form-group">
                         @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-10-" })
                         <div class="col-md-10">
@@ -76,200 +75,168 @@
                             <input type="submit" value="Upload" class="btn btn-primary" name="ImageUpload" />
                             <p id="bot">Max file size is 1MB, Minimum dimension 270x210 and suitable files are jpg & png</p>
                             @*<button name="ClientCancel" type="button"
-                onclick=" document.location.href = $('#cancelUrl').attr('href');">
-            Cancel (Client Side)
-        </button>*@
+                                        onclick=" document.location.href = $('#cancelUrl').attr('href');">
+                                    Cancel (Client Side)
+                                </button>*@
                             @*<button name="AddImage" type="button"
-                onclick=" document.location.href = $('#UploadImage').attr('href');"
-                class="btn btn-primary"
-                formenctype="multipart/form-data"
-                formmethod="post">
-            Upload
-        </button>
-        <a id="UploadImage" href="@Html.AttributeEncode(Url.Action("AddImage", "Applicants"))"
-           style="display:none;"></a>*@
+                                        onclick=" document.location.href = $('#UploadImage').attr('href');"
+                                        class="btn btn-primary"
+                                        formenctype="multipart/form-data"
+                                        formmethod="post">
+                                    Upload
+                                </button>
+                                <a id="UploadImage" href="@Html.AttributeEncode(Url.Action("AddImage", "Applicants"))"
+                                   style="display:none;"></a>*@
                         </div>
                     </div>
-                </div>
-
-                <div class="row mb-4">
-                    <div class="col">
-                        @Html.LabelFor(model => model.FirstName)
-
-                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-                    </div>
-
-
-                    <div class="col">
-                        @Html.LabelFor(model => model.LastName)
-
-                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Last name" } })
-                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-                <div class="row mb-4">
-                    <div class="col">
-                        @Html.LabelFor(model => model.JobTitle)
-
-                        @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "PHP Developer" })
-                        @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
-                    </div>
-
-
-                    <div class="col">
-                        @Html.LabelFor(model => model.Specialization)
-
-                        @Html.EditorFor(model => model.Specialization, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Specialization" } })
-                        @Html.ValidationMessageFor(model => model.Specialization, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <fieldset>
-                    <legend>CONTACT INFORMATION</legend>
-                    <div class="row mb-4">
-                        <div class="col">
-                            @Html.LabelFor(model => model.PhoneNumber)
-
-                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "+234 ... ... ...." })
-                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-                        </div>
-
-
-                        <div class="col">
-                            @Html.LabelFor(model => model.Email)
-
-                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter a valid email address" } })
-                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
 
                     <div class="row mb-4">
                         <div class="col">
-                            @Html.LabelFor(model => model.Country)
-
-                            @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.FirstName)
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                         </div>
-
 
                         <div class="col">
-                            @Html.LabelFor(model => model.City)
-
-                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.LastName)
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Last name" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </fieldset>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CompleteAddress)
-                    <div>
-                        @Html.EditorFor(model => model.CompleteAddress, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CompleteAddress, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <fieldset>
-                    <legend>EXTRA INFORMATION</legend>
-                    <div class="row mb-4">
-                        <div class="col">
-                            @Html.LabelFor(model => model.ExperienceLevel)
-
-                            @Html.EnumDropDownListFor(x => x.ExperienceLevel,
-                        new { @class = "form-control" })
-
-                            @*@Html.DropDownList("Experience",
-                        new SelectList(Enum.GetValues(typeof(ExperienceLevelType))),
-                        "Select Experience",
-                        new { @class = "form-control" })*@
-
-
-
-                        </div>
-
-
-                        <div class="col">
-                            @Html.LabelFor(model => model.Age)
-
-                            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
 
                     <div class="row mb-4">
                         <div class="col">
-                            @Html.LabelFor(model => model.Language)
-
-                            @Html.EditorFor(model => model.Language, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Language, "", new { @class = "text-danger" })
+                            @Html.LabelFor(model => model.JobTitle)
+                            @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "PHP Developer" })
+                            @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
                         </div>
-
 
                         <div class="col">
-
-                            @Html.LabelFor(model => model.EducationLevel)
-                            @Html.DropDownList("EducationLevel",
-                                                new SelectList(Enum.GetValues(typeof(MinimumQualificationType))),
-                                                "Select Education Level",
-                                                new { @class = "form-control" }
-                           )
+                            @Html.LabelFor(model => model.Specialization)
+                            @Html.EditorFor(model => model.Specialization, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Specialization" } })
+                            @Html.ValidationMessageFor(model => model.Specialization, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </fieldset>
+                    <fieldset>
+                        <legend>CONTACT INFORMATION</legend>
+                        <div class="row mb-4">
+                            <div class="col">
+                                @Html.LabelFor(model => model.PhoneNumber)
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "+234 ... ... ...." })
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
 
-                @*<p id="mint">Supported Formats: DOC, DOCX, TXT, PDF & Max. File size: 5MB</p>
-            <button type="button" class="btn btn-outline-secondary mx-1 mb-4" style="color:#f16722; border: 1px solid #f16722;">Update</button>*@
-                <fieldset>
+                            <div class="col">
+                                @Html.LabelFor(model => model.Email)
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter a valid email address" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
+                        <div class="row mb-4">
+                            <div class="col">
+                                @Html.LabelFor(model => model.Country)
+                                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col">
+                                @Html.LabelFor(model => model.City)
+                                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </fieldset>
                     <div class="form-group">
-
-                        @Html.LabelFor(model => model.Bio)
+                        @Html.LabelFor(model => model.CompleteAddress)
                         <div>
-                            @Html.TextAreaFor(model => model.Bio,
-                            new { @class = "form-control", rows = 3})
-
-                            @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.CompleteAddress, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CompleteAddress, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </fieldset>
+                    <fieldset>
+                        <legend>EXTRA INFORMATION</legend>
+                        <div class="row mb-4">
+                            <div class="col">
+                                @Html.LabelFor(model => model.ExperienceLevel)
+                                @Html.EnumDropDownListFor(x => x.ExperienceLevel,
+                            new { @class = "form-control" })
+                                @*@Html.DropDownList("Experience",
+                                    new SelectList(Enum.GetValues(typeof(ExperienceLevelType))),
+                                    "Select Experience",
+                                    new { @class = "form-control" })*@
+
+                            </div>
+
+                            <div class="col">
+                                @Html.LabelFor(model => model.Age)
+                                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col">
+                                @Html.LabelFor(model => model.Language)
+                                @Html.EditorFor(model => model.Language, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Language, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col">
+                                @Html.LabelFor(model => model.EducationLevel)
+                                @Html.DropDownList("EducationLevel",
+                                                    new SelectList(Enum.GetValues(typeof(MinimumQualificationType))),
+                                                    "Select Education Level",
+                                                    new { @class = "form-control" }
+                               )
+                            </div>
+                        </div>
+                    </fieldset>
+                    @*<p id="mint">Supported Formats: DOC, DOCX, TXT, PDF & Max. File size: 5MB</p>
+                        <button type="button" class="btn btn-outline-secondary mx-1 mb-4" style="color:#f16722; border: 1px solid #f16722;">Update</button>*@
+                    <fieldset>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Bio)
+                            <div>
+                                @Html.TextAreaFor(model => model.Bio,
+                                new { @class = "form-control", rows = 3})
+                                @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </fieldset>
 
 
+                    @*<button type="button" class="btn btn-II mx-1">View Profile</button>
+
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.ActionLink("Create", "ApplicantProfilePage", new { id = Model.Id })
+                        </div>*@
 
 
-                @*<button type="button" class="btn btn-II mx-1">View Profile</button>
+                    @*<a type="submit" href="@Url.Action("ApplicantProfileEdit", "Applicants", new { id = Model.Id, jobId = ViewBag.jobId })" class="btn btn-II mx-1">Save and Continue</a>*@
+                    <input type="submit" name="SaveAndContinue" value="Save and Continue" class="btn btn-II mx-1" />
+                    @*<button name="ClientCancel"
+                                type="submit"
+                                formmethod="post"
+                                onclick=" document.location.href = $('#SaveAndContinue').attr('href');"
+                                class="btn btn-II mx-1">
 
-            <div class="col-md-offset-2 col-md-10">
-                @Html.ActionLink("Create", "ApplicantProfilePage", new { id = Model.Id })
-            </div>*@
+                            Save and Continue
+                        </button>
+                                    <a id="SaveAndContinue" href="@Html.AttributeEncode(Url.Action("ApplicantProfileEdit", "Applicants", FormMethod.Post))"
+                                       style="display:none;"></a>*@
 
+                    @*<div>
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>*@
+                </div>
+           
 
-
-
-                @*<a href="@Url.Action("ApplicantProfileEdit", "Applicants", new { id = Model.Id })" class="btn btn-II mx-1">Save and Continue</a>*@
-                <input type="submit" name="SaveAndContinue" value="Save and Contnue" class="btn btn-II mx-1" />
-
-                @*<button name="ClientCancel"
-                    type="submit"
-                    formmethod="post"
-                    onclick=" document.location.href = $('#SaveAndContinue').attr('href');"
-                    class="btn btn-II mx-1">
-
-                Save and Continue
-            </button>
-                        <a id="SaveAndContinue" href="@Html.AttributeEncode(Url.Action("ApplicantProfileEdit", "Applicants", FormMethod.Post))"
-                           style="display:none;"></a>*@
-
-            }
-            @*<div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>*@
+       
+    }
         </div>
-	</div>
-</div>
+        </div>
+    </div>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
