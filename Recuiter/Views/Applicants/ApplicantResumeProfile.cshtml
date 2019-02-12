@@ -19,14 +19,13 @@
                 <li class="nav-item border-bottom" id="resume">
                     <a class="nav-link active text-dark" href="@Url.Action("ApplicantResumeProfile", "Applicants")"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
                 </li>
-                <li class="nav-item border-bottom" id="app_jobs">
+                <li class="nav-item border-bottom">
                     <a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>
                 </li>
-                <li class="nav-item border-bottom" id="short_job">
+                <li class="nav-item border-bottom">
                     <a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Jobs In View</a>
                 </li>
-                <li class="nav-item  border-bottom"
-                    id="pass_change">
+                <li class="nav-item  border-bottom">
                     <a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>
                 </li>
             </ul>
@@ -41,7 +40,7 @@
                 foreach (var education in Model.Education)
                 {
 
-                    <table class="table">
+                    <table class="table" id="tableEducation">
                         <thead>
                             <tr>
                                 <th scope="col">Qualification</th>
@@ -63,101 +62,88 @@
                         </tbody>
                     </table>
 
-
                 }
 
-                <table class="table" id="tableEducation">
-                    <thead>
-                        <tr>
-                            <th scope="col">Qualification</th>
-                            <th scope="col"></th>
-                            <th scope="col">Dates</th>
-                            <th scope="col">Institution</th>
-                            <th scope="col" class="del_head">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-id="1">
-                            <td scope="row"><b>Msc In Enginneering</b></td>
-                            <td></td>
-                            <td><label>July 2017</label> - <label>July 2018</label></td>
-                            <td>University of Lagos</td>
-                            <td class="fa-edit edit-action"><i calss="far fa-edit ml-5"></i>Edit</td>
-                            <td class="del delete-action"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                        </tr>
-                        <tr></tr>
-                    </tbody>
-                </table>
-
-                <div>
-                    <a class="new new-education" href="#"><span style="color:#f16722">+Add New</span></a>
-                </div>
-
-                <div class="hide-form" id="form-edu">
-                    <div>
-                        <span class="close">x</span>
-                    </div>
-                    <form>
-                        <input class="form-control" id="qualificationName" type="text" placeholder="Roles">
-                        <div class="row mb-4">
-                            <div class="col-4 mt-3">
-                                <input class="form-control" type="text" placeholder="From date*">
-                            </div>
-                            <div class="col-4 mt-3">
-                                <input class="form-control" type="text" placeholder="To date*">
-                            </div>
-                            <br><span class="form-check col">
-                                Present <br> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            </span>
-                        </div>
-                        <input class="form-control" type="text" placeholder="Company">
-                        <div>
-                            <button type="button" class="btn btn-outline-secondary mx-1" onclick="ourFunction()">Add Experience</button>
-                            <input type="hidden" value="0" />
-                        </div>
-                    </form>
-                </div>
-
             }
+
+            <form class="hide-form" id="form-edu">
+                <div>
+                    <a class="close">x</a>
+                </div>
+                <div class="row mb-4">
+                    <div class="col mt-3">
+                        <select class="form-control">
+                            <option>Name of Institute</option>
+                        </select>
+                    </div>
+                    <div class="col mt-3">
+                        <select class="form-control">
+                            <option>Select qualification</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6 mt-3">
+                        <input class="form-control" type="text" placeholder="From date*">
+                    </div>
+                    <div class="col-6 mt-3">
+                        <input class="form-control" type="text" placeholder="To date*">
+                    </div>
+                </div>
+                <input class="form-control" type="text" placeholder="Course Studied">
+                <div>
+                    <button type="button" class="btn btn-outline-secondary mx-1">Update</button>
+                </div>
+
+            </form>
+
+            <div>
+                <a class="new new-education"><span style="color:#f16722">+Add New</span></a>
+            </div>
+
+            @*<table class="table" id="tableEducation">
+            <thead>
+                <tr>
+                    <th scope="col">Qualification</th>
+                    <th scope="col"></th>
+                    <th scope="col">Dates</th>
+                    <th scope="col">Institution</th>
+                    <th scope="col" class="del_head">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-id="1">
+                    <td scope="row"><b>Msc In Enginneering</b></td>
+                    <td></td>
+                    <td><label>July 2017</label> - <label>July 2018</label></td>
+                    <td>University of Lagos</td>
+                    <td class="fa-edit edit-action"><i calss="far fa-edit ml-5"></i>Edit</td>
+                    <td class="del delete-action"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>*@
+
+            @*<div>
+            <a class="new" href="#"><span style="color:#f16722">+Add New</span></a>
+        </div>*@
+
+
+
+
+
+
+
+            <div>
+                <p class="edu mt-3"><i class="fas fa-briefcase mr-1" style="color:#313366"></i><span style="color:#313366;">Work Experience</span><span style="color:#ff0000">*</span></p>
+            </div>
+
 
             @if (Model != null)
             {
                 foreach (var work in Model.Experience)
                 {
-                    <div>
-                        <span class="close">x</span>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col mt-3">
-                            <select class="form-control">
-                                <option>Name of Institute</option>
-                            </select>
-                        </div>
-                        <div class="col mt-3">
-                            <select class="form-control">
-                                <option>Select qualification</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-6 mt-3">
-                            <input class="form-control" type="text" placeholder="From date*">
-                        </div>
-                        <div class="col-6 mt-3">
-                            <input class="form-control" type="text" placeholder="To date*">
-                        </div>
-                    </div>
-                    <input class="form-control" type="text" placeholder="Course Studied">
-                    <div>
-                        <button type="button" class="btn btn-outline-secondary mx-1">Update</button>
-                    </div>
-                    <div>
-                        <a class="new" href="#"><span style="color:#f16722">+Add New</span></a>
-                    </div>
 
-                    <div>
-                        <p class="edu mt-3"><i class="fas fa-briefcase mr-1" style="color:#313366"></i><span style="color:#313366;">Work Experience</span><span style="color:#ff0000">*</span></p>
-                    </div>
                     <table class="table" id="show-edu-table" style="display:none">
                         <thead>
                             <tr>
@@ -178,58 +164,66 @@
                             </tr>
                         </tbody>
                     </table>
-                }
-            }
-            <p class="easy">Input your work experience in chronological order from present to past</p>
-            <div class=" hide-form" id="form-edu" style="display:none">
-                <div>
-                    <span class="close">x</span>
-                </div>
-                <input class="form-control" type="text" placeholder="Roles">
-                <div class="row mb-4">
-                    <div class="col-4 mt-3">
-                        <input class="form-control" type="text" placeholder="From date*">
-                    </div>
-                    <div class="col-4 mt-3">
-                        <input class="form-control" type="text" placeholder="To date*">
-                    </div>
-                    <br><span class="form-check col">
-                        Present <br> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    </span>
-                </div>
-                <input class="form-control" type="text" placeholder="Company">
-                <div>
-                    <button type="button" class="btn btn-outline-secondary mx-1" onclick="ourFunction()">Add Experience</button>
-                </div>
-            </div>
-            <div>
-                <a class="new" href="#"><span style="color:#f16722" onclick="myFunction()">+Add New</span></a>
-            </div>
 
-            <div>
-                <p class="edu mt-3"><i class="fas fa-certificate mr-1" style="color:#313366"></i><span style="color:#313366;">Certificates</span><span style="color:#ff0000">*</span></p>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Certificate</th>
-                        <th scope="col">Title</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col" class="del_head">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row"><b>BACHELORS IN FINE ART</b></td>
-                        <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                    </tr>
-                </tbody>
-            </table>
+
+
+                    <div>
+                        <div>
+                            <span class="close">x</span>
+                        </div>
+                        <form>
+                            <input class="form-control" id="qualificationName" type="text" placeholder="Roles">
+                            <div class="row mb-4">
+                                <div class="col-4 mt-3">
+                                    <input class="form-control" type="text" placeholder="From date*">
+                                </div>
+                                <div class="col-4 mt-3">
+                                    <input class="form-control" type="text" placeholder="To date*">
+                                </div>
+                                <br><span class="form-check col">
+                                    Present <br> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                </span>
+                            </div>
+                            <input class="form-control" type="text" placeholder="Company">
+                            <div>
+                                <button type="button" class="btn btn-outline-secondary mx-1" onclick="ourFunction()">Add Experience</button>
+                                <input type="hidden" value="0" />
+                            </div>
+                        </form>
+                    </div>
+
+
+                }
+
+
+
+            }
+
+
+            @*<div>
+            <p class="edu mt-3"><i class="fas fa-certificate mr-1" style="color:#313366"></i><span style="color:#313366;">Certificates</span><span style="color:#ff0000">*</span></p>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Certificate</th>
+                    <th scope="col">Title</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col" class="del_head">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row"><b>BACHELORS IN FINE ART</b></td>
+                    <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+                </tr>
+            </tbody>
+        </table>*@
             <!--<h5>Upload Certificate</h5>-->
-            <div>
-                <span class="close">x</span>
-            </div>
+            @*<div>
+            <span class="close">x</span>
+        </div>*@
             <!--<form>
     <div class="beta">
         <div class="form-group">
@@ -240,68 +234,84 @@
       </form>
       <p id="mint">Max file size is 1MB, Minimum dimension: 180x135 And Suitable files are .jpg & .png</p>
       <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Upload</button>-->
-            <div>
-                <a class="new" href="#"><span style="color:#f16722">+Add New</span></a>
-            </div>
+            @*<div>
+            <a class="new" href="#"><span style="color:#f16722">+Add New</span></a>
+        </div>*@
+
+
             <div>
                 <p class="edu mt-3"><i class="fas fa-street-view  mr-1" style="color:#313366"></i><span style="color:#313366;">Skills</span><span style="color:#ff0000">*</span></p>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Skills</th>
-                        <th scope="col"></th>
-                        <th scope="col">Level</th>
-                        <th scope="col"></th>
-                        <th scope="col" class="del_head">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row"><b>Application Testing</b></td>
-                        <td></td>
-                        <td>Intermediate</td>
-                        <td></td>
-                        <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td scope="row"><b>Solutions Analyst</b></td>
-                        <td></td>
-                        <td>Beginner</td>
-                        <td></td>
-                        <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td scope="row"><b>Graphic Design </b></td>
-                        <td></td>
-                        <td>Expert</td>
-                        <td></td>
-                        <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div>
-                <span class="close">x</span>
-            </div>
-            <div class="row mb-4">
-                <div class="col-4 mt-3">
-                    <input class="form-control2" type="text" placeholder="Skill Title">
-                </div>
-                <div class="col-4 mt-3">
-                    <select class="form-control2" type="text" placeholder="To date*">
-                        <option>Beginner</option>
-                        <option>Intermediate</option>
-                        <option>Expert</option>
-                    </select>
-                </div>
-                <div class="col-sm-3 mt-3">
-                    <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Add Skills</button>
-                </div>
-            </div>
+
+
+            @if (Model != null)
+            {
+                foreach (var work in Model.Skill)
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Skills</th>
+                                <th scope="col"></th>
+                                <th scope="col">Level</th>
+                                <th scope="col"></th>
+                                <th scope="col" class="del_head">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row"><b>Application Testing</b></td>
+                                <td></td>
+                                <td>Intermediate</td>
+                                <td></td>
+                                <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td scope="row"><b>Solutions Analyst</b></td>
+                                <td></td>
+                                <td>Beginner</td>
+                                <td></td>
+                                <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td scope="row"><b>Graphic Design </b></td>
+                                <td></td>
+                                <td>Expert</td>
+                                <td></td>
+                                <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <span class="close">x</span>
+                    </div>
+                    <form>
+                        <div class="row mb-4">
+                            <div class="col-4 mt-3">
+                                <input class="form-control2" type="text" placeholder="Skill Title">
+                            </div>
+                            <div class="col-4 mt-3">
+                                <select class="form-control2" type="text" placeholder="To date*">
+                                    <option>Beginner</option>
+                                    <option>Intermediate</option>
+                                    <option>Expert</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 mt-3">
+                                <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Add Skills</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                }
+
+            }
+
             <div>
                 <p class="edu mt-3"><i class="fas fa-award  mr-1" style="color:#313366"></i><span style="color:#313366;">Achievements</span><span style="color:#ff0000">*</span></p>
             </div>
@@ -309,7 +319,6 @@
                 <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-            </form>
             @*<button type="button" class="btn btn-outline-secondary mx-1 mb-4">Update</button>
         <button type="button" class="btn btn-II ">Submit Application</button>*@
 
@@ -381,9 +390,11 @@
                     </div>
                 }
                 @*@Html.ActionLink("Submit Application", "JobApplication", "Applicants", new {jobid = ViewBag.JobId})*@
-                <input type="submit" Name="SubmitApplication" value="Submit Application" class="btn btn-II mx-1"/>
+                <input type="submit" Name="SubmitApplication" value="Submit Application" class="btn btn-II mx-1" />
             }
-
+        </div>
+        </div>
+    </div>
             <script>
 
 

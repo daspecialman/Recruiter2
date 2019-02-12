@@ -1,7 +1,16 @@
 ﻿jQuery(document).ready(function () {
+    
+
     jQuery('.new-education').on('click', function () {
         jQuery('#form-edu').removeClass('hide-form');
     });
+
+    jQuery('.close').on('click', function () {
+        jQuery(this).closest('form').addClass('hide-form');
+        jQuery(this).closest('form')[0].reset();
+    });
+
+    
 
     jQuery('#tableEducation').on('click', '.edit-action', function () {
         var id = $(this).closest('tr').attr('data-id');
@@ -22,7 +31,7 @@
 
 
     });
-
+});
 
     function myFunction() {
         var x = document.getElementById("form-edu");
@@ -41,14 +50,3 @@
             x.style.display = "none";
         }
     }
-
-//$(function () {
-
-//    $ajax({
-//        type: 'GET',
-//        url: 'ApplicantResumeProfile/id',
-//        success: func(data){
-//            console.log
-//        }
-//                                                                    })
-//                                                                })
