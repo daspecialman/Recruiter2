@@ -388,13 +388,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902120954444_today.cs" />
-    <Compile Include="Migrations\201902120954444_today.Designer.cs">
-      <DependentUpon>201902120954444_today.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902121005112_dept.cs" />
-    <Compile Include="Migrations\201902121005112_dept.Designer.cs">
-      <DependentUpon>201902121005112_dept.cs</DependentUpon>
+    <Compile Include="Migrations\201902110909168_Monday11.cs" />
+    <Compile Include="Migrations\201902110909168_Monday11.Designer.cs"/>
+      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
+    <Compile Include="Migrations\201902091844444_initial.cs" />
+    <Compile Include="Migrations\201902091844444_initial.Designer.cs">
+      <DependentUpon>201902091844444_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -495,14 +494,7 @@
     <Folder Include="App_Data\UploadedFiles\" />
     <Folder Include="UploadedImages\" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902120954444_today.resx">
-      <DependentUpon>201902120954444_today.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902121005112_dept.resx">
-      <DependentUpon>201902121005112_dept.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+  
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
