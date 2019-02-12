@@ -1,6 +1,6 @@
 ﻿@model Recruiter.ViewModels.JobViewModel
 @{
-    ViewBag.Title = "JobDetails";
+    ViewBag.Title = "Job Details";
     Layout = "~/Views/Shared/ProfileLayout.cshtml";
 }
 <div class="img-banner">
@@ -47,7 +47,7 @@
             <p><b>Availability:</b> @Html.DisplayFor(m => m.ContractClass)</p>
             <p><b>@Html.LabelFor(m => m.MinimumQualification):</b> @Html.DisplayFor(m => m.MinimumQualification)</p>
             @*<button type="button" class="btn btn-II mx-1 mb-4">Apply Now</button>*@ 
-            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", "Applicants", new { Id = Model.Id }, new { @class = "btn btn-II mx-1 mb-4" })
+            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", "Applicants", new { jobId = Model.Id }, new { @class = "btn btn-II mx-1 mb-4" })
         </div>
 
         <div class="col-sm-1">
@@ -65,63 +65,65 @@
             </div>
             <div>
                 <p class="top">Top Applied Jobs</p>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="d-flex card-body2">
-                            <div class="deets">
-                                <p>Accountant</p>
-                                <p><small>Posted: 2days, 2hrs ago</small></p>
-                                <p>Job fuction: Accounting and Auditing</p>
+                @foreach (var job in ViewBag.TopAppliedJobs)
+                {
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="d-flex card-body2" style="padding:10px;">
+                                <div class="deets">
+                                    <p><a href="@Url.Action("Jobdetails", "Applicants", new {id = job.Id })">@job.Title</a></p>
+                                    <p><small>Expiry Date: @job.ExpiryDate</small></p>
+                                    @*<p>Job Function: @Html.DisplayFor(m => m.Department)</p>*@
+                                </div>
+                                @*<button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>*@
                             </div>
-                            @*<button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>*@
                         </div>
-
-
                     </div>
-                </div>
-                <!-- <div class="row"> -->
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="d-flex justify-content-between card-body2">
-                            <div class="deets">
-                                <p>Business System Analyst</p>
-                                <p><small>Posted: 2days, 2hrs ago</small></p>
-                                <p>Job fuction: Business Analyst</p>
+                
+                    <!-- <div class="row"> -->
+                    @*<div class="col-sm-12">
+                        <div class="card">
+                            <div class="d-flex justify-content-between card-body2">
+                                <div class="deets">
+                                    <p>Business System Analyst</p>
+                                    <p><small>Posted: 2days, 2hrs ago</small></p>
+                                    <p>Job fuction: Business Analyst</p>
+                                </div>
+                                <button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>
                             </div>
-                            @*<button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>*@
+
+
                         </div>
+                    </div>*@
+                    <!-- <div class="row"> -->
+                    @*<div class="col-sm-12">
+                        <div class="card">
+                            <div class="d-flex justify-content-between card-body2">
+                                <div class="deets">
+                                    <p>Quality Assurance</p>
+                                    <p><small>Posted: 2days, 2hrs ago</small></p>
+                                    <p>Job fuction: Application Testing</p>
+                                </div>
+                                @*<button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>*@
+                  </div>
 
-
-                    </div>
-                </div>
-                <!-- <div class="row"> -->
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="d-flex justify-content-between card-body2">
-                            <div class="deets">
-                                <p>Quality Assurance</p>
-                                <p><small>Posted: 2days, 2hrs ago</small></p>
-                                <p>Job fuction: Application Testing</p>
-                            </div>
-                            @*<button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>*@
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="text-right">
-                    @*<a href="#">see more</a>*@
-                </div>
-
-
-            </div>
-        </div>
+                }
     </div>
 </div>
+                    @*<div class="text-right">
+                        <a href="#">see more</a>
+                    </div>*@
 
-@*<p>
-        @Html.ActionLink("Apply for this Job", "ApplicantProfileEdit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@
+
+           
+        
+
+
+
+    @*<p>
+            @Html.ActionLink("Apply for this Job", "ApplicantProfileEdit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>*@
+    </div>
+    </div>

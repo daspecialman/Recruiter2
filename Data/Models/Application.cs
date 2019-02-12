@@ -11,16 +11,17 @@ namespace Data.Models
 
         public Applicant Applicant { get; set; }
 
-        
+        [Display(Name = "Job Title")]
         public string JobTitle { get; set; }
 
 		public Job Job { get; set; }
 
-       
+        [Display(Name = "Date Applied")]
         public DateTime? Date { get; set; }
 
 		public int JobId { get; set; }
 
-        public JobApplicationWorkFlow Status { get; set; }
+        [Display(Name = "Job Status")]
+        public AppliedJobStatus Status { get; set; }
 	}
 }

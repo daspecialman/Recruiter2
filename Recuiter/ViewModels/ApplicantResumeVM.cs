@@ -9,8 +9,8 @@ namespace Recruiter.ViewModels
 	public class ApplicantResumeVM
 	{
 		public  List<EducationVM> Education { get; set; }
-		public List<Experience> Experience { get; set; }
-		public List<Skill> Skill { get; set; }
+		public List<ExperienceVM> Experience { get; set; }
+		public List<SkillVM> Skill { get; set; }
 	}
 
 	public class EducationVM
@@ -32,7 +32,7 @@ namespace Recruiter.ViewModels
         public int Id { get; set; }
     }
 
-	public class Experience
+	public class ExperienceVM
 	{
         public int Id { get; set; }
 
@@ -49,7 +49,7 @@ namespace Recruiter.ViewModels
 
 
 
-	public class Skill
+	public class SkillVM
 	{
 		public int Id { get; set; }
 

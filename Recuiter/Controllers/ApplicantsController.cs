@@ -14,91 +14,116 @@ using Recruiter.Context;
 using Recruiter.CustomAuthentication;
 using Recruiter.ViewModels;
 using PagedList;
+using Data.Enums;
 
 namespace Recruiter.Controllers
 {
 
-	public class ApplicantsController : Controller
-	{
-		private RecruiterContext db = new RecruiterContext();
+    public class ApplicantsController : Controller
+    {
+        private RecruiterContext db;
+
+        public ApplicantsController()
+        {
+            db = new RecruiterContext();
+        }
+
+        [HttpGet]
+        public ActionResult Index( string searchString, string searchSkills, string searchContract, int? ContractClass, int? ExperienceLevel, int? page )
+        {
+            var jobss = from j in db.Jobs/*.Include(x => x.Department)*/ select j;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                jobss = jobss.Where(s => s.Title.Contains(searchString));
+            }
+
+            //if (!String.IsNullOrEmpty(searchSkills))
+            //{
+            //	jobss = jobss.Where(s => s.SkillSet.Contains(searchSkills));
+            //}
+
+            if (ContractClass != null)
+            {
+                jobss = jobss.Where(x => x.ContractClass == (ContractClassType)ContractClass);
 
 
-		[HttpGet]
-		public ActionResult Index(string searchString, string searchSkills, string searchContract, int? ContractClass, int? ExperienceLevel, int? page)
-		{
-			var jobss = from j in db.Jobs/*.Include(x => x.Department)*/ select j;
+                ViewBag.SearchFilter = new Search { Contract = ContractClass };
 
-			if (!String.IsNullOrEmpty(searchString))
-			{
-				jobss = jobss.Where(s => s.Title.Contains(searchString));
-			}
+            }
 
-			//if (!String.IsNullOrEmpty(searchSkills))
-			//{
-			//	jobss = jobss.Where(s => s.SkillSet.Contains(searchSkills));
-			//}
+            if (ExperienceLevel != null)
+            {
+                jobss = jobss.Where(x => x.ExperienceLevel == (ExperienceLevelType)ExperienceLevel);
 
-			if (ContractClass != null)
-			{
-				jobss = jobss.Where(x => x.ContractClass == (ContractClassType)ContractClass);
+                ViewBag.SearchFilter = new Search { Expereince = ExperienceLevel };
+            }
 
 
-				ViewBag.SearchFilter = new Search { Contract = ContractClass };
+            var jobsss = jobss.ToList();
 
-			}
+            return View(jobsss);
+        }
 
-			if (ExperienceLevel != null)
-			{
-				jobss = jobss.Where(x => x.ExperienceLevel == (ExperienceLevelType)ExperienceLevel);
+        public ActionResult JobDetails( int? Id )
+        {
+            var jobDetails = (from job in db.Jobs
+                              where job.Id == Id
+                              select job).FirstOrDefault();
 
-				ViewBag.SearchFilter = new Search { Expereince = ExperienceLevel };
-			}
+            var viewModel = new JobViewModel
+            {
+                Id = jobDetails.Id,
+                Title = jobDetails.Title,
+                ContractClass = jobDetails.ContractClass,
+                Responsibility = jobDetails.Responsibility,
+                Characteristics = jobDetails.Characteristics,
+                ExpiryDate = jobDetails.ExpiryDate,
+                Description = jobDetails.Description,
+                ExperienceLevel = jobDetails.ExperienceLevel,
+                MinimumQualification = jobDetails.MinimumQualification,
+                SkillSet = jobDetails.SkillSet
+            };
 
+            ViewBag.JobID = Id;
+            ViewBag.TopAppliedJobs = GetTopAppliedJobs();
+            return View(viewModel);
+        }
 
-			var jobsss = jobss.ToList();
-
-			return View(jobsss);
-		}
-
-		public ActionResult JobDetails(int? Id)
-		{
-			var jobDetails = (from job in db.Jobs
-							  where job.Id == Id
-							  select job).FirstOrDefault();
-
-			var viewModel = new JobViewModel
-			{
-				Id = jobDetails.Id,
-				Title = jobDetails.Title,
-				ContractClass = jobDetails.ContractClass,
-				Responsibility = jobDetails.Responsibility,
-				Characteristics = jobDetails.Characteristics,
-				ExpiryDate = jobDetails.ExpiryDate,
-				Description = jobDetails.Description,
-				ExperienceLevel = jobDetails.ExperienceLevel,
-				MinimumQualification = jobDetails.MinimumQualification,
-				SkillSet = jobDetails.SkillSet
-			};
-			return View(viewModel);
-		}
-
-		public ActionResult JobApplication(int? Id)
-		{
-			if (!(Id is null))
+        public ActionResult JobApplication( int? Id, int jobId )
+        {
+            if ((Id is null) || Id == 0)
 			{
 				var userId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
 				var applicantId = (db.Applicants.Where(a => a.UserId == userId).FirstOrDefault()).Id;
-				var application = new Data.Models.Application
-				{
-					ApplicantId = applicantId,
-					CreatedById = userId,
-					JobId = Id.Value
-				};
+                var now = DateTime.Now;
 
-				db.Applications.Add(application);
-				db.SaveChanges();
-				ViewBag.JobApplicationSuccess = "You applied Successfully";
-				return View();
+                var aleadyApplied = db.Applications
+                                    .Where(x => x.ApplicantId == applicantId)
+                                    .Where(x => x.JobId == jobId)
+                                    .FirstOrDefault();
+
+                if (aleadyApplied is null)
+                {
+                    var application = new Application
+                    {
+                        ApplicantId = applicantId,
+                        CreatedById = userId,
+                        JobId = jobId,
+                        CreatedDate = now,
+                        Date = now,
+                        Status = AppliedJobStatus.InProgress
+                    };
+
+                    db.Applications.Add(application);
+                    db.SaveChanges();
+                    ViewBag.JobApplicationSuccess = "You applied Successfully";
+                    return View();
+                } else
+                {
+                    ViewBag.JobApplicationError = "You already applied for this Job";
+                    return View();
+                }
 			}
 			ViewBag.JobApplicationError = "Error! Select a job to apply for. Thank you.";
 			return View();
@@ -106,14 +131,19 @@ namespace Recruiter.Controllers
 
 		public ActionResult Dashboard(int? applicantId)
 		{
+            if(applicantId == null)
+            {
+                var userId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
+                applicantId = (db.Applicants.Where(a => a.UserId == userId).FirstOrDefault()).Id;
+            }
 			var dashboard = new DashboardVM();
-			dashboard.ApplicantId = applicantId.Value;
+            dashboard.ApplicantId = applicantId.Value;
 			var applications = (from application in db.Applications where application.ApplicantId == applicantId select application).ToList();
 
 
 			return View();
 		}
-
+        
 		public ActionResult ApplicantProfileEditReadOnly()
 		{
 			var currentUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
@@ -167,7 +197,7 @@ namespace Recruiter.Controllers
 		[HttpGet]
 		[Authorize]
 		// GET: Applicants
-		public ActionResult ApplicantProfileEdit(int Id)
+		public ActionResult ApplicantProfileEdit(int? Id, int? jobId)
 		{
 			var currentUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
 			using (RecruiterContext dbContext = new RecruiterContext())
@@ -206,7 +236,7 @@ namespace Recruiter.Controllers
 													 Type = files.Type
 												 }).ToList()
 							 }).FirstOrDefault();
-                
+                ViewBag.jobId = jobId;
                 return View(query);
 			}
 		}
@@ -214,7 +244,7 @@ namespace Recruiter.Controllers
 
 		[HttpPost]
 		[PreventUncompletedProfile]
-		public ActionResult ApplicantProfileEdit( ApplicantProfileViewModels applicantProfileVM, string ImageUpload, string SaveAndContinue )
+		public ActionResult ApplicantProfileEdit( ApplicantProfileViewModels applicantProfileVM, string ImageUpload, string SaveAndContinue , string retURL, int? jobId)
 		{
 			if (ModelState.IsValid)
 			{
@@ -262,7 +292,7 @@ namespace Recruiter.Controllers
                                 dbContext.SaveChanges();
                                 ViewBag.Success = "Image Uploaded Successfully";
 
-                                return RedirectToAction("ApplicantResumeProfile", new { id = applicantProfileVM.Id });
+                                return RedirectToAction("ApplicantResumeProfile", new { id = applicantProfileVM.Id, jobId = jobId });
 
                             } catch(Exception e) {
                                 ModelState.AddModelError("", e + ". Applicant upload failed");
@@ -298,7 +328,7 @@ namespace Recruiter.Controllers
 			return View(applicantProfileVM);
 		}
 		[HttpGet]
-		public ActionResult ApplicantResumeProfile(int id)
+		public ActionResult ApplicantResumeProfile(int id, int? jobId )
 		{
 			var currentUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
 			var returnObject = new ApplicantResumeVM();
@@ -323,7 +353,7 @@ namespace Recruiter.Controllers
 						ToDate = x.ToDate
 					}).ToList(),
 					Experience = applicantEntity.WorkExperience.Select(x =>
-					   new Recruiter.ViewModels.Experience
+					   new Recruiter.ViewModels.ExperienceVM
 					   {
 						   Title = x.Title,
 						   FromDate = x.FromDate,
@@ -331,24 +361,33 @@ namespace Recruiter.Controllers
 						   ToDate = x.ToDate
 					   }).ToList(),
 					Skill = applicantEntity.Skills.Select(x =>
-					   new Recruiter.ViewModels.Skill
+					   new Recruiter.ViewModels.SkillVM
 					   {
 						   Skilllevel = x.Skilllevel,
 						   Achievement = x.Achievement,
 					   }).ToList()
 				};
+
+                ViewBag.jobId = jobId;
 				return View(returnObject);
 			}
 		}
 
 
 		[HttpPost]
-		public ActionResult ApplicantResumeProfile(Applicant applicantProfileViewModel)
+		public ActionResult ApplicantResumeProfile(Applicant applicantProfileViewModel, string SubmitApplication, int? jobId )
 
 		{
+            ViewBag.jobId = jobId;
+            //Temporary Fix
+            if (!string.IsNullOrEmpty(SubmitApplication))
+            {
+                return RedirectToAction("JobApplication", new { id = applicantProfileViewModel.Id, jobId });
+            }
 
 			if (ModelState.IsValid)
 			{
+
 				var currentUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
 				using (RecruiterContext dbContext = new RecruiterContext())
 				{
@@ -442,6 +481,7 @@ namespace Recruiter.Controllers
 						}
 						dbContext.Applicants.Add(applicantEntity);
 						dbContext.SaveChanges();
+                        return RedirectToAction("JobApplication", new { jobId = jobId });
 					}
 					else
 					{
@@ -495,6 +535,77 @@ namespace Recruiter.Controllers
 				return View(check);
 			}
 		}
+
+        
+        public List<JobViewModel> GetTopAppliedJobs() {
+
+            var sortedJobs = (from app in db.Applications
+                             group app.JobId by app.JobId into appGroup
+                             orderby appGroup.Count() descending
+                             select new {
+                                 id = appGroup.Key,
+                                 count = appGroup.Count()
+                             }).ToList();
+            var jobs = db.Jobs.ToList();
+
+            var topJobs = new List<JobViewModel>();
+            foreach(var item in sortedJobs)
+            {
+                var job = jobs.Where(x => x.Id == item.id).FirstOrDefault();
+                topJobs.Add(new JobViewModel
+                {
+                    Id = item.id,
+                    Title = job.Title,
+                    ExpiryDate = job.ExpiryDate,
+                    
+                });
+            }
+
+            return topJobs;
+        }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		// GET: Applicants/Details/5
 		[HttpGet]
 		public ActionResult Details(int? id)
@@ -684,21 +795,52 @@ namespace Recruiter.Controllers
 
         }
 
-		[HttpGet]
+        [HttpGet]
+        public ActionResult AppliedJobs()
+        {
+            var customUser = Membership.GetUser(User.Identity.Name) as CustomMembershipUser;
+
+            var applicant = db.Applicants
+                                .Include(u => u.User)
+                                .Where(x => x.UserId == customUser.UserId)
+                                .FirstOrDefault();
+            var jobList = db.Jobs.ToList();
+
+            var applicationListVM = new List<ApplicationVM>();
+
+            foreach (var application in applicant.Applications)
+            {
+                applicationListVM.Add(new ApplicationVM
+                {
+                    Id = application.Id,
+                    JobTitle = (jobList.Where(x=>x.Id == application.JobId).FirstOrDefault()).Title,
+                    Date = application.Date,
+                    Status = application.Status
+                });
+            }
+            return View(applicationListVM);
+        }
+
+
+
+
+
+        //[HttpGet]
+        [NonAction]
 		public ActionResult AppliedJobs(int Id)
 		{
 			var currentUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
-			var returnObject = new ApplicationVM();
+			var returnObject = new ApplicationListVM();
 			using (RecruiterContext dbContext = new RecruiterContext())
 			{
 				var applicantEntity = dbContext.Applicants
 										.Where(a => a.UserId == currentUserId)
 										.Include(x => x.User)
 										.Include(x => x.Applications).FirstOrDefault();
-				returnObject = new ApplicationVM
+				returnObject = new ApplicationListVM
 				{
 					AppliedJobs = applicantEntity.Applications.Select(x =>
-					new ViewModels.Application
+					new ViewModels.ApplicationVM
 					{
 						JobTitle = x.JobTitle,
 						Date = x.Date,
@@ -710,6 +852,8 @@ namespace Recruiter.Controllers
 
 			return View(returnObject);
 		}
+
+
 
 		[HttpPost]
 		public ActionResult AppliedJobs(Applicant applicationVM)

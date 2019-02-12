@@ -2,25 +2,22 @@
 using Data.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Recruiter.ViewModels
 {
-    public class ApplicationVM
+    public class ApplicationListVM
     {
-        public List<Application>AppliedJobs{ get; set; }
+        public List<ApplicationVM>AppliedJobs{ get; set; }
     }
 
-	public class Application
+	public class ApplicationVM
 	{
-		[Display(Name = "Job Title")]
-		public string JobTitle { get; set; }
+        public int Id { get; set; }
 
-		[Display(Name = "Date Applied")]
+        public string JobTitle { get; set; }
+
 		public DateTime? Date { get; set; }
 
-
-		[Display(Name = "Job Status")]
-		public JobApplicationWorkFlow Status { get; set; }
+		public AppliedJobStatus Status { get; set; }
 	}
 }
