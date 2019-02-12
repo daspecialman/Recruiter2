@@ -18,6 +18,6 @@ namespace Recruiter.ViewModels
 
 		public DateTime? Date { get; set; }
 
-		public JobApplicationWorkFlow Status { get; set; }
+		public AppliedJobStatus Status { get; set; }
 	}
 }

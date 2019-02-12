@@ -388,12 +388,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902110909168_Monday11.cs" />
-    <Compile Include="Migrations\201902110909168_Monday11.Designer.cs">
-      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
-    <Compile Include="Migrations\201902091844444_initial.cs" />
-    <Compile Include="Migrations\201902091844444_initial.Designer.cs">
-      <DependentUpon>201902091844444_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201902120954444_today.cs" />
+    <Compile Include="Migrations\201902120954444_today.Designer.cs">
+      <DependentUpon>201902120954444_today.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121005112_dept.cs" />
+    <Compile Include="Migrations\201902121005112_dept.Designer.cs">
+      <DependentUpon>201902121005112_dept.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -475,6 +476,8 @@
     <Content Include="Views\Shared\HomeLayout.cshtml" />
     <Content Include="Views\Shared\ApplicantLayout.cshtml" />
     <Content Include="Views\Applicants\AppliedJobs.cshtml" />
+    <Content Include="Views\Applicants\ApplicantProfilePage.cshtml" />
+    <Content Include="Views\Applicants\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -493,10 +496,11 @@
     <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902110909168_Monday11.resx">
-      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
-    <EmbeddedResource Include="Migrations\201902091844444_initial.resx">
-      <DependentUpon>201902091844444_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902120954444_today.resx">
+      <DependentUpon>201902120954444_today.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121005112_dept.resx">
+      <DependentUpon>201902121005112_dept.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

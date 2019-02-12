@@ -17,7 +17,7 @@ namespace Recruiter.ViewModels
         //public Department Department { get; set; }
         //[Display(Name = "Department")]
         //[Required]
-        public int DepartmentId { get; set; }
+        //public int DepartmentId { get; set; }
         [Display(Name = "Job Title")]
         [Required]
         public string Title { get; set; }

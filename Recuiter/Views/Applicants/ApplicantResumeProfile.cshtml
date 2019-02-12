@@ -17,7 +17,7 @@
                     <a class="nav-link  text-dark" href="#"><i class="fas fa-user mr-1"></i></i>My Profile</a>
                 </li>
                 <li class="nav-item border-bottom" id="resume">
-                    <a class="nav-link active text-dark" href="@Url.Action("ApplicantResumeProfile","Applicants")"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
+                    <a class="nav-link active text-dark" href="@Url.Action("ApplicantResumeProfile", "Applicants")"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
                 </li>
                 <li class="nav-item border-bottom" id="app_jobs">
                     <a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>
@@ -61,7 +61,6 @@
                                 <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
                             </tr>
                         </tbody>
-
                     </table>
 
 
@@ -88,7 +87,6 @@
                         </tr>
                         <tr></tr>
                     </tbody>
-
                 </table>
 
                 <div>
@@ -107,7 +105,6 @@
                             </div>
                             <div class="col-4 mt-3">
                                 <input class="form-control" type="text" placeholder="To date*">
-
                             </div>
                             <br><span class="form-check col">
                                 Present <br> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -122,7 +119,6 @@
                 </div>
 
             }
-
 
             @if (Model != null)
             {
@@ -184,13 +180,11 @@
                     </table>
                 }
             }
-
             <p class="easy">Input your work experience in chronological order from present to past</p>
             <div class=" hide-form" id="form-edu" style="display:none">
                 <div>
                     <span class="close">x</span>
                 </div>
-
                 <input class="form-control" type="text" placeholder="Roles">
                 <div class="row mb-4">
                     <div class="col-4 mt-3">
@@ -198,7 +192,6 @@
                     </div>
                     <div class="col-4 mt-3">
                         <input class="form-control" type="text" placeholder="To date*">
-
                     </div>
                     <br><span class="form-check col">
                         Present <br> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -208,14 +201,10 @@
                 <div>
                     <button type="button" class="btn btn-outline-secondary mx-1" onclick="ourFunction()">Add Experience</button>
                 </div>
-
             </div>
-
             <div>
                 <a class="new" href="#"><span style="color:#f16722" onclick="myFunction()">+Add New</span></a>
             </div>
-
-
 
             <div>
                 <p class="edu mt-3"><i class="fas fa-certificate mr-1" style="color:#313366"></i><span style="color:#313366;">Certificates</span><span style="color:#ff0000">*</span></p>
@@ -242,15 +231,15 @@
                 <span class="close">x</span>
             </div>
             <!--<form>
-            <div class="beta">
-                <div class="form-group">
-                   <label for="exampleFormControlFile1">Example file input</label>
-                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-            </div>
-              </form>
-              <p id="mint">Max file size is 1MB, Minimum dimension: 180x135 And Suitable files are .jpg & .png</p>
-              <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Upload</button>-->
+    <div class="beta">
+        <div class="form-group">
+           <label for="exampleFormControlFile1">Example file input</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+    </div>
+      </form>
+      <p id="mint">Max file size is 1MB, Minimum dimension: 180x135 And Suitable files are .jpg & .png</p>
+      <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Upload</button>-->
             <div>
                 <a class="new" href="#"><span style="color:#f16722">+Add New</span></a>
             </div>
@@ -321,13 +310,8 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             </form>
-            <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Update</button>
-            <button type="button" class="btn btn-II ">Submit Application</button>
-
-
-
-
-
+            @*<button type="button" class="btn btn-outline-secondary mx-1 mb-4">Update</button>
+        <button type="button" class="btn btn-II ">Submit Application</button>*@
 
 
 
@@ -393,14 +377,14 @@
                             @Html.LabelFor(x => skill.Achievement)
                             @Html.EditorFor(x => skill.Achievement, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
                             @Html.ValidationMessageFor(x => skill.Achievement, "", new { @class = "text-danger" })
-
                         </div>
                     </div>
                 }
-
+                @*@Html.ActionLink("Submit Application", "JobApplication", "Applicants", new {jobid = ViewBag.JobId})*@
+                <input type="submit" Name="SubmitApplication" value="Submit Application" class="btn btn-II mx-1"/>
             }
-            <button type="submit" class="btn btn-II mx-1">Submit Application</button>
+
             <script>
-               
+
 
             </script>
