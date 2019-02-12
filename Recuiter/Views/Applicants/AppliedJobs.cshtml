@@ -1,10 +1,11 @@
-﻿@model IEnumerable<Data.Models.Application> 
+﻿@model <Recruiter.ViewModels.ApplicationVM>
 @{
-    ViewBag.Title = "AppliedJobs";
+    ViewBag.Title = "Applied Jobs";
     Layout = "~/Views/Shared/ProfileLayout.cshtml";
 }
 
 @*<h2>AppliedJobs</h2>*@
+
 
 <img src="~/Content/images/UserInterface.png" class="img-fluid topbanner mb-4" alt="user Interface">
 <div class="container-fluid">
@@ -29,34 +30,34 @@
                 </li>
             </ul>
         </div>
-        <div class="col-sm-9">
-            <h2>APPLIED JOBS</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">@Html.DisplayNameFor(model => model.JobTitle)</th>
-                        <th scope="col"></th>
-                        <th scope="col">@Html.DisplayNameFor(model => model.Status)</th>
-                        <th scope="col">@Html.DisplayNameFor(model => model.Date)</th>
-                        <th scope="col" class="del_head">Delete</th>
-                    </tr>
-                </thead>
-                @foreach (var item in Model)
-                {
-                    <tbody>
-                        <tr>
-                            <td scope="row">@Html.DisplayFor(model => item.JobTitle)</td>
-                            <td></td>
-                            <td>@Html.DisplayFor(model => item.Status)</td>
-                            <td>@Html.DisplayFor(model => item.Date)</td>
-                            <td class="del">Delete</td>
+		<div class="col-sm-9">
+			<h2>APPLIED JOBS</h2>
+			
+			
+			@foreach (var application in Model)
 
-                        </tr>
-                        
-
-                    </tbody>
-                }
-            </table>
-</div>
+			{
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">@Html.DisplayNameFor(model => application.JobTitle)</th>
+							<th scope="col"></th>
+							<th scope="col">@Html.DisplayNameFor(model => application.Status)</th>
+							<th scope="col">@Html.DisplayNameFor(model => application.Date)</th>
+							<th scope="col" class="del_head">Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td scope="row">@Html.DisplayFor(model => application.JobTitle)</td>
+							<td></td>
+							<td>@Html.DisplayFor(model => application.Status)</td>
+							<td>@Html.DisplayFor(model => application.Date)</td>
+							<td class="del">Delete</td>
+						</tr>
+					</tbody>
+				</table>
+			}
+			</div>
         </div>
     </div>

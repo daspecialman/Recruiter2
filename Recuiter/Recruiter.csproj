@@ -468,9 +468,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902110909168_Monday11.cs" />
-    <Compile Include="Migrations\201902110909168_Monday11.Designer.cs">
-      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
+    <Compile Include="Migrations\201902111054317_JustPulled.cs" />
+    <Compile Include="Migrations\201902111054317_JustPulled.Designer.cs">
+      <DependentUpon>201902111054317_JustPulled.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -571,8 +571,8 @@
     <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902110909168_Monday11.resx">
-      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902111054317_JustPulled.resx">
+      <DependentUpon>201902111054317_JustPulled.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
