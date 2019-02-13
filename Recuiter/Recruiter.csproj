@@ -388,17 +388,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
+    <Compile Include="Migrations\201902110909168_Monday11.cs" />
+    <Compile Include="Migrations\201902110909168_Monday11.Designer.cs"/>
+      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
     <Compile Include="Migrations\201902091844444_initial.cs" />
     <Compile Include="Migrations\201902091844444_initial.Designer.cs">
       <DependentUpon>201902091844444_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902120546333_ajaxupdate.cs" />
-    <Compile Include="Migrations\201902120546333_ajaxupdate.Designer.cs">
-      <DependentUpon>201902120546333_ajaxupdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902120808355_api.cs" />
-    <Compile Include="Migrations\201902120808355_api.Designer.cs">
-      <DependentUpon>201902120808355_api.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -481,6 +476,7 @@
     <Content Include="Views\Shared\ApplicantLayout.cshtml" />
     <Content Include="Views\Applicants\AppliedJobs.cshtml" />
     <Content Include="Views\Applicants\ApplicantProfilePage.cshtml" />
+    <Content Include="Views\Applicants\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -498,17 +494,7 @@
     <Folder Include="App_Data\UploadedFiles\" />
     <Folder Include="UploadedImages\" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902091844444_initial.resx">
-      <DependentUpon>201902091844444_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902120546333_ajaxupdate.resx">
-      <DependentUpon>201902120546333_ajaxupdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902120808355_api.resx">
-      <DependentUpon>201902120808355_api.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+  
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

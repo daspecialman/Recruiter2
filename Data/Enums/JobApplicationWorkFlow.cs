@@ -28,7 +28,6 @@ namespace Data.Enums
 		Rejected
 	}
 
-
     public enum AppliedJobStatus
     {
         [Display(Name = "Accepted")]
@@ -38,5 +37,9 @@ namespace Data.Enums
         [Display(Name = "Declined")]
         Declined
     }
-
 }
+
+
+  
+
+

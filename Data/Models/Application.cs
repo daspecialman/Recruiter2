@@ -22,6 +22,6 @@ namespace Data.Models
 		public int JobId { get; set; }
 
         [Display(Name = "Job Status")]
-        public JobApplicationWorkFlow Status { get; set; }
+        public AppliedJobStatus Status { get; set; }
 	}
 }

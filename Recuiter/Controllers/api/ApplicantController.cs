@@ -42,6 +42,9 @@ namespace Recruiter.Controllers.api
 
         }
 
+
+        [HttpGet]
+        [Route("Experience/Id")]
         public IHttpActionResult GetExperience(int Id)
         {
             var experience = db.Experiences.Where(x => x.Id == Id).FirstOrDefault();
@@ -54,7 +57,7 @@ namespace Recruiter.Controllers.api
                 };
 
                 result.HasError = false;
-                result.Message = "Successusfully Entered Experience";
+                result.Message = "Successusfully entered Experience";
                 result.Data = experienceModel;
             }
             else
@@ -64,6 +67,9 @@ namespace Recruiter.Controllers.api
             return Json(result);
         }
 
+
+        [HttpGet]
+        [Route("Skill/Id")]
         public IHttpActionResult GetSkill(int Id)
         {
             var skill = db.Skills.Where(x => x.Id == Id).FirstOrDefault();
@@ -76,7 +82,7 @@ namespace Recruiter.Controllers.api
                 };
 
                 result.HasError = false;
-                result.Message = "Successusfully Entered Skills";
+                result.Message = "Successusfully entered Skills";
                 result.Data = skillModel;
             }
             else

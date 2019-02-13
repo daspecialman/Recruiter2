@@ -49,6 +49,7 @@ namespace Recruiter.ViewModels
         public string CompleteAddress { get; set; }
 
         [DisplayName("Job Title")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Enter your job title")]
         public string JobTitle { get; set; }
 
         [DisplayName("Specialization")]

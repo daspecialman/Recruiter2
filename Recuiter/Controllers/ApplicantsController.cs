@@ -86,6 +86,7 @@ namespace Recruiter.Controllers
             };
 
             ViewBag.JobID = Id;
+            ViewBag.TopAppliedJobs = GetTopAppliedJobs();
             return View(viewModel);
         }
 
@@ -111,7 +112,7 @@ namespace Recruiter.Controllers
                         JobId = jobId,
                         CreatedDate = now,
                         Date = now,
-                        Status = JobApplicationWorkFlow.AwaitingHRReview
+                        Status = AppliedJobStatus.InProgress
                     };
 
                     db.Applications.Add(application);
@@ -555,7 +556,8 @@ namespace Recruiter.Controllers
                 {
                     Id = item.id,
                     Title = job.Title,
-                    ExpiryDate = job.ExpiryDate
+                    ExpiryDate = job.ExpiryDate,
+                    
                 });
             }
 

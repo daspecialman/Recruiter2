@@ -13,8 +13,8 @@ namespace Data.Models
         //[Required]
         //public int JobId { get; set; }
 
-        //[Display(Name = "Department")]
-        //public Department Department { get; set; }
+        [Display(Name = "Department")]
+        public Department Department { get; set; }
 
         //[Display(Name = "Department")]
         //[Required]
