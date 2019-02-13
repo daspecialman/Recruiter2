@@ -27,28 +27,7 @@ namespace Data.Enums
 		Archived,
 		Rejected
 	}
-}
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Data.Enums
-{
-	public enum JobApplicationWorkFlow
-	{
-		Requested = 1,
-		AwaitingHRReview,
-		AwaitingHODReview,
-		InterviewSchedule,
-		InterviewRequest,
-		InterviewProcess,
-		Successfull,
-		Archived,
-		Rejected
-	}
 
     public enum AppliedJobStatus
     {

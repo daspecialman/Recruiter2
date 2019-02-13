@@ -1,7 +1,13 @@
-﻿jQuery(document).ready(function () {
-    jQuery('.new-education').on('click', function () {
-        jQuery('#form-edu').removeClass('hide-form');
-    });
+﻿//jQuery(document).ready(function () {
+
+//    jQuery('.new-education').on('click', function () {
+//        jQuery('#form-edu').show();
+//    });
+    $(function () {
+        $(".new-education").click(function () {
+            $("#form-edu").show()
+        })
+    })
 
     jQuery('#tableEducation').on('click', '.edit-action', function () {
         var id = $(this).closest('tr').attr('data-id');
