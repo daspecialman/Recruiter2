@@ -9,7 +9,10 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Linq;
 using Recruiter.Context;
+using System.Net.Http;
 using System.Data.Entity;
+using Recruiter.App_Start;
+using System.Web.Http;
 
 namespace Recruiter
 {
@@ -17,10 +20,11 @@ namespace Recruiter
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-			new DbInsertOnAppStart().Seed();
+            new DbInsertOnAppStart().Seed();
 		}
 
 

@@ -58,7 +58,8 @@ namespace Recruiter.Controllers
 							UserId = user.UserId,
 							FirstName = user.FirstName,
 							LastName = user.LastName,
-							RoleName = user.Roles.Select(r => r.Role.Name).ToList()
+							RoleName = user.Roles.Select(r => r.Role.Name).ToList(),
+                            ApplicantId = user.ApplicantId
 						};
 
 						string userData = JsonConvert.SerializeObject(userModel);

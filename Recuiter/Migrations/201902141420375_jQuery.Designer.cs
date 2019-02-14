@@ -7,13 +7,13 @@ namespace Recruiter.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class api : IMigrationMetadata
+    public sealed partial class jQuery : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(api));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(jQuery));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902120808355_api"; }
+            get { return "201902141420375_jQuery"; }
         }
         
         string IMigrationMetadata.Source

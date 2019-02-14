@@ -22,7 +22,7 @@ namespace Recruiter.ViewModels
 
         [DataType(DataType.Date)]
         public DateTime ToDate { get; set; }
-
+        
 		public string Institution { get; set; }
 
         public bool IsPresent { get; set; }

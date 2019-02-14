@@ -37,6 +37,7 @@ namespace Data.Enums
         [Display(Name = "Declined")]
         Declined
     }
+
 }
 
 

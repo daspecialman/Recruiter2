@@ -35,22 +35,29 @@
         <div class="col-sm-9">
             <h2 id="head_">MY RESUME</h2>
             <p class="edu"><i class="fas fa-graduation-cap  mr-1" style="color:#313366"></i><span style="color:#313366;">EDUCATION</span><span style="color:#ff0000">*</span></p>
-            @if (Model != null)
-            {
-                foreach (var education in Model.Education)
-                {
+            <table class="table empty" id="tableEducation">
+                <thead>
+                    <tr>
+                        <th scope="col">Qualification</th>
+                        <th scope="col"></th>
+                        <th scope="col">Dates</th>
+                        <th scope="col">Institution</th>
+                        <th scope="col" class="del_head">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                    <table class="table" id="tableEducation">
-                        <thead>
-                            <tr>
-                                <th scope="col">Qualification</th>
-                                <th scope="col"></th>
-                                <th scope="col">Dates</th>
-                                <th scope="col">Institution</th>
-                                <th scope="col" class="del_head">Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    @if (Model.Education.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="5">No records added</td>
+                        </tr>
+                    }
+
+                    else
+                    {
+                        foreach (var education in Model.Education)
+                        {
                             <tr data-id="@education.Id">
                                 <td scope="row"><b>@Html.DisplayFor(x => education.Qualification) In @Html.DisplayFor(x => education.CourseStudies)</b></td>
                                 <td></td>
@@ -59,12 +66,12 @@
                                 <td class=" fa-edit"><i calss="far fa-trash-alt ml-5"></i>Edit</td>
                                 <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
                             </tr>
-                        </tbody>
-                    </table>
+                        }
+                    }
 
-                }
 
-            }
+                </tbody>
+            </table>
 
             <form class="hide-form" id="form-edu">
                 <div>
@@ -72,27 +79,28 @@
                 </div>
                 <div class="row mb-4">
                     <div class="col mt-3">
-                        <select class="form-control">
-                            <option>Name of Institute</option>
+                        <select class="form-control" name="Institute">
+                            <option value="">Name of Institute</option>
                         </select>
                     </div>
                     <div class="col mt-3">
-                        <select class="form-control">
+                        <select class="form-control" name="Qualification">
                             <option>Select qualification</option>
                         </select>
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-6 mt-3">
-                        <input class="form-control" type="text" placeholder="From date*">
+                        <input class="form-control" name="FromDate" type="date" placeholder="From date*">
                     </div>
                     <div class="col-6 mt-3">
-                        <input class="form-control" type="text" placeholder="To date*">
+                        <input class="form-control" name="ToDate" type="date" placeholder="To date*">
                     </div>
                 </div>
-                <input class="form-control" type="text" placeholder="Course Studied">
+                <input class="form-control" type="text" name="CourseStudies" placeholder="Course Studied">
                 <div>
-                    <button type="button" class="btn btn-outline-secondary mx-1">Update</button>
+                    <input type="hidden" name="Id" id="FormEducationId" value="0" />
+                    <button type="submit" class="btn btn-outline-secondary mx-1">Update</button>
                 </div>
 
             </form>

@@ -102,6 +102,9 @@
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
@@ -362,11 +365,12 @@
   <ItemGroup>
     <Compile Include="App_Start\Filters\PreventUncompletedProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Context\DbInsertOnAppStart.cs" />
     <Compile Include="Context\Map\DocumentMap.cs" />
     <Compile Include="Context\RecruiterContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\api\ApplicantController.cs" />
+    <Compile Include="Controllers\api\ApplicantApiController.cs" />
     <Compile Include="Controllers\api\NotificationApiController.cs" />
     <Compile Include="Controllers\ApplicantsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
@@ -388,12 +392,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902110909168_Monday11.cs" />
-    <Compile Include="Migrations\201902110909168_Monday11.Designer.cs"/>
-      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
-    <Compile Include="Migrations\201902091844444_initial.cs" />
-    <Compile Include="Migrations\201902091844444_initial.Designer.cs">
-      <DependentUpon>201902091844444_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201902131720437_Resume.cs" />
+    <Compile Include="Migrations\201902131720437_Resume.Designer.cs">
+      <DependentUpon>201902131720437_Resume.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902141420375_jQuery.cs" />
+    <Compile Include="Migrations\201902141420375_jQuery.Designer.cs">
+      <DependentUpon>201902141420375_jQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -477,6 +482,11 @@
     <Content Include="Views\Applicants\AppliedJobs.cshtml" />
     <Content Include="Views\Applicants\ApplicantProfilePage.cshtml" />
     <Content Include="Views\Applicants\Dashboard.cshtml" />
+    <Content Include="Views\InterviewQuestion\Create.cshtml" />
+    <Content Include="Views\InterviewQuestion\Delete.cshtml" />
+    <Content Include="Views\InterviewQuestion\Details.cshtml" />
+    <Content Include="Views\InterviewQuestion\Edit.cshtml" />
+    <Content Include="Views\InterviewQuestion\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -494,7 +504,14 @@
     <Folder Include="App_Data\UploadedFiles\" />
     <Folder Include="UploadedImages\" />
   </ItemGroup>
-  
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902131720437_Resume.resx">
+      <DependentUpon>201902131720437_Resume.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902141420375_jQuery.resx">
+      <DependentUpon>201902141420375_jQuery.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
