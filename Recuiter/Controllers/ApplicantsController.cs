@@ -367,7 +367,7 @@ namespace Recruiter.Controllers
 						   Achievement = x.Achievement,
 					   }).ToList()
 				};
-
+                
                 ViewBag.jobId = jobId;
 				return View(returnObject);
 			}

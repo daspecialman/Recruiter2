@@ -24,10 +24,10 @@
                 url: '/api/applicant/AddOrUpdate',
                 data: jQuery(form).serialize(),
                 success: function (response) {
-                    alert(response);
-                    var htmlString = '<tr data-id="' + response.Data.Id +'">' +
-                        '<td>' + response.Data.Institute + '</td>' +
-                        '<td></td>' +
+                    console.log(response);
+                    var htmlString = '<tr data-id="' + response.Id +'">' +
+                        '<td>' + response.Data.CourseStudies + '</td>' +
+                        '<td>' + response.Data.ToDate+'</td> ' +
                         '<td></td>' +
                         '<td></td>' +
                         '<td></td>' +

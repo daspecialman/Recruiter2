@@ -79,11 +79,11 @@ namespace Recruiter.Controllers
 						}
 
 
-						if (userModel.RoleName.SingleOrDefault(x => x == "Admin") == "Admin")
+						if (userModel.RoleName.SingleOrDefault(x => x == "Admin") !=null)
 						{
 							return RedirectToAction("Index", "Hr");
 						}
-						else if (userModel.RoleName.SingleOrDefault(x => x == "Applicant") == "Applicant")
+						else if (userModel.RoleName.SingleOrDefault(x => x == "Applicant") != null)
 						{
 							return RedirectToAction("Index", "Applicants");
 						}

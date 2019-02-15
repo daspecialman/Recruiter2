@@ -104,17 +104,29 @@ namespace Recruiter.CustomAuthentication
         {
             using (RecruiterContext dbContext = new RecruiterContext())
             {
-                var appUser = (from us in dbContext.Users.Include(x => x.Roles.Select(y => y.Role)).Include(x => x.Applicant)
-                            join app in dbContext.Applicants on us.Id equals app.UserId into j1
-                            from j2 in j1.DefaultIfEmpty()
-                            where string.Compare(email, us.Email, StringComparison.OrdinalIgnoreCase) == 0
-                            select new CustomMembershipUserDto
-                            {
-                               user = us,
-                               ApplicantId = j2.Id
-                            }).FirstOrDefault();
+                var appUser = (from users in dbContext.Users
+                               join applicant in dbContext.Applicants on users.Id equals applicant.UserId into applicant_user
+                               from j2 in applicant_user.DefaultIfEmpty()
+                               where string.Compare(email, users.Email, StringComparison.OrdinalIgnoreCase) == 0
+                               select new CustomMembershipUserDto
+                               {
+                                   User = users,
+                                   ApplicantId = j2.Id
+                               }).FirstOrDefault();
 
-                return new CustomMembershipUser(appUser.user, appUser.ApplicantId);
+                if (appUser != null)
+                {
+                    var customeMembershipUser = new CustomMembershipUser(appUser.User, appUser.ApplicantId)
+                    {
+                        Roles = (from r in dbContext.UserRoles.Include(x => x.Role)
+                                 where r.UserId == appUser.User.Id
+                                 select r).ToList()
+                    };
+
+                    return customeMembershipUser;
+                }
+
+                return null;
             }
         }
 
@@ -289,7 +301,8 @@ namespace Recruiter.CustomAuthentication
 
         public class CustomMembershipUserDto
         {
-            public User user { get; set; }
+
+            public User User { get; set; }
 
             public int? ApplicantId { get; set; }
         }
