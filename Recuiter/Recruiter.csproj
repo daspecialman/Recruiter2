@@ -400,6 +400,14 @@
     <Compile Include="Migrations\201902141420375_jQuery.Designer.cs">
       <DependentUpon>201902141420375_jQuery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902181313410_ApplicantUpdate.cs" />
+    <Compile Include="Migrations\201902181313410_ApplicantUpdate.Designer.cs">
+      <DependentUpon>201902181313410_ApplicantUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191546405_SkillTitleAdded.cs" />
+    <Compile Include="Migrations\201902191546405_SkillTitleAdded.Designer.cs">
+      <DependentUpon>201902191546405_SkillTitleAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -510,6 +518,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902141420375_jQuery.resx">
       <DependentUpon>201902141420375_jQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902181313410_ApplicantUpdate.resx">
+      <DependentUpon>201902181313410_ApplicantUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191546405_SkillTitleAdded.resx">
+      <DependentUpon>201902191546405_SkillTitleAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

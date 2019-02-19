@@ -20,10 +20,11 @@ namespace Recruiter.Controllers.api
 
         [HttpPost]
         [Route("AddorUpdate")]
-        public IHttpActionResult GetEducation(EducationVM model)
+        public IHttpActionResult AddEducation(EducationVM model)
         {
             var response = new ApiResult<EducationVM>();
             var currentApplicantId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).ApplicantId;
+
 
             if (currentApplicantId == null)
                 return Unauthorized();
@@ -59,21 +60,34 @@ namespace Recruiter.Controllers.api
                     ToDate = model.ToDate,
                     Qualification = model.Qualification
                 };
-               
+
                 db.Educations.Add(education);
+                db.SaveChanges();
                 model.Id = education.Id;
+
                 response.Message = "Added successfully";
-                
+
             }
+
+
             response.Data = model;
             response.HasError = false;
             return Ok(response);
         }
 
+        [HttpDelete]
+        [Route("Education/{Id}")]
+        public IHttpActionResult DeleteEducation(int Id)
+        {
+            var education = db.Educations.Where(x => x.Id == Id).FirstOrDefault();
+            if (education == null)
+                return NotFound();
+            else
+            {
+                db.Educations.Remove(education);
+                return Ok("Deleted");
+            }
 
-        [Route("Get")]
-        public IHttpActionResult Get() {
-            return Ok("Successful");
         }
 
         [HttpGet]
@@ -86,16 +100,19 @@ namespace Recruiter.Controllers.api
             {
                 var educationModel = new EducationVM
                 {
-
+                    Institution = education.Institution,
+                    Qualification = education.Qualification,
+                    CourseStudies = education.CourseStudied,
+                    Id = education.Id
                 };
 
                 result.HasError = false;
-                result.Message = "great";
+                result.Message = "Successfully entered Education";
                 result.Data = educationModel;
             }
             else
             {
-               // NotFound()
+                // NotFound()
                 return BadRequest("Eductation records not found");
             }
 
@@ -105,9 +122,79 @@ namespace Recruiter.Controllers.api
 
         }
 
+        ////----------------------EXPERIENCE API----------------------------//////
+        [HttpPost]
+        [Route("AddExperience")]
+        public IHttpActionResult AddExperience(ExperienceVM model)
+        {
+            var response = new ApiResult<ExperienceVM>();
+            var currentApplicantId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).ApplicantId;
+
+            if (currentApplicantId == null)
+                return Unauthorized();
+
+            if (!ModelState.IsValid)
+                return BadRequest("Incorrect data posted, please check form and try again");
+
+            if (model.Id > 0)
+            {
+                var experience = db.Experiences.Where(x => x.Id == model.Id).FirstOrDefault();
+                if (experience == null)
+                    return NotFound();
+                else
+                {
+                    experience.Title = model.Title;
+                    experience.CompanyName = model.Company;
+                    experience.FromDate = model.FromDate;
+                    experience.ToDate = model.ToDate;
+                    //education.Qualification = model.Qualification;
+                    db.SaveChanges();
+                }
+                response.Message = "Updated successfully";
+            }
+            else
+            {
+                var experience = new Experience
+                {
+                    ApplicantId = (int)currentApplicantId,
+                    Title = model.Title,
+                    CompanyName = model.Company,
+                    FromDate = model.FromDate,
+                    ToDate = model.ToDate,
+                    //Qualification = model.Qualification
+                };
+
+                db.Experiences.Add(experience);
+                db.SaveChanges();
+                model.Id = experience.Id;
+
+                response.Message = "Added successfully";
+
+            }
+
+
+            response.Data = model;
+            response.HasError = false;
+            return Ok(response);
+        }
+
+        [HttpDelete]
+        [Route("Experience/{Id}")]
+        public IHttpActionResult DeleteExperience(int Id)
+        {
+            var experience = db.Experiences.Where(x => x.Id == Id).FirstOrDefault();
+            if (experience == null)
+                return NotFound();
+            else
+            {
+                db.Experiences.Remove(experience);
+                return Ok("Deleted");
+            }
+
+        }
 
         [HttpGet]
-        [Route("Experience/Id")]
+        [Route("Experience/{Id}")]
         public IHttpActionResult GetExperience(int Id)
         {
             var experience = db.Experiences.Where(x => x.Id == Id).FirstOrDefault();
@@ -116,6 +203,9 @@ namespace Recruiter.Controllers.api
             {
                 var experienceModel = new ExperienceVM
                 {
+                    Title = experience.Title,
+                    Company = experience.CompanyName,
+                    Id = experience.Id
 
                 };
 
@@ -125,14 +215,88 @@ namespace Recruiter.Controllers.api
             }
             else
             {
-                return NotFound();
+                return BadRequest("Experience records not found");
             }
             return Json(result);
         }
 
+        
+        /// -------------------------SKILLS API -----------------------------------------/////////
+        [HttpPost]
+        [Route("AddSkills")]
+        public IHttpActionResult AddSkills(SkillVM model)
+        {
+            var response = new ApiResult<SkillVM>();
+            var currentApplicantId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).ApplicantId;
+
+
+            if (currentApplicantId == null)
+                return Unauthorized();
+
+            if (!ModelState.IsValid)
+                return BadRequest("Incorrect data posted, please check form and try again");
+
+            if (model.Id > 0)
+            {
+                var skill = db.Skills.Where(x => x.Id == model.Id).FirstOrDefault();
+                if (skill == null)
+                    return NotFound();
+                else
+                {
+
+                    skill.SkillTitle = model.SkillTitle;
+                    skill.Skilllevel = model.Skilllevel;
+                    //skill.FromDate = model.FromDate;
+                    //skill.ToDate = model.ToDate;
+                    //skill.Qualification = model.Qualification;
+                    db.SaveChanges();
+                }
+                response.Message = "Updated successfully";
+            }
+            else
+            {
+                var skill = new Skill
+                {
+                    ApplicantId = (int)currentApplicantId,
+                    SkillTitle = model.SkillTitle,
+                    Skilllevel = model.Skilllevel,
+                    //FromDate = model.FromDate,
+                    //ToDate = model.ToDate,
+                    //Qualification = model.Qualification
+                };
+
+                db.Skills.Add(skill);
+                db.SaveChanges();
+                model.Id = skill.Id;
+
+                response.Message = "Added successfully";
+
+            }
+
+
+            response.Data = model;
+            response.HasError = false;
+            return Ok(response);
+        }
+
+        [HttpDelete]
+        [Route("Skills/{Id}")]
+        public IHttpActionResult DeleteSkill(int Id)
+        {
+            var skill = db.Skills.Where(x => x.Id == Id).FirstOrDefault();
+            if (skill == null)
+                return NotFound();
+            else
+            {
+                db.Skills.Remove(skill);
+                return Ok("Deleted");
+            }
+
+        }
+
 
         [HttpGet]
-        [Route("Skill/Id")]
+        [Route("Skills/{Id}")]
         public IHttpActionResult GetSkill(int Id)
         {
             var skill = db.Skills.Where(x => x.Id == Id).FirstOrDefault();

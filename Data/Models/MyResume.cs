@@ -40,6 +40,9 @@ public class Education
 
 public class Experience
 {
+    public Applicant Applicant { get; set; }
+
+    public int ApplicantId { get; set; }
     public int Id { get; set; }
 
     public string Title { get; set; }
@@ -58,9 +61,13 @@ public class Experience
 
 public class Skill
 {
-    public int Id { get; set; }
+    public Applicant Applicant { get; set; }
 
-    public SkillLevel Skilllevel { get; set; }
+    public int ApplicantId { get; set; }
+    public int Id { get; set; }
+    public string SkillTitle { get; set; }
+
+    public ExperienceLevelType Skilllevel { get; set; }
 
     public string Achievement { get; set; }
 
