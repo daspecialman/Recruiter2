@@ -28,8 +28,8 @@ namespace Recuiter.Context.Map
 		{
 			HasRequired(x => x.CreatedBy).WithMany().WillCascadeOnDelete(false);
 			HasRequired(x => x.LastModifiedBy).WithMany().WillCascadeOnDelete(false);
-			HasRequired(x => x.User).WithMany().WillCascadeOnDelete(false);
-			HasRequired(x => x.Role).WithMany().WillCascadeOnDelete(false);
+			HasRequired(x => x.User).WithMany().HasForeignKey(y=> y.UserId).WillCascadeOnDelete(false);
+			HasRequired(x => x.Role).WithMany().HasForeignKey(y => y.RoleId).WillCascadeOnDelete(false);
 		}
 	}
 

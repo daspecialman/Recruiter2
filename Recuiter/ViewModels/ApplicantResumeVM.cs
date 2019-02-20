@@ -6,8 +6,8 @@ using System.Web;
 
 namespace Recruiter.ViewModels
 {
-	public class ApplicantResumeVM
-	{   public int Id { get; set; }
+	public class ApplicantResumeVM 
+	{
 		public  List<EducationVM> Education { get; set; }
 		public List<ExperienceVM> Experience { get; set; }
 		public List<SkillVM> Skill { get; set; }
@@ -23,7 +23,12 @@ namespace Recruiter.ViewModels
         [DataType(DataType.Date)]
         public DateTime ToDate { get; set; }
 
-		public string Institution { get; set; }
+        public string FromDateFormat => FromDate.ToString("dd/MM/yyyy");
+
+        public string ToDateFormat => ToDate.ToString("dd/MM/yyyy");
+        
+
+        public string Institution { get; set; }
 
         public bool IsPresent { get; set; }
 
@@ -52,8 +57,9 @@ namespace Recruiter.ViewModels
 	public class SkillVM
 	{
 		public int Id { get; set; }
+        public string SkillTitle { get; set; }
 
-		public SkillLevel Skilllevel { get; set; }
+        public ExperienceLevelType Skilllevel { get; set; }
 
 		public string Achievement { get; set; }
 

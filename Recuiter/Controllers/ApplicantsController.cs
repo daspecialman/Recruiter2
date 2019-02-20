@@ -255,7 +255,7 @@ namespace Recruiter.Controllers
                     var user = dbContext.Users.Where(u => u.Id == currentUserId).FirstOrDefault();
 					if (applicant != null)
 					{
-                        if(!string.IsNullOrEmpty(ImageUpload) && !(applicantProfileVM.ImageFile is null))
+                        if(!(applicantProfileVM.ImageFile is null))
                         {
                             applicantProfileVM.ImagePath = UploadImage(applicantProfileVM.ImageFile);
                             if(string.IsNullOrEmpty(applicantProfileVM.ImagePath))
@@ -267,10 +267,16 @@ namespace Recruiter.Controllers
                                 user.ImagePath = applicantProfileVM.ImagePath;
                                 dbContext.Entry(user).State = EntityState.Modified;
                                 ViewBag.Success = "Image Uploaded Successfully";
-                                dbContext.SaveChanges();
-                                return View(applicantProfileVM);
+                                if(!string.IsNullOrEmpty(ImageUpload))
+                                {
+                                    dbContext.SaveChanges();
+                                    return View(applicantProfileVM);
+                                }
+                                
                             }
-                        } else if (!string.IsNullOrEmpty(SaveAndContinue)) {
+                        }
+
+                        if (!string.IsNullOrEmpty(SaveAndContinue)) {
 
                             try
                             {
@@ -346,6 +352,7 @@ namespace Recruiter.Controllers
 					Education = applicantEntity.PastEducation.Select(x =>
 					new Recruiter.ViewModels.EducationVM
 					{
+                        Id = x.Id,
 						CourseStudies = x.CourseStudied,
 						FromDate = x.FromDate,
 						Institution = x.Institution,
@@ -355,6 +362,7 @@ namespace Recruiter.Controllers
 					Experience = applicantEntity.WorkExperience.Select(x =>
 					   new Recruiter.ViewModels.ExperienceVM
 					   {
+                           Id = x.Id,
 						   Title = x.Title,
 						   FromDate = x.FromDate,
 						   Company = x.CompanyName,
@@ -363,11 +371,13 @@ namespace Recruiter.Controllers
 					Skill = applicantEntity.Skills.Select(x =>
 					   new Recruiter.ViewModels.SkillVM
 					   {
-						   Skilllevel = x.Skilllevel,
+                           Id = x.Id,
+                           SkillTitle = x.SkillTitle,
+                           Skilllevel = x.Skilllevel,
 						   Achievement = x.Achievement,
 					   }).ToList()
 				};
-
+                
                 ViewBag.jobId = jobId;
 				return View(returnObject);
 			}
@@ -396,6 +406,7 @@ namespace Recruiter.Controllers
 											.Include(x => x.User)
 											.Include(x => x.PastEducation)
 											.Include(x => x.Skills)
+                                            .Include(x => x.WorkExperience)
 											.Include(x => x.ApplicantDocuments)
 											.Include(x => x.Institutions).FirstOrDefault();
 					if (applicantEntity == null)
@@ -466,6 +477,7 @@ namespace Recruiter.Controllers
 								{
 									Achievement = vmSkill.Achievement,
 									Id = vmSkill.Id,
+                                    SkillTitle = vmSkill.SkillTitle,
 									Skilllevel = vmSkill.Skilllevel
 								};
 								applicantEntity.Skills.Add(dbSkill);
@@ -475,6 +487,7 @@ namespace Recruiter.Controllers
 							{
 								dbSkill.Achievement = vmSkill.Achievement;
 								dbSkill.Id = vmSkill.Id;
+                                dbSkill.SkillTitle = vmSkill.SkillTitle;
 								dbSkill.Skilllevel = vmSkill.Skilllevel;
 								db.Entry(dbSkill).State = EntityState.Modified;
 							}

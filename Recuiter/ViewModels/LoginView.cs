@@ -23,6 +23,7 @@ namespace Data.Models
         public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int? ApplicantId { get; set; }
         public List<string> RoleName { get; set; }
 
     }
@@ -57,13 +58,13 @@ namespace Data.Models
         [Compare("Password", ErrorMessage = "Error : Confirm password does not match with password")]
         public string ConfirmPassword { get; set; }
 
-		public Guid ActivationCode { get; set; }
+        public Guid ActivationCode { get; set; }
 
-		public bool IsEmailVerfied { get; set; }
+        public bool IsEmailVerfied { get; set; }
 
 
 
-	}
+    }
 
 
 }

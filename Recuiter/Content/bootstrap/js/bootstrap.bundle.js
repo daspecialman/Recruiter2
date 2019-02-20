@@ -953,7 +953,7 @@
             data.to(config);
           } else if (typeof action === 'string') {
             if (typeof data[action] === 'undefined') {
-              throw new TypeError("No method "name"d \"" + action + "\"");
+              throw new TypeError("No method ", + name +"d \"" + action + "\"");
             }
 
             data[action]();
@@ -1347,7 +1347,7 @@
 
           if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
-              throw new TypeError("No method "name"d \"" + config + "\"");
+              throw new TypeError("No method "+ name + "d \"" + config + "\"");
             }
 
             data[config]();
@@ -4235,7 +4235,7 @@
 
           if (typeof config === 'string') {
             if (typeof data[config] === 'undefined') {
-              throw new TypeError("No method "name"d \"" + config + "\"");
+              throw new TypeError("No method " + name + "d \"" + config + "\"");
             }
 
             data[config]();

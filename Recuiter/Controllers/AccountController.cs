@@ -58,7 +58,8 @@ namespace Recruiter.Controllers
 							UserId = user.UserId,
 							FirstName = user.FirstName,
 							LastName = user.LastName,
-							RoleName = user.Roles.Select(r => r.Role.Name).ToList()
+							RoleName = user.Roles.Select(r => r.Role.Name).ToList(),
+                            ApplicantId = user.ApplicantId
 						};
 
 						string userData = JsonConvert.SerializeObject(userModel);
@@ -78,11 +79,11 @@ namespace Recruiter.Controllers
 						}
 
 
-						if (userModel.RoleName.SingleOrDefault(x => x == "Admin") == "Admin")
+						if (userModel.RoleName.SingleOrDefault(x => x == "Admin") !=null)
 						{
 							return RedirectToAction("Index", "Hr");
 						}
-						else if (userModel.RoleName.SingleOrDefault(x => x == "Applicant") == "Applicant")
+						else if (userModel.RoleName.SingleOrDefault(x => x == "Applicant") != null)
 						{
 							return RedirectToAction("Index", "Applicants");
 						}
