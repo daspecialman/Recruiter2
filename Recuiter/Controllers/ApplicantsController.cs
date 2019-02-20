@@ -48,7 +48,7 @@ namespace Recruiter.Controllers
                 jobss = jobss.Where(x => x.ContractClass == (ContractClassType)ContractClass);
 
 
-                ViewBag.SearchFilter = new Search { Contract = ContractClass };
+                //ViewBag.SearchFilter = new Search { Contract = ContractClass };
 
             }
 
@@ -56,7 +56,7 @@ namespace Recruiter.Controllers
             {
                 jobss = jobss.Where(x => x.ExperienceLevel == (ExperienceLevelType)ExperienceLevel);
 
-                ViewBag.SearchFilter = new Search { Expereince = ExperienceLevel };
+                //ViewBag.SearchFilter = new Search { Expereince = ExperienceLevel };
             }
 
 
@@ -493,7 +493,7 @@ namespace Recruiter.Controllers
 			return View(applicantProfileViewModel);
 		}
 		[HttpGet]
-		public ActionResult ApplicantProfilePage()
+		public ActionResult ApplicantProfilePage(int id)
 		{
 			var loggedInUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
 			using (RecruiterContext dbContext = new RecruiterContext())

@@ -60,138 +60,140 @@
 
 
 <div class="container-fluid">
-	<div class="row content">
-		<div class="col-sm-3 sidenav">
-			<div class="row">
-				<div class="col-sm-4">
-					<h5>Filters</h5>
-				</div>
-				<div class="col-sm-4">
-				</div>
-				<div class="col-sm-4">
-					<h5>Clear all</h5>
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="col-sm-4">
-					<h5>Skills</h5>
-				</div>
-				<div class="col-sm-4">
-				</div>
-				<div class="col-sm-4">
-					<h5>Clear all</h5>
-				</div>
-			</div>
-			<form>
-				<div class="form-group">
-					<input type="text" class="form-control" id="skills" aria-describedby="emailHelp" placeholder="Skills" style="background-color:white; border:1px solid #ccc; padding: 6px 12px;">
-				</div>
-			</form>
+    <div class="row content">
+        <div class="col-sm-3 sidenav">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5>Filters</h5>
+                </div>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <h5>Clear all</h5>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5>Skills</h5>
+                </div>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <h5>Clear all</h5>
+                </div>
+            </div>
+            <form action="home/index" method="get">
+                <div class="form-group">
+                    <input type="text" name="SkillSearch" class="form-control" id="skills" aria-describedby="emailHelp" placeholder="Skills" style="background-color:white; border:1px solid #ccc; padding: 6px 12px;">
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h5>Job type</h5>
+                    </div>
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
+                        <h5>Clear</h5>
+                    </div>
+                </div>
+                <ul class="nav nav-pills nav-stacked">
+                    <div class="checkbox">
+                        <label>
+                            @*@Html.CheckBoxFor(m => <ContractClassType>)*@
+                            <input type="checkbox" value="1" name="JobType[0]"> Full time
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="2" name="JobType[1]"> Internship</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="3" name="JobType[2]"> Contract</label>
+                    </div>
+                    <br />
+                    <span>
+                        <h5>Experience &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                        <p>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="3" name="Experience[0]"> Beginner</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="2" name="Experience[1]">Intermediate</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="1" name="Experience[2]">Expert</label>
+                            </div>
+                        </p>
+                    </span>
+                </ul>
+                <button type="submit" class="btn btn-II mx-1" name="filter_search_button">Search</button>
+            </form><br>
+        </div>
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5>Showing All</h5>
+                </div>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="inputPassword6">Sort by:</label>
+                            <input type="text" id="inputPassword6" class="form-control mx-sm-3 down1" aria-describedby="passwordHelpInline" placeholder="Most recent" style="padding-left:10px; box-shadow: 0px 0px 2px 0px #ccc">
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-			<div class="row">
-				<div class="col-sm-4">
-					<h5>Job type</h5>
-				</div>
-				<div class="col-sm-4">
+            <hr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    
+                    <div class="col-sm-6">
 
-				</div>
-				<div class="col-sm-4">
-					<h5>Clear</h5>
-				</div>
-			</div>
-			<form>
-				<ul class="nav nav-pills nav-stacked">
-					<div class="checkbox">
-						<label>
-							@*@Html.CheckBoxFor(m => <ContractClassType>)*@
-							<input type="checkbox"> Full time
-						</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox"> Internship</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox"> Contract</label>
-					</div>
-					<br />
-					<span>
-						<h5>Experience &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-						<p>
-							<div class="checkbox">
-								<label><input type="checkbox"> Beginner</label>
-							</div>
+                        <div class="card border-dark mb-3" style="width:500px">
+                            <div class="card-body">
+                                <h4 class="card-title">@Html.DisplayFor(m => item.Title)</h4>
 
-							<div class="checkbox">
-								<label><input type="checkbox">Intermediate</label>
-							</div>
-							<div class="checkbox">
-								<label><input type="checkbox">Expert</label>
-							</div>
-						</p>
-					</span>
+                                <p class="card-text">Application Deadline: @Html.DisplayFor(m => item.ExpiryDate)</p>
 
-				</ul>
-			</form><br>
-		</div>
+                                @{
+                                    String parameterValue = item.Description.ToString().Substring(0, 30)+ " ...";
+                                }
 
-		<div class="col-sm-9">
-			<div class="row">
-				<div class="col-sm-4">
-					<h5>Showing All</h5>
-				</div>
-				<div class="col-sm-4">
+                                <p class="card-text">
 
-				</div>
-				<div class="col-sm-4">
-					<form class="form-inline">
-						<div class="form-group">
-							<label for="inputPassword6">Sort by:</label>
-							<input type="text" id="inputPassword6" class="form-control mx-sm-3 down1" aria-describedby="passwordHelpInline" placeholder="Most recent" style="padding-left:10px; box-shadow: 0px 0px 2px 0px #ccc">
-						</div>
-					</form>
-
-				</div>
-			</div>
-			<hr>
-			@if (Model != null)
-			{
-				foreach (var item in Model)
-				{
-
-					<div class="col-sm-6">
-
-
-						<div class="card border-dark mb-3" style="width:500px">
-							<div class="card-body">
-								<h4 class="card-title">@Html.DisplayFor(m => item.Title)</h4>
-
-								<p class="card-text">Posted on: @Html.DisplayFor(m => item.CreatedDate)</p>
-								<p class="card-text">Application Deadline: @Html.DisplayFor(m => item.ExpiryDate)</p>
-								<p class="card-text">@Html.DisplayFor(m => item.Description)</p>
-
-								<form class="form-inline">
-									<a class="btn btn-primary mb-2" href="@Url.Action("JobDetails", "Applicants", new { id = item.Id })">Apply Now</a>
-								</form>
-							</div>
-
-						</div>
-						@if (item.Id % 2 == 0)
-						{
-							<br />
-						}
-					</div>
-
-
-				}
+                                    @Html.DisplayFor(m => parameterValue) 
+                                </p>
+                                <form class="form-inline">
+                                    <a class="btn btn-primary mb-2" href="@Url.Action("JobDetails", "Applicants", new { id = item.Id })">More Details</a>
+                                </form>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        @if (item.Id % 2 == 0)
+                        {
+                           
+                        }
+                    </div>
 
 
-			}
+                }
 
-		</div>
 
-		Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-		@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-	</div>
-	
+            }
+
+
+        </div>
+
+    </div>
+    <div style="text-align:center;">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+    </div>
 </div>

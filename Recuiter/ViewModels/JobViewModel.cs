@@ -49,7 +49,8 @@ namespace Recruiter.ViewModels
         [Display(Name = "Contract Class")]
         [Required]
         public ContractClassType ContractClass { get; set; }
-       // A combination of drop-down lists of Integer and month/year. Mutually exclusive on ContractType
+        // A combination of drop-down lists of Integer and month/year. Mutually exclusive on ContractType
+        [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy}")]
         [Display(Name = "Expiry Date")]
         [Required]
         public DateTime ExpiryDate { get; set; }

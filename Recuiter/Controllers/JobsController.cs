@@ -17,7 +17,7 @@ namespace Recruiter.Controllers
     public class JobsController : Controller
     {
         private RecruiterContext db = new RecruiterContext();
-
+        
         // GET: Jobs
         public ActionResult Index()
         {

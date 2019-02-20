@@ -70,11 +70,12 @@
 
 
 				<div style="display:flex;justify-content:space-between;">
-					<div class="form-group form-check-a">
-						@Html.CheckBoxFor(model => model.RememberMe)
-						@Html.LabelFor(model => model.RememberMe)
-					</div>
-					<h6 style=color:#313366> @Html.ActionLink("Forgot Password", "ForgotPassword")</h6>
+                    <div class="form-group form-check-a">
+                        @Html.CheckBoxFor(model => model.RememberMe)
+                        @Html.LabelFor(model => model.RememberMe)
+                        <h6 style="color:#313366; float:right;"> @Html.ActionLink("Forgot Password", "ForgotPassword")</h6>
+                    </div>
+					
 
 				</div>
 				<div>

@@ -4,9 +4,19 @@
     Layout = "~/Views/Shared/ProfileLayout.cshtml";
 }
 <style>
-    .hide-form {
+    .hide-form, .hide-experience, .hide-skill {
         display: none !important
     }
+    .btn {
+        display: block;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        width: 160px;
+        height: 35px;
+        border-color: #f16722;
+        color: #f16722;
+    }
+    
 </style>
 <img src="~/Content/images/UserInterface.png" class="img-fluid topbanner mb-4" alt="user Interface">
 <div class="container-fluid">
@@ -14,20 +24,24 @@
         <div class="col-sm-3" style="background-color: #fafafa;">
             <ul class="nav flex-column">
                 <li class="nav-item border-bottom">
-                    <a class="nav-link  text-dark" href="#"><i class="fas fa-user mr-1"></i></i>My Profile</a>
+                    @*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("ApplicantProfilePage", "Applicants", new { id = Model.Id})" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>My Profile</a>
                 </li>
-                <li class="nav-item border-bottom" id="resume">
-                    <a class="nav-link active text-dark" href="@Url.Action("ApplicantResumeProfile", "Applicants")"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>
+                <li class="nav-item border-bottom" id="profile">
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>*@<a href="@Url.Action("ApplicantResumeProfile", "Applicants")" class="nav-link text-dark"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
                 </li>
                 <li class="nav-item border-bottom">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Jobs In View</a>
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@<a href="@Url.Action("AppliedJobs", "Applicants")" class="nav-link text-dark"><i class="fas fa-bookmark mr-1"></i>Applied Jobs</a>
+                </li>
+                @*<li class="nav-item border-bottom">
+            <a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Shortlisted Jobs</a>
+        </li>*@
+                <li class="nav-item  border-bottom">
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>*@ <a href="@Url.Action("ChangePassword", "Account")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Change Password</a>
                 </li>
                 <li class="nav-item  border-bottom">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Upload CV</a>*@ <a href="@Url.Action("Index", "Document")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Upload CV</a>
                 </li>
+
             </ul>
         </div>
 
@@ -56,8 +70,8 @@
                                 <td></td>
                                 <td>@Html.DisplayFor(x => education.FromDate) - @Html.DisplayFor(x => education.ToDate)</td>
                                 <td>@Html.DisplayFor(x => education.Institution)</td>
-                                <td class=" fa-edit"><i calss="far fa-trash-alt ml-5"></i>Edit</td>
-                                <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+                                <td class=" fa-edit edit-action"><i class="far fa-trash-alt ml-5"></i>Edit</td>
+                                <td class="del delete-action"><i class="far fa-trash-alt ml-5"></i> Delete</td>
                             </tr>
                         </tbody>
                     </table>
@@ -68,29 +82,29 @@
 
             <form class="hide-form" id="form-edu">
                 <div>
-                    <a class="close">x</a>
+                    @*<a class="close">x</a>*@
                 </div>
                 <div class="row mb-4">
                     <div class="col mt-3">
-                        <select class="form-control">
-                            <option>Name of Institute</option>
-                        </select>
+                        <input class="form-control" type="text" placeholder="Name of Institute" required>
                     </div>
                     <div class="col mt-3">
-                        <select class="form-control">
-                            <option>Select qualification</option>
-                        </select>
+                        @Html.DropDownList("EducationLevel",
+                                                   new SelectList(Enum.GetValues(typeof(MinimumQualificationType))),
+                                                   "Select Qualification",
+                                                   new { @class = "form-control" }
+                              )
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-6 mt-3">
-                        <input class="form-control" type="text" placeholder="From date*">
+                        <input class="form-control" type="date" placeholder="From date" required>
                     </div>
                     <div class="col-6 mt-3">
-                        <input class="form-control" type="text" placeholder="To date*">
+                        <input class="form-control" type="date" placeholder="To date" required>
                     </div>
                 </div>
-                <input class="form-control" type="text" placeholder="Course Studied">
+                <input class="form-control" type="text" placeholder="Course Studied" required>
                 <div>
                     <button type="button" class="btn btn-outline-secondary mx-1">Update</button>
                 </div>
@@ -98,7 +112,7 @@
             </form>
 
             <div>
-                <a class="new new-education"><span style="color:#f16722">+Add New</span></a>
+                <a class="new new-education" href="#"><span style="color:#f16722">+Add New</span></a>
             </div>
 
             @*<table class="table" id="tableEducation">
@@ -160,44 +174,49 @@
                                 <td></td>
                                 <td>@Html.DisplayFor(x => work.Company)</td>
                                 <td>@Html.DisplayFor(x => work.FromDate)-@Html.DisplayFor(x => work.ToDate)</td>
-                                <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+                                <td class=" fa-edit edit-action"><i class="far fa-trash-alt ml-5"></i>Edit</td>
+                                <td class="del delete-action"><i class="far fa-trash-alt ml-5"></i> Delete</td>
                             </tr>
                         </tbody>
                     </table>
+                }
+            }
 
 
-
+            <form class="hide-experience" id="form-experience">
+                <div>
                     <div>
-                        <div>
-                            <span class="close">x</span>
-                        </div>
-                        <form>
-                            <input class="form-control" id="qualificationName" type="text" placeholder="Roles">
-                            <div class="row mb-4">
-                                <div class="col-4 mt-3">
-                                    <input class="form-control" type="text" placeholder="From date*">
-                                </div>
-                                <div class="col-4 mt-3">
-                                    <input class="form-control" type="text" placeholder="To date*">
-                                </div>
-                                <br><span class="form-check col">
-                                    Present <br> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                </span>
-                            </div>
-                            <input class="form-control" type="text" placeholder="Company">
-                            <div>
-                                <button type="button" class="btn btn-outline-secondary mx-1" onclick="ourFunction()">Add Experience</button>
-                                <input type="hidden" value="0" />
-                            </div>
-                        </form>
+                        @*<span class="close">x</span>*@
                     </div>
 
+                    <input class="form-control" id="qualificationName" type="text" placeholder="Roles" required>
+                    <div class="row mb-4">
+                        <div class="col-4 mt-3">
+                            <input class="form-control" type="date" placeholder="From date" required>
+                        </div>
+                        <div class="col-4 mt-3">
+                            <input class="form-control" type="date" placeholder="To date" required>
+                        </div>
+                        <br><span class="form-check col">
+                            Present <br> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        </span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="Company" required>
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary mx-1">Add Experience</button>
 
-                }
+                    </div>
+
+                </div>
+            </form>
+            <div>
+                <a class="new new-experience" href="#"><span style="color:#f16722">+Add New</span></a>
+            </div>
 
 
 
-            }
+
+
 
 
             @*<div>
@@ -260,11 +279,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td scope="row"><b>Application Testing</b></td>
+                                <td scope="row"><b>@Html.DisplayFor(x => x.Skill)</b></td>
                                 <td></td>
                                 <td>Intermediate</td>
                                 <td></td>
-                                <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+                                <td class=" fa-edit edit-action"><i class="far fa-trash-alt ml-5"></i>Edit</td>
+                                <td class="del delete-action"><i class="far fa-trash-alt ml-5"></i> Delete</td>
                             </tr>
                         </tbody>
                         <tbody>
@@ -272,8 +292,8 @@
                                 <td scope="row"><b>Solutions Analyst</b></td>
                                 <td></td>
                                 <td>Beginner</td>
-                                <td></td>
-                                <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+                                <td></td> 
+                                <td class="del delete-action"><i class="far fa-trash-alt ml-5"></i> Delete</td>
                             </tr>
                         </tbody>
                         <tbody>
@@ -286,36 +306,40 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div>
-                        <span class="close">x</span>
-                    </div>
-                    <form>
-                        <div class="row mb-4">
-                            <div class="col-4 mt-3">
-                                <input class="form-control2" type="text" placeholder="Skill Title">
-                            </div>
-                            <div class="col-4 mt-3">
-                                <select class="form-control2" type="text" placeholder="To date*">
-                                    <option>Beginner</option>
-                                    <option>Intermediate</option>
-                                    <option>Expert</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3 mt-3">
-                                <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Add Skills</button>
-                            </div>
-                        </div>
-
-                    </form>
 
                 }
-
             }
+            <form class="hide-skill" id="form-skill">
+                <div>
+                    @*<span class="close">x</span>*@
+                </div>
+
+                <div class="row">
+                    <div class="col-4 mt-3">
+                        <input class="form-control" type="text" placeholder="Skill Title" required>
+                    </div>
+                    <div class="col-4 mt-3">
+                        @Html.DropDownList("EducationLevel",
+                                          new SelectList(Enum.GetValues(typeof(ExperienceLevelType))),
+                                          "Select Skill Level",
+                                          new { @class = "form-control" }
+                     )
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-outline-secondary mb-4">Add Skills</button>
+                    </div>
+
+                </div>
+            </form>
+            <div>
+                <a class="new new-skill" href="#"><span style="color:#f16722">+Add New</span></a>
+            </div>
+
 
             <div>
                 <p class="edu mt-3"><i class="fas fa-award  mr-1" style="color:#313366"></i><span style="color:#313366;">Achievements</span><span style="color:#ff0000">*</span></p>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="width:100%;">
                 <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
@@ -324,73 +348,9 @@
 
 
 
+            @using (Html.BeginForm()) { 
 
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                foreach (var education in Model.Education)
-                {
-                    <div class="row mb-4">
-                        <div class="col">
-                            @Html.LabelFor(x => education.Qualification)
-                            @Html.EditorFor(x => education.Qualification, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => education.Qualification, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => education.CourseStudies)
-                            @Html.EditorFor(x => education.CourseStudies, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => education.CourseStudies, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => education.Institution)
-                            @Html.EditorFor(x => education.Institution, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => education.Institution, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => education.FromDate)
-                            @Html.EditorFor(x => education.FromDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => education.FromDate, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => education.ToDate)
-                            @Html.EditorFor(x => education.ToDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => education.ToDate, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                }
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                foreach (var experience in Model.Experience)
-                {
-                    <div class="row mb-4">
-                        <div class="col">
-                            @Html.LabelFor(x => experience.Title)
-                            @Html.EditorFor(x => experience.Title, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Roles" })
-                            @Html.ValidationMessageFor(x => experience.Title, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => experience.Company)
-                            @Html.EditorFor(x => experience.Company, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => experience.Title, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => experience.FromDate)
-                            @Html.EditorFor(x => experience.FromDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => experience.FromDate, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => experience.ToDate)
-                            @Html.EditorFor(x => experience.ToDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => experience.ToDate, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                }
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                foreach (var skill in Model.Skill)
-                {
-                    <div class="row mb-4">
-                        <div class="col">
-                            @Html.LabelFor(x => skill.Skilllevel)
-                            @Html.EditorFor(x => skill.Skilllevel, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => skill.Skilllevel, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => skill.Achievement)
-                            @Html.EditorFor(x => skill.Achievement, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => skill.Achievement, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                }
-                @*@Html.ActionLink("Submit Application", "JobApplication", "Applicants", new {jobid = ViewBag.JobId})*@
-                <input type="submit" Name="SubmitApplication" value="Submit Application" class="btn btn-II mx-1" />
+            <input type="submit" Name="SubmitApplication" value="Submit Application" class="btn btn-II mx-1" style="color:white;" />
             }
         </div>
         </div>

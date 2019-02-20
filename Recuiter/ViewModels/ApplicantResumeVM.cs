@@ -7,7 +7,7 @@ using System.Web;
 namespace Recruiter.ViewModels
 {
 	public class ApplicantResumeVM
-	{
+	{   public int Id { get; set; }
 		public  List<EducationVM> Education { get; set; }
 		public List<ExperienceVM> Experience { get; set; }
 		public List<SkillVM> Skill { get; set; }
