@@ -392,21 +392,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902131720437_Resume.cs" />
-    <Compile Include="Migrations\201902131720437_Resume.Designer.cs">
-      <DependentUpon>201902131720437_Resume.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902141420375_jQuery.cs" />
-    <Compile Include="Migrations\201902141420375_jQuery.Designer.cs">
-      <DependentUpon>201902141420375_jQuery.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902181313410_ApplicantUpdate.cs" />
-    <Compile Include="Migrations\201902181313410_ApplicantUpdate.Designer.cs">
-      <DependentUpon>201902181313410_ApplicantUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902191546405_SkillTitleAdded.cs" />
-    <Compile Include="Migrations\201902191546405_SkillTitleAdded.Designer.cs">
-      <DependentUpon>201902191546405_SkillTitleAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201902200740499_Wednesday.cs" />
+    <Compile Include="Migrations\201902200740499_Wednesday.Designer.cs">
+      <DependentUpon>201902200740499_Wednesday.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -513,17 +501,8 @@
     <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902131720437_Resume.resx">
-      <DependentUpon>201902131720437_Resume.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902141420375_jQuery.resx">
-      <DependentUpon>201902141420375_jQuery.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902181313410_ApplicantUpdate.resx">
-      <DependentUpon>201902181313410_ApplicantUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902191546405_SkillTitleAdded.resx">
-      <DependentUpon>201902191546405_SkillTitleAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902200740499_Wednesday.resx">
+      <DependentUpon>201902200740499_Wednesday.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

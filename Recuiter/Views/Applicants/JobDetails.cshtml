@@ -93,7 +93,7 @@
                             <div class="d-flex card-body2" style="padding:10px;">
                                 <div class="deets">
                                     <p><a href="@Url.Action("Jobdetails", "Applicants", new {id = job.Id })">@job.Title</a></p>
-                                    <p><small>Expiry Date: @job.ExpiryDate</small></p>
+                                    <p><small>Expiry Date: @Html.DisplayFor(m => m.ExpiryDate)</small></p>
                                     @*<p>Job Function: @Html.DisplayFor(m => m.Department)</p>*@
                                 </div>
                                 @*<button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>*@

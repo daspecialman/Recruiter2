@@ -61,8 +61,8 @@
                         <th scope="col">Qualification</th>
                         <th scope="col">Dates</th>
                         <th scope="col">Institution</th>
-                        <th scope="col" class="ed_head">Edit</th>
-                        <th scope="col" class="del_head">Delete</th>
+                        <th scope="col" class="ed_head"></th>
+                        <th scope="col" class="del_head"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -82,7 +82,7 @@
                                 <td scope="row"><b>@Html.DisplayFor(x => education.Qualification) In @Html.DisplayFor(x => education.CourseStudies)</b></td>
                                 <td>@Html.DisplayFor(x => education.FromDate) - @Html.DisplayFor(x => education.ToDate)</td>
                                 <td>@Html.DisplayFor(x => education.Institution)</td>
-                                <td class=" fa-edit"><i calss="far fa-trash-alt ml-5"></i><a class="edit-action" href="#">Edit</a></td>
+                                <td><i class="far fa-edit ml-5"></i><a class="edit-action" href="#">Edit</a></td>
                                 <td class="del"><i class="far fa-trash-alt ml-5"></i><a class="delete-action" href="#">Delete</a></td>
                             </tr>
                         }
@@ -100,11 +100,11 @@
                         <input type="text" name="Institution" placeholder="Name of Institute" class="form-control" />
                     </div>
                     <div class="col mt-3">
-                        <select class="form-control" name="Qualification">
-                            <option>Select qualification</option>
-                            <option>BSc</option>
-                            <option>PhD</option>
-                        </select>
+                         @Html.DropDownList("EducationLevel",
+                                                    new SelectList(Enum.GetValues(typeof(MinimumQualificationType))),
+                                                    "Select Qualification",
+                                                    new { @class = "form-control" }
+                               )
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -137,10 +137,12 @@
                 <thead>
                     <tr>
                         <th scope="col">Roles</th>
+                    
                         <th scope="col">Company</th>
+                        
                         <th scope="col">Date</th>
-                        <th scope="col" class="ed_head">Edit</th>
-                        <th scope="col" class="del_head">Delete</th>
+                        <th scope="col" class="ed_head"></th>
+                        <th scope="col" class="del_head"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -161,7 +163,7 @@
                                 <td>@Html.DisplayFor(x => experience.Company)</td>
                                 <td>@Html.DisplayFor(x => experience.FromDate) - @Html.DisplayFor(x => experience.ToDate)</td>
                                 @*<td>@Html.DisplayFor(x => experience.Institution)</td>*@
-                                <td class=" fa-edit"><i calss="far fa-trash-alt ml-5"></i><a class="edit-action" href="#">Edit</a></td>
+                                <td><i class="far fa-edit ml-5"></i><a class="edit-action" href="#">Edit</a></td>
                                 <td class="del"><i class="far fa-trash-alt ml-5"></i><a class="delete-action" href="#">Delete</a></td>
                             </tr>
                         }
@@ -210,11 +212,11 @@
                 <thead>
                     <tr>
                         <th scope="col">Skills</th>
-                        <th scope="col"></th>
+                        
                         <th scope="col">Level</th>
                         <th scope="col"></th>
-                        <th scope="col" class="edit-action">Edit</th>
-                        <th scope="col" class="del_head">Delete</th>
+                        <th scope="col" class="edit-action"></th>
+                        <th scope="col" class="del_head"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -230,14 +232,13 @@
                     {
                         foreach (var skill in Model.Skill)
                         {
-                            <tr data-id="@skill.Id">
-                                <td scope="row">@Html.DisplayFor(x => skill.SkillTitle) </td>
-                                <td>@Html.DisplayFor(x => skill.Skilllevel)</td>
-
-                                @*<td>@Html.DisplayFor(x => experience.Institution)</td>*@
-                                <td class=" fa-edit"><i calss="far fa-trash-alt ml-5"></i><a class="edit-action" href="#">Edit</a></td>
-                                <td class="del"><i class="far fa-trash-alt ml-5"></i><a class="delete-action" href="#">Delete</a></td>
-                            </tr>
+                        <tr data-id="@skill.Id">
+                            <td scope="row">@Html.DisplayFor(x => skill.SkillTitle) </td>
+                            <td>@Html.DisplayFor(x => skill.Skilllevel)</td>
+                            @*<td>@Html.DisplayFor(x => experience.Institution)</td>*@
+                            <td><i class="far fa-edit ml-5"></i><a class="edit-action" href="#">Edit</a></td>
+                            <td class="del"><i class="far fa-trash-alt ml-5"></i><a class="delete-action" href="#">Delete</a></td>
+                        </tr>
                         }
                     }
                 </tbody>
@@ -261,7 +262,7 @@
                             <option>Expert</option>
                         </select>
                     </div>
-                    <div class="col-sm-3 mt-3">
+                    <div class="col-sm-3">
                         <input type="hidden" name="Id" id="FormSkillId" value="0" />
                         <button type="submit" class="btn btn-outline-secondary mx-1 mb-4">Add Skills</button>
                     </div>
@@ -353,7 +354,7 @@
                 </div>
             }*@
                 @*@Html.ActionLink("Submit Application", "JobApplication", "Applicants", new {jobid = ViewBag.JobId})*@
-                <input type="submit" Name="SubmitApplication" value="Submit Application" class="btn btn-II mx-1" />
+                <input type="submit" Name="SubmitApplication" value="Submit Application" class="btn btn-II mx-1" style="color:white; border:none;"/>
             }
         </div>
         </div>

@@ -18,7 +18,7 @@ using Data.Enums;
 
 namespace Recruiter.Controllers
 {
-
+    [Authorize]
     public class ApplicantsController : Controller
     {
         private RecruiterContext db;
@@ -506,7 +506,7 @@ namespace Recruiter.Controllers
 			return View(applicantProfileViewModel);
 		}
 		[HttpGet]
-		public ActionResult ApplicantProfilePage(int id)
+		public ActionResult ApplicantProfilePage()
 		{
 			var loggedInUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
 			using (RecruiterContext dbContext = new RecruiterContext())
