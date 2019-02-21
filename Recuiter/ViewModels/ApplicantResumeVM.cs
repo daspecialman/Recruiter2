@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Recruiter.Utitlity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -62,7 +63,9 @@ namespace Recruiter.ViewModels
 
         public ExperienceLevelType Skilllevel { get; set; }
 
-		public string Achievement { get; set; }
+        public string SkillLevelFormat => Skilllevel.DescriptionAttr();
+
+        public string Achievement { get; set; }
 
 	}
 }

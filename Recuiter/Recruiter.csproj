@@ -396,6 +396,14 @@
     <Compile Include="Migrations\201902200740499_Wednesday.Designer.cs">
       <DependentUpon>201902200740499_Wednesday.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902201156126_WednesD.cs" />
+    <Compile Include="Migrations\201902201156126_WednesD.Designer.cs">
+      <DependentUpon>201902201156126_WednesD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902201205556_contract.cs" />
+    <Compile Include="Migrations\201902201205556_contract.Designer.cs">
+      <DependentUpon>201902201205556_contract.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -503,6 +511,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902200740499_Wednesday.resx">
       <DependentUpon>201902200740499_Wednesday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902201156126_WednesD.resx">
+      <DependentUpon>201902201156126_WednesD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902201205556_contract.resx">
+      <DependentUpon>201902201205556_contract.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

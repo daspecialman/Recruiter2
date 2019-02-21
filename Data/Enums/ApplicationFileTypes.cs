@@ -12,22 +12,23 @@ public enum FileType
 
 public enum MinimumQualificationType
 {
-    [Display(Name = "Masters Degree")]
+    [Description("Masters Degree")]
     MastersDegree = 1,
-    [Display(Name = "Bachelor Degree")]
+    [Description("Bachelor Degree")]
     BachelorDegree,
-    [Display(Name = "Higher National Diploma")]
+    [Description("Higher National Diploma")]
     HigherNationalDiploma,
-    [Display(Name = "National Certificate of Education")]
+    [Description("National Certificate of Education")]
     NationalCertificateOfEducation,
-    [Display(Name = "Ordinary National Diploma")]
+    [Description("Ordinary National Diploma")]
     OrdinaryNationalDiploma,
-    [Display(Name = "Senior School Certificate")]
+    [Description("Senior School Certificate")]
     SeniorSchoolCertificate
 }
 
 public enum ExperienceLevelType
 {
+    [Description("Expert")]
     Expert = 1,
     Intermediate,
     Beginner
@@ -50,11 +51,11 @@ public enum SkillLevel
 
 public enum ContractClassType
 {
-    [Display(Name = "Full Time")]
+    [Description("Full Time")]
     Fulltime = 1,
-    [Display(Name = "Internship")]
+    [Description("Internship")]
     Internship,
-    [Display(Name = "Contract")]
+    [Description("Contract")]
     Contract
 }
 

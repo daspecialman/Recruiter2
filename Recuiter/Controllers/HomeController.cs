@@ -18,17 +18,22 @@ namespace Recuiter.Controllers
         //ctxt.Roles.ToList();
 
         //return View();
-        private RecruiterContext db = new RecruiterContext();
+        private RecruiterContext db;
 
+        public HomeController()
+        {
+            db = new RecruiterContext();
+
+        }
 
 
         //private readonly object applicationProfileViewModel;
 
         [HttpGet]
         public ActionResult Index(Search search, int? page)
-        {
+          {
 
-
+            TempData["State"] = search;
             DateTime curDate = DateTime.Now;
             //var jobss = from j in db.Jobs
             //            where j.ExpiryDate > curDate.Date
@@ -51,26 +56,14 @@ namespace Recuiter.Controllers
             //Job Type Search
             if (search.JobType != null)
             {
-                foreach (var type in search.JobType)
-                {
-                    var filtered = (type != 0) ? 
-                                        jobss.Where(x => x.ContractClass == (ContractClassType)type)
-                                        : null;
-                    jobss = (filtered != null) ? filtered : jobss;
-                }
+                jobss = jobss.Where(x => search.JobType.Contains(x.ContractClass));
             }
 
 
             //Experience Based Search
             if (search.Experience != null)
             {
-                foreach (var experience in search.Experience)
-                {
-                    var filtered = (experience != 0) ?
-                                        jobss.Where(x => x.ExperienceLevel == (ExperienceLevelType)experience)
-                                        : null;
-                    jobss = (filtered != null) ? filtered : jobss;
-                }
+                jobss = jobss.Where(x => search.Experience.Contains(x.ExperienceLevel));
             }
 
 
@@ -78,8 +71,13 @@ namespace Recuiter.Controllers
 
             int pageNumber = (page ?? 1);
 
-            var jobsss = jobss.ToList();
+            var jobsss = jobss.OrderByDescending(s => s.CreatedDate).ToList();
+            if (jobsss.Count() == 0)
+            {
+                ViewBag.Message = "No jobs found";
+            }
             return View(jobsss.ToPagedList(pageNumber, Constants.PageSize));
+            //return View(jobsss);
         }
 
 

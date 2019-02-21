@@ -17,7 +17,7 @@
                     @*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("ApplicantProfilePage", "Applicants", new { id = Model.Id})" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>My Profile</a>
                 </li>
                 <li class="nav-item border-bottom">
-                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>*@<a href="@Url.Action("ApplicantResumeProfile", "Applicants")" class="nav-link text-dark"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>*@<a href="@Url.Action("ApplicantResumeProfile", "Applicants", new { id = Model.Id})" class="nav-link text-dark"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
                 </li>
                 <li class="nav-item border-bottom">
                     @*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@<a href="@Url.Action("AppliedJobs", "Applicants")" class="nav-link text-dark"><i class="fas fa-bookmark mr-1"></i>Applied Jobs</a>

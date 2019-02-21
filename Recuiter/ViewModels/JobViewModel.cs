@@ -56,6 +56,9 @@ namespace Recruiter.ViewModels
         public DateTime ExpiryDate { get; set; }
         public int? CreatedById { get; set; }
         public int Id { get; set; }
+
+        public string QualificationFormat { get; set; }
+        public string ContractFormat { get; set; }
     }
 
     //class VacancyEditView

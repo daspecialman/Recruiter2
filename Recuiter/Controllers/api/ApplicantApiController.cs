@@ -85,6 +85,7 @@ namespace Recruiter.Controllers.api
             else
             {
                 db.Educations.Remove(education);
+                db.SaveChanges();
                 return Ok("Deleted");
             }
 

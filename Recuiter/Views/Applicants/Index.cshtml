@@ -1,44 +1,15 @@
-﻿@model IEnumerable<Data.Models.Job>
-@{
-    ViewBag.Title = "Vacancy List";
+﻿@model PagedList.IPagedList<Data.Models.Job>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@if (!User.Identity.IsAuthenticated)
+{
+    ViewBag.Title = "E-Recruiter";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+else {
+    ViewBag.Title = "E-Recruiter";
     Layout = "~/Views/Shared/ApplicantLayout.cshtml";
 }
-@*<h3>Job Vacancies and Careers in SBSC Nigeria</h3>
-    @using (Html.BeginForm())
-    {
-
-
-        <p>
-            Find by Job Title: @Html.TextBox("SearchString")
-        </p>
-
-        <p>
-            Find by Skill Set: @Html.TextBox("SearchSkills")
-        </p>
-
-
-        <p>
-            Find by Job Type:
-            <select name="ContractClass">
-                <option value="">All</option>
-                <option value="1">Full time</option>
-                <option value="2">Internship</option>
-                <option value="3">Contract</option>
-            </select>
-        </p>
-
-        <p>
-            Find by Experience Level:
-            <select name="ExperienceLevel">
-                <option value="">All</option>
-                <option value="1">Expert</option>
-                <option value="2">Intermediate</option>
-                <option value="3">Beginner</option>
-            </select>
-        </p>
-        <input type="submit" value="Search" />
-    }*@
-
 <section>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -47,10 +18,9 @@
         </div>
     </div>
 </section>
-
 <section class="search-sec">
     <div class="container">
-        <form action="#" method="post" novalidate="novalidate">
+        <form action="#" method="get" novalidate="novalidate">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
@@ -85,9 +55,7 @@
         </form>
     </div>
 
-
 </section>
-
 
 <div class="container-fluid">
     <div class="row content">
@@ -113,75 +81,73 @@
                     <h5>Clear all</h5>
                 </div>
             </div>
-            <form>
+            <form action="" method="post">
+                @*@using(Html.BeginForm("Index", "Applicants", FormMethod.Post))
+        {*@
                 <div class="form-group">
-                    <input type="text" class="form-control" id="skills" aria-describedby="emailHelp" placeholder="Skills" style="background-color:white; border:1px solid #ccc; padding: 6px 12px;">
+                    <input type="text" name="SkillSearch" class="form-control" id="skills" aria-describedby="emailHelp" placeholder="Skills" style="background-color:white; border:1px solid #ccc; padding: 6px 12px;">
                 </div>
-            </form>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <h5>Job type</h5>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h5>Job type</h5>
+                    </div>
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
+                        <h5>Clear</h5>
+                    </div>
                 </div>
-                <div class="col-sm-4">
-
-                </div>
-                <div class="col-sm-4">
-                    <h5>Clear</h5>
-                </div>
-            </div>
-            <form>
                 <ul class="nav nav-pills nav-stacked">
                     <div class="checkbox">
                         <label>
                             @*@Html.CheckBoxFor(m => <ContractClassType>)*@
-                            <input type="checkbox"> Full time
+                            <input type="checkbox" value="1" name="JobType[0]"> Full time
                         </label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox"> Internship</label>
+                        <label><input type="checkbox" value="2" name="JobType[1]"> Internship</label>
                     </div>
                     <div class="checkbox">
-                        <label><input type="checkbox"> Contract</label>
+                        <label><input type="checkbox" value="3" name="JobType[2]"> Contract</label>
                     </div>
                     <br />
                     <span>
                         <h5>Experience &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                         <p>
                             <div class="checkbox">
-                                <label><input type="checkbox"> Beginner</label>
+                                <label><input type="checkbox" value="3" name="Experience[0]"> Beginner</label>
                             </div>
                             <div class="checkbox">
-                                <label><input type="checkbox">Intermediate</label>
+                                <label><input type="checkbox" value="2" name="Experience[1]">Intermediate</label>
                             </div>
                             <div class="checkbox">
-                                <label><input type="checkbox">Expert</label>
+                                <label><input type="checkbox" value="1" name="Experience[2]">Expert</label>
                             </div>
                         </p>
                     </span>
-                    <button type="submit" class="btn btn-II mx-1">Search</button>
                 </ul>
-            </form><br>
+                <button type="submit" class="btn btn-II mx-1" name="filter_search_button">Search</button>
+            </form>
+            
+            <br>
         </div>
-
         <div class="col-sm-9">
             <div class="row">
                 <div class="col-sm-4">
                     <h5>Showing All</h5>
                 </div>
                 <div class="col-sm-4">
-
                 </div>
                 <div class="col-sm-4">
-                    <form class="form-inline">
+                    @*<form class="form-inline">
                         <div class="form-group">
                             <label for="inputPassword6">Sort by:</label>
                             <input type="text" id="inputPassword6" class="form-control mx-sm-3 down1" aria-describedby="passwordHelpInline" placeholder="Most recent" style="padding-left:10px; box-shadow: 0px 0px 2px 0px #ccc">
                         </div>
-                    </form>
-
+                    </form>*@
                 </div>
             </div>
+
             <hr>
             @if (Model != null)
             {
@@ -190,26 +156,36 @@
 
                     <div class="col-sm-6">
 
-
                         <div class="card border-dark mb-3" style="width:500px">
                             <div class="card-body">
                                 <h4 class="card-title">@Html.DisplayFor(m => item.Title)</h4>
-                                @*<p class="card-text">Posted on: @Html.DisplayFor(m => item.CreatedDate)</p>*@
+
                                 <p class="card-text">Application Deadline: @Html.DisplayFor(m => item.ExpiryDate)</p>
+
+
+                                @{
+                                    String parameterValue = item.Description;
+                                    if (item.Description.Length > 30)
+                                    {
+                                        parameterValue = item.Description.ToString().Substring(0, 30) + " ...";
+                                    }
+                                }
+
 
                                 <p class="card-text">
 
-                                    @Html.DisplayFor(m => item.Description)
+                                    @Html.DisplayFor(m => parameterValue)
                                 </p>
                                 <form class="form-inline">
-                                    <a class="btn btn-primary mb-2" href="@Url.Action("JobDetails", "Applicants", new { id = item.Id })">Apply Now</a>
+                                    <a class="btn btn-primary mb-2" href="@Url.Action("JobDetails", "Applicants", new { id = item.Id })">More Details</a>
                                 </form>
                             </div>
-
                         </div>
+                        <br />
+                        <br />
                         @if (item.Id % 2 == 0)
                         {
-                            <br />
+
                         }
                     </div>
 
@@ -219,6 +195,13 @@
 
             }
 
+
         </div>
+
+    </div>
+    <div style="text-align:center;">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
     </div>
 </div>

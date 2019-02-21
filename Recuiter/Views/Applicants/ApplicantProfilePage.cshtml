@@ -15,7 +15,7 @@
                     @*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("ApplicantProfilePage", "Applicants", new { id = Model.Id})" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>My Profile</a>
                 </li>
                 <li class="nav-item border-bottom">
-                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>*@<a href="@Url.Action("ApplicantResumeProfile", "Applicants")" class="nav-link text-dark"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>*@<a href="@Url.Action("ApplicantResumeProfile", "Applicants", new { id = Model.Id})" class="nav-link text-dark"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
                 </li>
                 <li class="nav-item border-bottom">
                     @*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@<a href="@Url.Action("AppliedJobs", "Applicants")" class="nav-link text-dark"><i class="fas fa-bookmark mr-1"></i>Applied Jobs</a>
@@ -32,7 +32,7 @@
 
             </ul>
 		</div>
-		<div class="col-sm-9 alpha" style="min-height: 92rem;">
+		<div class="col-sm-9 alpha" @*style="min-height: 92rem;"*@>
 			<div class="media">
 				<img src="@Url.Content(Model.ImagePath)" width="150" height="150" class="align-self-start mr-3" alt="passport">
 				<div class="media-body">
@@ -50,10 +50,10 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="row">
-						<div class="col-sm-3">
-							<p><b>@Html.LabelFor(model => model.YearsOfExperience)</b></p>
-							<p>@Html.DisplayFor(model => model.YearsOfExperience)</p>
-						</div>
+                        <div class="col-sm-3">
+                            <p><b>@Html.LabelFor(model => model.ExperienceLevel)</b></p>
+                            <p>@Html.DisplayFor(model => model.ExperienceLevel)</p>
+                        </div>
 						<div class="col-sm-3">
 							<p><b>@Html.LabelFor(model => model.Age)</b></p>
 							<p>@Html.DisplayFor(model => model.Age)</p>
@@ -75,6 +75,7 @@
 								<!-- <div class="row"> -->
 								<div class="col-sm-3">
 									<p class="edu"><i class="fas fa-graduation-cap  mr-1" style="color:#f16722"></i><span style="color:#313366;">EDUCATION</span></p>
+
 									<p class="sub_head">@Html.DisplayFor(m => item.Qualification) In @Html.DisplayFor(m => item.CourseStudies)</p>
 									<p id="mainee">@Html.DisplayFor(m => item.Institution)</p>
 
@@ -102,16 +103,16 @@
 							foreach (var item in Model.Skills)
 							{
 
-								<div class="col-sm-3">
-									<p class="edu"><i class="fas fa-street-view  mr-2" style="color:#f16722"></i><span style="color:#313366;">SKILLS</span></p>
-									<p class="sub_head">@Html.DisplayFor(m => item.Skilllevel)</p>
+                                <div class="col-sm-3">
+                                    <p class="edu"><i class="fas fa-street-view  mr-2" style="color:#f16722"></i><span style="color:#313366;">SKILLS</span></p>
+                                    <p class="sub_head">@Html.DisplayFor(m => item.SkillTitle)</p>
+                                    <p class="sub_head">(@Html.DisplayFor(m => item.Skilllevel))</p>
+
+                                </div>
 
 
-								</div>
-
-
-								<div class="col-sm-12">
-									<div class="row">
+								@*<div class="col-sm-12">*@
+									<div class="col-sm-12">
 										<p class="edu"><i class="fas fa-medal  mr-2" style="color:#f16722"></i><span style="color:#313366;">ACHIEVEMENTS</span></p>
 										<p class="sub_head">@Html.DisplayFor(m => item.Achievement)</p>
 
@@ -120,12 +121,13 @@
 									@*<div style="display:flex;justify-content:space-between;">
 										<button type="button" class="btn btn-II ">Edit Profile</button>
 										 </div>*@
-									<div style="display:flex;justify-content:space-between;">
+
+									<div style="display:flex;justify-content:space-between;" class="col-sm-12">
 										<a class="btn btn-II" href="@Url.Action("ApplicantProfileEdit", "Applicants", new { id = Model.Id })">Edit Profile</a>
 									</div>
 
 
-								</div>
+								@*</div>*@
 
 
 							}

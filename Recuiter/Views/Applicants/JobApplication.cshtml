@@ -4,19 +4,25 @@
     ViewBag.Title = "JobApplication";
     Layout = "~/Views/Shared/ProfileLayout.cshtml";
 }
+<style>
+    .btn{
+        width: 170px;
+      
+    }
+</style>
 @*<h2>Job Application</h2><br><br />*@
 @if (!string.IsNullOrEmpty(ViewBag.JobApplicationSuccess))
 {
 
     <div class="row mx-0">
         <div class="center_body col-sm-10 offset-sm-1">
-            <div class="bg-white h-100 m-auto py-2 px-4" style="min-height: 382px;">
+            <div class="bg-white h-100 m-auto py-2 px-4" style="min-height: 450px;">
                 <img src="~/Content/images/handshake .svg" alt="handshake" style="margin-top:3rem">
                 <h2 class="midtop mb-1"> THANKS FOR APPLYING</h2>
                 <p class="midtext mb-3">We’ve received your resume and will review it shortly. Only successful candidates will be contacted via SMS/ Mail.</p>
                 <p class="midbottom">You have successfully applied for a vacancy.</p>
 
-                @*@Html.ActionLink("View Applied Jobs", "AppliedJobs", "Applicants", new { jobId = Model.Id }, new { @class = "btn btn-II mx-1 mb-4" })*@
+                @Html.ActionLink("View Applied Jobs", "AppliedJobs", "Applicants", new { @class = "btn btn-II mx-1 mb-4" })
                 
             </div>
         </div>
@@ -24,14 +30,14 @@
 }
 else
 {
-    <div class="row mx-0">
+    <div class="row mx-0 mt-5" style="min-height: 470px;">
         <div class="center_body col-sm-10 offset-sm-1">
-            <div class="bg-white h-100 m-auto py-2 px-4" style="min-height: 382px;">
+            <div class="bg-white h-100 m-auto py-2 px-4 mt-5 pt-5">
 
-                <h2 class="midtop mb-1"> You have not applied for a job!</h2>
-                <h4 class="has-error">@ViewBag.JobApplicationError</h4>
+                @*<h2 class="midtop mb-1"> You have not applied for this job!</h2>*@
+                <h1 class="has-error">@ViewBag.JobApplicationError</h1>
                 <br />
-                @Html.ActionLink("Apply Now", "Index", "Applicants", new { @class = "btn btn-II mx-1 mb-4" })
+                @Html.ActionLink("Apply for More Jobs", "Index", "Applicants", new { @class = "btn btn-II mx-1 mb-4" })
 
             </div>
         </div>

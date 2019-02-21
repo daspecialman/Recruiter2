@@ -12,9 +12,12 @@ namespace Data.Models
 		public int Id { get; set; }
         public string SkillSearch { get; set; }
 
-        public int[] JobType { get; set; }
+        public ContractClassType[] JobType { get; set; }
 
-		public int[] Experience { get; set; }
-	}
+		public ExperienceLevelType[] Experience { get; set; }
+
+        public int? page { get; set; }
+
+    }
 
 }

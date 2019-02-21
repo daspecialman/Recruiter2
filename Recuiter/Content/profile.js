@@ -29,7 +29,7 @@
                         '<td><b>' + response.Data.Qualification + ' in ' + response.Data.CourseStudies + '</b></td>' +
                         '<td>' + response.Data.FromDateFormat + ' to ' + response.Data.ToDateFormat + '</td>' +
                         '<td>' + response.Data.Institution + '</td> ' +
-                        '<td class=" fa-edit"><i calss="far fa-trash-alt ml-5"></i>Edit</td>' +
+                        '<td class=" fa-edit"><i class="far fa-edit ml-5"></i> <a class="edit-action" href="#">Edit</a></td>' +
                         '<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>' +
                         '</tr>';
 
@@ -141,7 +141,7 @@ jQuery(document).ready(function () {
                         '<td>' + responses.Data.Title + '</td>' +
                         '<td>' + responses.Data.Company + '</td> ' +
                         '<td>' + responses.Data.FromDateFormat + ' - ' + responses.Data.ToDateFormat + '</td>' +                       
-                        '<td class=" fa-edit"><i calss="far fa-trash-alt ml-5"></i>Edit</td>' +
+                        '<td class=" fa-edit"><i class="far fa-edit ml-5"></i> <a class="edit-action" href="#">Edit</a></td>' +
                         '<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>' +
                         '</tr>';
 
@@ -251,9 +251,8 @@ jQuery(document).ready(function () {
 
                     var htmlString = '<tr data-id="' + responses.Data.Id + '">' +
                         '<td>' + responses.Data.SkillTitle + '</td>' +
-                        '<td>' + responses.Data.Skilllevel + '</td> ' +
-                        
-                        '<td class=" fa-edit"><i calss="far fa-trash-alt ml-5"></i>Edit</td>' +
+                        '<td>' + responses.Data.SkillLevelFormat + '</td> ' +
+                        '<td class=" fa-edit"><i class="far fa-edit ml-5"></i> <a class="edit-action" href="#">Edit</a></td>'+
                         '<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>' +
                         '</tr>';
 
