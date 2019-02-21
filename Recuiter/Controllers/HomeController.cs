@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using Data.Models;
 using Recruiter.Context;
-using Recruiter.CustomAuthentication;
-using Recruiter.ViewModels;
 using PagedList;
 using Recruiter.Utitlity;
-using System.Data.Entity.SqlServer;
+
 
 namespace Recuiter.Controllers
 {
@@ -33,12 +25,17 @@ namespace Recuiter.Controllers
         //private readonly object applicationProfileViewModel;
 
         [HttpGet]
-        public ActionResult Index(string searchString, string searchSkills, string searchContract, int? ContractClass, int? ExperienceLevel, int? page)
+        public ActionResult Index(Search search, int? page)
         {
+
+
             DateTime curDate = DateTime.Now;
-            var jobss = from j in db.Jobs
-                        where j.ExpiryDate > curDate.Date
-                        select j;
+            //var jobss = from j in db.Jobs
+            //            where j.ExpiryDate > curDate.Date
+            //            select j;
+
+            var jobss = db.Jobs.Where(j => j.ExpiryDate > curDate.Date);
+
             //SqlFunctions.DatePart("Year", j.ExpiryDate) == curDate.Year
             //        && SqlFunctions.DatePart("Month", j.ExpiryDate) == curDate.Month
             //        && SqlFunctions.DatePart("Day", j.ExpiryDate) == curDate.Day
@@ -46,55 +43,38 @@ namespace Recuiter.Controllers
             /*.Include(x => x.Department)*/
 
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(search.SkillSearch))
             {
-                jobss = jobss.Where(s => s.Title.Contains(searchString));
+                jobss = jobss.Where(s => s.SkillSet.ToString().Contains(search.SkillSearch));
             }
 
-            //if (!String.IsNullOrEmpty(searchSkills))
-            //{
-            //    jobss = jobss.Where(s => s.SkillSet.Contains(searchSkills));
-            //}
-
-            if (ContractClass != null)
+            //Job Type Search
+            if (search.JobType != null)
             {
-                jobss = jobss.Where(x => x.ContractClass == (ContractClassType)ContractClass);
-
-
-                ViewBag.SearchFilter = new Search { Contract = ContractClass };
-
+                foreach (var type in search.JobType)
+                {
+                    var filtered = (type != 0) ? 
+                                        jobss.Where(x => x.ContractClass == (ContractClassType)type)
+                                        : null;
+                    jobss = (filtered != null) ? filtered : jobss;
+                }
             }
 
-            if (ExperienceLevel != null)
-            {
-                jobss = jobss.Where(x => x.ExperienceLevel == (ExperienceLevelType)ExperienceLevel);
 
-                ViewBag.SearchFilter = new Search { Expereince = ExperienceLevel };
+            //Experience Based Search
+            if (search.Experience != null)
+            {
+                foreach (var experience in search.Experience)
+                {
+                    var filtered = (experience != 0) ?
+                                        jobss.Where(x => x.ExperienceLevel == (ExperienceLevelType)experience)
+                                        : null;
+                    jobss = (filtered != null) ? filtered : jobss;
+                }
             }
 
-            //var jobList = new List<JobViewModel>();
-            //foreach(Job job in jobsss)
-            //{
 
-            //	var jobView = new JobViewModel
-            //	{
-            //		Id = job.Id,
-            //		JobId = job.JobId,
-            //		DepartmentId = job.DepartmentId,
-            //		Title = job.Title,
-            //		Summary = job.Summary,
-            //		Description = job.Description,
-            //		Responsibility = job.Responsibility,
-            //		GeneralRequirement = job.GeneralRequirement,
-            //		SkillSet = job.SkillSet,
-            //		MinimumQualification = job.MinimumQualification,
-            //		ExperienceLevel = job.ExperienceLevel,
-            //		ExperienceLength = job.ExperienceLength,
-            //		ContractClass = job.ContractClass,
-            //		ExpiryDate = job.ExpiryDate
-            //	};
-            //jobList.Add(jobView);
-            //}
+            //For page numbers
 
             int pageNumber = (page ?? 1);
 

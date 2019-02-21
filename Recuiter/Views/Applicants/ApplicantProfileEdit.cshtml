@@ -14,17 +14,17 @@
         <div class="col-sm-3" style="background-color: #fafafa;">
             <ul class="nav flex-column">
                 <li class="nav-item border-bottom" id="profile">
-                    @*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("ApplicantProfilePage", "Applicants")" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>My Profile</a>
+                    @*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("ApplicantProfilePage", "Applicants", new { id = Model.Id})" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>My Profile</a>
                 </li>
                 <li class="nav-item border-bottom">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>*@<a href="@Url.Action("ApplicantResumeProfile", "Applicants")" class="nav-link text-dark"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
                 </li>
                 <li class="nav-item border-bottom">
-                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@<a href="@Url.Action("AppliedJobs", "Applicants")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Change Password</a>
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@<a href="@Url.Action("AppliedJobs", "Applicants")" class="nav-link text-dark"><i class="fas fa-bookmark mr-1"></i>Applied Jobs</a>
                 </li>
-                <li class="nav-item border-bottom">
+                @*<li class="nav-item border-bottom">
                     <a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Shortlisted Jobs</a>
-                </li>
+                </li>*@
                 <li class="nav-item  border-bottom">
                     @*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>*@ <a href="@Url.Action("ChangePassword", "Account")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Change Password</a>
                 </li>
@@ -35,7 +35,7 @@
             </ul>
         </div>
         <div class="col-sm-9 alpha" style="min-height: 98rem;">
-            <h5 class="mt-0">WELCOME STEELE</h5>
+            <h5 class="mt-0">Welcome @Html.DisplayFor(model => model.FirstName)</h5>
             <div class="media">
                 @*@if (!string.IsNullOrEmpty(Model.ImagePath))
                 {<img src="@Url.Content(Model.ImagePath)" class="align-self-start mr-3" alt="passport" style="width:270px; height: 210px">}*@
@@ -61,18 +61,18 @@
 
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-10-" })
+                        @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-10-" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.ImagePath)
                             @Html.ValidationMessageFor(model => model.ImagePath)
                         </div>
                     </div>
                     <div class="form-group">
-                        @Html.LabelFor(model => model.ImagePath, new { @class = "control -label col-md-5" })
+                        @*@Html.LabelFor(model => model.ImagePath, new { @class = "control -label col-md-5" })*@
                         <div class="col-md-10">
                             <input type="file" name="ImageFile" />
                             <br /><br />
-                            <input type="submit" value="Upload" class="btn btn-primary" name="ImageUpload" />
+                            <input type="submit" value="Upload" class="btn btn-primary" name="ImageUpload" style="height:40px;"/>
                             <p id="bot">Max file size is 1MB, Minimum dimension 270x210 and suitable files are jpg & png</p>
                             @*<button name="ClientCancel" type="button"
                                         onclick=" document.location.href = $('#cancelUrl').attr('href');">
@@ -214,7 +214,7 @@
 
 
                     @*<a type="submit" href="@Url.Action("ApplicantProfileEdit", "Applicants", new { id = Model.Id, jobId = ViewBag.jobId })" class="btn btn-II mx-1">Save and Continue</a>*@
-                    <input type="submit" name="SaveAndContinue" value="Save and Continue" class="btn btn-II mx-1" />
+                    <input type="submit" name="SaveAndContinue" value="Save and Continue" class="btn btn-II mx-1" style="width:160px;" />
                     @*<button name="ClientCancel"
                                 type="submit"
                                 formmethod="post"

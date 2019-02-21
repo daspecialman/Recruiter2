@@ -151,7 +151,6 @@
                             <div class="checkbox">
                                 <label><input type="checkbox"> Beginner</label>
                             </div>
-
                             <div class="checkbox">
                                 <label><input type="checkbox">Intermediate</label>
                             </div>
@@ -160,7 +159,7 @@
                             </div>
                         </p>
                     </span>
-
+                    <button type="submit" class="btn btn-II mx-1">Search</button>
                 </ul>
             </form><br>
         </div>
@@ -195,11 +194,13 @@
                         <div class="card border-dark mb-3" style="width:500px">
                             <div class="card-body">
                                 <h4 class="card-title">@Html.DisplayFor(m => item.Title)</h4>
-
                                 @*<p class="card-text">Posted on: @Html.DisplayFor(m => item.CreatedDate)</p>*@
                                 <p class="card-text">Application Deadline: @Html.DisplayFor(m => item.ExpiryDate)</p>
-                                <p class="card-text">@Html.DisplayFor(m => item.Description)</p>
 
+                                <p class="card-text">
+
+                                    @Html.DisplayFor(m => item.Description)
+                                </p>
                                 <form class="form-inline">
                                     <a class="btn btn-primary mb-2" href="@Url.Action("JobDetails", "Applicants", new { id = item.Id })">Apply Now</a>
                                 </form>

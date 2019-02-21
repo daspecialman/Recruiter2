@@ -4,312 +4,285 @@
     Layout = "~/Views/Shared/ProfileLayout.cshtml";
 }
 <style>
-    .hide-form {
+    .hide-form, .hide-experience, .hide-skill {
         display: none !important
     }
+    .btn {
+        display: block;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        width: 160px;
+        height: 35px;
+        border-color: #f16722;
+        color: #f16722;
+    }
+    
 </style>
 <img src="~/Content/images/UserInterface.png" class="img-fluid topbanner mb-4" alt="user Interface">
 <div class="container-fluid">
     <div class="row">
+        
+        <!--Side bar section-->
         <div class="col-sm-3" style="background-color: #fafafa;">
             <ul class="nav flex-column">
                 <li class="nav-item border-bottom">
-                    <a class="nav-link  text-dark" href="#"><i class="fas fa-user mr-1"></i></i>My Profile</a>
+                    @*<a class="nav-link active text-dark" href="#"><i class="fas fa-user mr-1"></i>My Profile</a>*@ <a href="@Url.Action("ApplicantProfilePage", "Applicants", new { id = Model.Id})" class="nav-link text-dark"><i class="fas fa-user mr-1"></i>My Profile</a>
                 </li>
-                <li class="nav-item border-bottom" id="resume">
-                    <a class="nav-link active text-dark" href="@Url.Action("ApplicantResumeProfile", "Applicants")"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
+                <li class="nav-item border-bottom" id="profile">
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-file-alt mr-1"></i>My Resume</a>*@<a href="@Url.Action("ApplicantResumeProfile", "Applicants")" class="nav-link text-dark"><i class="fas fa-file-alt mr-1"></i>My Resume</a>
                 </li>
-                <li class="nav-item border-bottom" id="app_jobs">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>
+                <li class="nav-item border-bottom">
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-clipboard mr-1"></i>Applied Jobs</a>*@<a href="@Url.Action("AppliedJobs", "Applicants")" class="nav-link text-dark"><i class="fas fa-bookmark mr-1"></i>Applied Jobs</a>
                 </li>
-                <li class="nav-item border-bottom" id="short_job">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Jobs In View</a>
+                @*<li class="nav-item border-bottom">
+            <a class="nav-link text-dark" href="#"><i class="fas fa-bookmark mr-1"></i>Shortlisted Jobs</a>
+        </li>*@
+                <li class="nav-item  border-bottom">
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>*@ <a href="@Url.Action("ChangePassword", "Account")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Change Password</a>
                 </li>
-                <li class="nav-item  border-bottom"
-                    id="pass_change">
-                    <a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Change Password</a>
+                <li class="nav-item  border-bottom">
+                    @*<a class="nav-link text-dark" href="#"><i class="fas fa-lock mr-1"></i>Upload CV</a>*@ <a href="@Url.Action("Index", "Document")" class="nav-link text-dark"><i class="fas fa-lock mr-1"></i>Upload CV</a>
                 </li>
+
             </ul>
         </div>
 
 
         <div class="col-sm-9">
             <h2 id="head_">MY RESUME</h2>
-            <p class="edu"><i class="fas fa-graduation-cap  mr-1" style="color:#313366"></i><span style="color:#313366;">EDUCATION</span><span style="color:#ff0000">*</span></p>
-            @if (Model != null)
-            {
-                foreach (var education in Model.Education)
-                {
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Qualification</th>
-                                <th scope="col"></th>
-                                <th scope="col">Dates</th>
-                                <th scope="col">Institution</th>
-                                <th scope="col" class="del_head">Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+            <!-- EDUCAION SECTION -->
+            <p class="edu"><i class="fas fa-graduation-cap  mr-1" style="color:#313366"></i><span style="color:#313366;">EDUCATION</span><span style="color:#ff0000">*</span></p>
+
+            <!--Table to display Education from db-->
+            <table class="table @(Model.Education.Count == 0 ? "empty" : "" )" id="tableEducation">
+                <thead>
+                    <tr>
+                        <th scope="col">Qualification</th>
+                        <th scope="col">Dates</th>
+                        <th scope="col">Institution</th>
+                        <th scope="col" class="ed_head"></th>
+                        <th scope="col" class="del_head"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model.Education.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="5">No records added</td>
+                        </tr>
+                    }
+
+                    else
+                    {
+                        foreach (var education in Model.Education)
+                        {
                             <tr data-id="@education.Id">
                                 <td scope="row"><b>@Html.DisplayFor(x => education.Qualification) In @Html.DisplayFor(x => education.CourseStudies)</b></td>
-                                <td></td>
                                 <td>@Html.DisplayFor(x => education.FromDate) - @Html.DisplayFor(x => education.ToDate)</td>
                                 <td>@Html.DisplayFor(x => education.Institution)</td>
-                                <td class=" fa-edit"><i calss="far fa-trash-alt ml-5"></i>Edit</td>
-                                <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
+                                <td><i class="far fa-edit ml-5"></i><a class="edit-action" href="#">Edit</a></td>
+                                <td class="del"><i class="far fa-trash-alt ml-5"></i><a class="delete-action" href="#">Delete</a></td>
                             </tr>
-                        </tbody>
-                    </table>
+                        }
+                    }
+                </tbody>
+            </table>
 
+            <!--Form to input Education-->
+            <form class="hide-form" id="form-edu">
+                <div>
+                    <a class="close">x</a>
+                </div>
+                <div class="row mb-4">
+                    <div class="col mt-3">
+                        <input type="text" name="Institution" placeholder="Name of Institute" class="form-control" />
+                    </div>
+                    <div class="col mt-3">
+                         @Html.DropDownList("EducationLevel",
+                                                    new SelectList(Enum.GetValues(typeof(MinimumQualificationType))),
+                                                    "Select Qualification",
+                                                    new { @class = "form-control" }
+                               )
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6 mt-3">
+                        <input class="form-control" name="FromDate" type="date" placeholder="From date*">
+                    </div>
+                    <div class="col-6 mt-3">
+                        <input class="form-control" name="ToDate" type="date" placeholder="To date*">
+                    </div>
+                </div>
+                <input class="form-control" type="text" name="CourseStudies" placeholder="Course Studied">
+                <div>
+                    <input type="hidden" name="Id" id="FormEducationId" value="0" />
+                    <button type="submit" class="btn btn-outline-secondary mx-1">Update</button>
+                </div>
 
-                }
+            </form>
 
-                <table class="table" id="tableEducation">
-                    <thead>
+            <!--Button to Add new Education -->
+            <div>
+                <a class="new new-education"><span style="color:#f16722">+Add New</span></a>
+            </div>
+
+            <!-----------------------------------------------EXPERIENCE SECTION--------------------------------------------------------------->
+            <div>
+                <p class="edu mt-3"><i class="fas fa-briefcase mr-1" style="color:#313366"></i><span style="color:#313366;">Work Experience</span><span style="color:#ff0000">*</span></p>
+            </div>
+
+            <table class="table @(Model.Experience.Count == 0 ? "empty" : "" )" id="tableExperience">
+                <thead>
+                    <tr>
+                        <th scope="col">Roles</th>
+                    
+                        <th scope="col">Company</th>
+                        
+                        <th scope="col">Date</th>
+                        <th scope="col" class="ed_head"></th>
+                        <th scope="col" class="del_head"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @if (Model.Experience.Count == 0)
+                    {
                         <tr>
-                            <th scope="col">Qualification</th>
-                            <th scope="col"></th>
-                            <th scope="col">Dates</th>
-                            <th scope="col">Institution</th>
-                            <th scope="col" class="del_head">Delete</th>
+                            <td colspan="5">No records added</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-id="1">
-                            <td scope="row"><b>Msc In Enginneering</b></td>
-                            <td></td>
-                            <td><label>July 2017</label> - <label>July 2018</label></td>
-                            <td>University of Lagos</td>
-                            <td class="fa-edit edit-action"><i calss="far fa-edit ml-5"></i>Edit</td>
-                            <td class="del delete-action"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                        </tr>
-                        <tr></tr>
-                    </tbody>
-                </table>
+                    }
 
-                <div>
-                    <a class="new new-education" href="#"><span style="color:#f16722">+Add New</span></a>
-                </div>
-
-                <div class="hide-form" id="form-edu">
-                    <div>
-                        <span class="close">x</span>
-                    </div>
-                    <form>
-                        <input class="form-control" id="qualificationName" type="text" placeholder="Roles">
-                        <div class="row mb-4">
-                            <div class="col-4 mt-3">
-                                <input class="form-control" type="text" placeholder="From date*">
-                            </div>
-                            <div class="col-4 mt-3">
-                                <input class="form-control" type="text" placeholder="To date*">
-                            </div>
-                            <br><span class="form-check col">
-                                Present <br> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            </span>
-                        </div>
-                        <input class="form-control" type="text" placeholder="Company">
-                        <div>
-                            <button type="button" class="btn btn-outline-secondary mx-1" onclick="ourFunction()">Add Experience</button>
-                            <input type="hidden" value="0" />
-                        </div>
-                    </form>
-                </div>
-
-            }
-
-            @if (Model != null)
-            {
-                foreach (var work in Model.Experience)
-                {
-                    <div>
-                        <span class="close">x</span>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col mt-3">
-                            <select class="form-control">
-                                <option>Name of Institute</option>
-                            </select>
-                        </div>
-                        <div class="col mt-3">
-                            <select class="form-control">
-                                <option>Select qualification</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-6 mt-3">
-                            <input class="form-control" type="text" placeholder="From date*">
-                        </div>
-                        <div class="col-6 mt-3">
-                            <input class="form-control" type="text" placeholder="To date*">
-                        </div>
-                    </div>
-                    <input class="form-control" type="text" placeholder="Course Studied">
-                    <div>
-                        <button type="button" class="btn btn-outline-secondary mx-1">Update</button>
-                    </div>
-                    <div>
-                        <a class="new" href="#"><span style="color:#f16722">+Add New</span></a>
-                    </div>
-
-                    <div>
-                        <p class="edu mt-3"><i class="fas fa-briefcase mr-1" style="color:#313366"></i><span style="color:#313366;">Work Experience</span><span style="color:#ff0000">*</span></p>
-                    </div>
-                    <table class="table" id="show-edu-table" style="display:none">
-                        <thead>
-                            <tr>
-                                <th scope="col">Role</th>
-                                <th scope="col"></th>
-                                <th scope="col">Company</th>
-                                <th scope="col">Dates</th>
-                                <th scope="col" class="del_head">Delete</th>
+                    else
+                    {
+                        foreach (var experience in Model.Experience)
+                        {
+                            <tr data-id="@experience.Id">
+                                <td scope="row">@Html.DisplayFor(x => experience.Title) </td>
+                                <td>@Html.DisplayFor(x => experience.Company)</td>
+                                <td>@Html.DisplayFor(x => experience.FromDate) - @Html.DisplayFor(x => experience.ToDate)</td>
+                                @*<td>@Html.DisplayFor(x => experience.Institution)</td>*@
+                                <td><i class="far fa-edit ml-5"></i><a class="edit-action" href="#">Edit</a></td>
+                                <td class="del"><i class="far fa-trash-alt ml-5"></i><a class="delete-action" href="#">Delete</a></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td scope="row"><b>@Html.DisplayFor(x => work.Title)</b></td>
-                                <td></td>
-                                <td>@Html.DisplayFor(x => work.Company)</td>
-                                <td>@Html.DisplayFor(x => work.FromDate)-@Html.DisplayFor(x => work.ToDate)</td>
-                                <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                }
-            }
-            <p class="easy">Input your work experience in chronological order from present to past</p>
-            <div class=" hide-form" id="form-edu" style="display:none">
+                        }
+                    }
+                </tbody>
+            </table>
+
+            <!-- From to input experience-->
+            <form class="hide-form" id="form-exp">
                 <div>
-                    <span class="close">x</span>
+                    <a class="close">x</a>
                 </div>
-                <input class="form-control" type="text" placeholder="Roles">
+                <input type="text" name="Title" id="titleName" placeholder="Role" class="form-control" />
                 <div class="row mb-4">
                     <div class="col-4 mt-3">
-                        <input class="form-control" type="text" placeholder="From date*">
+                        <input class="form-control" name="FromDate" type="date" placeholder="From date*">
                     </div>
                     <div class="col-4 mt-3">
-                        <input class="form-control" type="text" placeholder="To date*">
+                        <input class="form-control" name="ToDate" type="date" placeholder="To date*">
                     </div>
                     <br><span class="form-check col">
                         Present <br> <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                     </span>
                 </div>
-                <input class="form-control" type="text" placeholder="Company">
+                <input class="form-control" type="text" name="Company" placeholder="Company">
                 <div>
-                    <button type="button" class="btn btn-outline-secondary mx-1" onclick="ourFunction()">Add Experience</button>
+                    <input type="hidden" name="Id" id="FormExperienceId" value="0" />
+                    <button type="submit" class="btn btn-outline-secondary mx-1">Update</button>
                 </div>
-            </div>
+
+            </form>
+
+            <!--Button to Add new Experience -->
             <div>
-                <a class="new" href="#"><span style="color:#f16722" onclick="myFunction()">+Add New</span></a>
+                <a class="new new-experience"><span style="color:#f16722">+Add New</span></a>
             </div>
 
-            <div>
-                <p class="edu mt-3"><i class="fas fa-certificate mr-1" style="color:#313366"></i><span style="color:#313366;">Certificates</span><span style="color:#ff0000">*</span></p>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Certificate</th>
-                        <th scope="col">Title</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col" class="del_head">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row"><b>BACHELORS IN FINE ART</b></td>
-                        <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                    </tr>
-                </tbody>
-            </table>
-            <!--<h5>Upload Certificate</h5>-->
-            <div>
-                <span class="close">x</span>
-            </div>
-            <!--<form>
-    <div class="beta">
-        <div class="form-group">
-           <label for="exampleFormControlFile1">Example file input</label>
-          <input type="file" class="form-control-file" id="exampleFormControlFile1">
-        </div>
-    </div>
-      </form>
-      <p id="mint">Max file size is 1MB, Minimum dimension: 180x135 And Suitable files are .jpg & .png</p>
-      <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Upload</button>-->
-            <div>
-                <a class="new" href="#"><span style="color:#f16722">+Add New</span></a>
-            </div>
+
+            <!-- ----------------------------SKILLS SECTION-------------------------------------------------------------->
             <div>
                 <p class="edu mt-3"><i class="fas fa-street-view  mr-1" style="color:#313366"></i><span style="color:#313366;">Skills</span><span style="color:#ff0000">*</span></p>
             </div>
-            <table class="table">
+
+            <!-- Skills Table -->
+            <table class="table @(Model.Experience.Count == 0 ? "empty" : "" )" id="tableSkill">
                 <thead>
                     <tr>
                         <th scope="col">Skills</th>
-                        <th scope="col"></th>
+                        
                         <th scope="col">Level</th>
                         <th scope="col"></th>
-                        <th scope="col" class="del_head">Delete</th>
+                        <th scope="col" class="edit-action"></th>
+                        <th scope="col" class="del_head"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="row"><b>Application Testing</b></td>
-                        <td></td>
-                        <td>Intermediate</td>
-                        <td></td>
-                        <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td scope="row"><b>Solutions Analyst</b></td>
-                        <td></td>
-                        <td>Beginner</td>
-                        <td></td>
-                        <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td scope="row"><b>Graphic Design </b></td>
-                        <td></td>
-                        <td>Expert</td>
-                        <td></td>
-                        <td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>
-                    </tr>
+
+                    @if (Model.Skill.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="5">No records added</td>
+                        </tr>
+                    }
+
+                    else
+                    {
+                        foreach (var skill in Model.Skill)
+                        {
+                        <tr data-id="@skill.Id">
+                            <td scope="row">@Html.DisplayFor(x => skill.SkillTitle) </td>
+                            <td>@Html.DisplayFor(x => skill.Skilllevel)</td>
+                            @*<td>@Html.DisplayFor(x => experience.Institution)</td>*@
+                            <td><i class="far fa-edit ml-5"></i><a class="edit-action" href="#">Edit</a></td>
+                            <td class="del"><i class="far fa-trash-alt ml-5"></i><a class="delete-action" href="#">Delete</a></td>
+                        </tr>
+                        }
+                    }
                 </tbody>
             </table>
-            <div>
-                <span class="close">x</span>
-            </div>
-            <div class="row mb-4">
-                <div class="col-4 mt-3">
-                    <input class="form-control2" type="text" placeholder="Skill Title">
+
+            <!--Form to input Skills -->
+
+                    
+            <form class="hide-form" id="form-skill">
+                <div>
+                    <span class="close">x</span>
                 </div>
-                <div class="col-4 mt-3">
-                    <select class="form-control2" type="text" placeholder="To date*">
-                        <option>Beginner</option>
-                        <option>Intermediate</option>
-                        <option>Expert</option>
-                    </select>
+                <div class="row mb-4">
+                    <div class="col-4 mt-3">
+                        <input class="form-control" name="SkillTitle" type="text" placeholder="Skill Title">
+                    </div>
+                    <div class="col-4 mt-3">
+                        <select class="form-control" name="Skilllevel" type="text" placeholder=" Skill Level">
+                            <option>Beginner</option>
+                            <option>Intermediate</option>
+                            <option>Expert</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="hidden" name="Id" id="FormSkillId" value="0" />
+                        <button type="submit" class="btn btn-outline-secondary mx-1 mb-4">Add Skills</button>
+                    </div>
                 </div>
-                <div class="col-sm-3 mt-3">
-                    <button type="button" class="btn btn-outline-secondary mx-1 mb-4">Add Skills</button>
-                </div>
-            </div>
+
+            </form>
+
+                    <div>
+                        <a class="new new-skill"><span style="color:#f16722">+Add New</span></a>
+                    </div>
+
+      <!--------------------------------------ACHIEVEMENTS-------------------------------------------------------->
+
             <div>
                 <p class="edu mt-3"><i class="fas fa-award  mr-1" style="color:#313366"></i><span style="color:#313366;">Achievements</span><span style="color:#ff0000">*</span></p>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="width:100%;">
                 <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="Achievement" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-            </form>
             @*<button type="button" class="btn btn-outline-secondary mx-1 mb-4">Update</button>
         <button type="button" class="btn btn-II ">Submit Application</button>*@
 
@@ -318,72 +291,74 @@
 
             @using (Html.BeginForm())
             {
-                @Html.AntiForgeryToken()
+                @*@Html.AntiForgeryToken()
 
 
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                foreach (var education in Model.Education)
-                {
-                    <div class="row mb-4">
-                        <div class="col">
-                            @Html.LabelFor(x => education.Qualification)
-                            @Html.EditorFor(x => education.Qualification, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => education.Qualification, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => education.CourseStudies)
-                            @Html.EditorFor(x => education.CourseStudies, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => education.CourseStudies, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => education.Institution)
-                            @Html.EditorFor(x => education.Institution, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => education.Institution, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => education.FromDate)
-                            @Html.EditorFor(x => education.FromDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => education.FromDate, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => education.ToDate)
-                            @Html.EditorFor(x => education.ToDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => education.ToDate, "", new { @class = "text-danger" })
-                        </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            foreach (var education in Model.Education)
+            {
+                <div class="row mb-4">
+                    <div class="col">
+                        @Html.LabelFor(x => education.Qualification)
+                        @Html.EditorFor(x => education.Qualification, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                        @Html.ValidationMessageFor(x => education.Qualification, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => education.CourseStudies)
+                        @Html.EditorFor(x => education.CourseStudies, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                        @Html.ValidationMessageFor(x => education.CourseStudies, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => education.Institution)
+                        @Html.EditorFor(x => education.Institution, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                        @Html.ValidationMessageFor(x => education.Institution, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => education.FromDate)
+                        @Html.EditorFor(x => education.FromDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                        @Html.ValidationMessageFor(x => education.FromDate, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => education.ToDate)
+                        @Html.EditorFor(x => education.ToDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                        @Html.ValidationMessageFor(x => education.ToDate, "", new { @class = "text-danger" })
                     </div>
-                }
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                foreach (var experience in Model.Experience)
-                {
-                    <div class="row mb-4">
-                        <div class="col">
-                            @Html.LabelFor(x => experience.Title)
-                            @Html.EditorFor(x => experience.Title, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Roles" })
-                            @Html.ValidationMessageFor(x => experience.Title, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => experience.Company)
-                            @Html.EditorFor(x => experience.Company, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => experience.Title, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => experience.FromDate)
-                            @Html.EditorFor(x => experience.FromDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => experience.FromDate, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => experience.ToDate)
-                            @Html.EditorFor(x => experience.ToDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => experience.ToDate, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                }
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                foreach (var skill in Model.Skill)
-                {
-                    <div class="row mb-4">
-                        <div class="col">
-                            @Html.LabelFor(x => skill.Skilllevel)
-                            @Html.EditorFor(x => skill.Skilllevel, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => skill.Skilllevel, "", new { @class = "text-danger" })
-                            @Html.LabelFor(x => skill.Achievement)
-                            @Html.EditorFor(x => skill.Achievement, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
-                            @Html.ValidationMessageFor(x => skill.Achievement, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                }
-                @*@Html.ActionLink("Submit Application", "JobApplication", "Applicants", new {jobid = ViewBag.JobId})*@
-                <input type="submit" Name="SubmitApplication" value="Submit Application" class="btn btn-II mx-1"/>
+                </div>
             }
 
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            foreach (var experience in Model.Experience)
+            {
+                <div class="row mb-4">
+                    <div class="col">
+                        @Html.LabelFor(x => experience.Title)
+                        @Html.EditorFor(x => experience.Title, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Roles" })
+                        @Html.ValidationMessageFor(x => experience.Title, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => experience.Company)
+                        @Html.EditorFor(x => experience.Company, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                        @Html.ValidationMessageFor(x => experience.Title, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => experience.FromDate)
+                        @Html.EditorFor(x => experience.FromDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                        @Html.ValidationMessageFor(x => experience.FromDate, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => experience.ToDate)
+                        @Html.EditorFor(x => experience.ToDate, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                        @Html.ValidationMessageFor(x => experience.ToDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            foreach (var skill in Model.Skill)
+            {
+                <div class="row mb-4">
+                    <div class="col">
+                        @Html.LabelFor(x => skill.Skilllevel)
+                        @Html.EditorFor(x => skill.Skilllevel, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                        @Html.ValidationMessageFor(x => skill.Skilllevel, "", new { @class = "text-danger" })
+                        @Html.LabelFor(x => skill.Achievement)
+                        @Html.EditorFor(x => skill.Achievement, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Enter First name" })
+                        @Html.ValidationMessageFor(x => skill.Achievement, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }*@
+                @*@Html.ActionLink("Submit Application", "JobApplication", "Applicants", new {jobid = ViewBag.JobId})*@
+                <input type="submit" Name="SubmitApplication" value="Submit Application" class="btn btn-II mx-1" style="color:white; border:none;"/>
+            }
+        </div>
+        </div>
+    </div>
             <script>
 
 

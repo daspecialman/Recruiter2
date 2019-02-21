@@ -1,12 +1,11 @@
-﻿@using Recuiter.CustomAuthentication
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@ViewBag.Title</title>
+    @*<title>@ViewBag.Title</title>*@
     <link href="~/Content/combined.css" rel="stylesheet" type="text/css" />
     @*<link href="~/Content/stylee.css" rel="stylesheet" type="text/css" />*@
     <link href="~/Content/media.css" rel="stylesheet" type="text/css" />
@@ -32,17 +31,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="~home/index">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Application</a>
+                    <a class="nav-link" href="applicants/appliedjobs">Application</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         My Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="@Url.Action("ApplicantProfileEdit", "Applicants")"><i class="far fa-user mr-1"></i>Profile</a>
+                        <a class="dropdown-item" href="@Url.Action("ApplicantProfilePage", "Applicants")"><i class="far fa-user mr-1"></i>Profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="@Url.Action("LogOut", "Account")"><i class="fas fa-sign-out-alt mr-1"></i>Logout</a>
                     </div>
@@ -69,10 +68,12 @@
     </footer>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-     <script src="~/Content/profile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+
+    <script src="~/Content/profile.js"></script>
 </body>
 </html>
 

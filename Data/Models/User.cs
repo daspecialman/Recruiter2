@@ -60,6 +60,10 @@ namespace Data.Models
         public string NewPassword { get; set; }
 
         public string ConfirmPassword { get; set; }
+
+        public Applicant Applicant { get; set; }
+
+        public int? ApplicantId { get; set; }
     }
 
     

@@ -59,6 +59,7 @@ namespace Data.Models
 		[Display(Name = "Expiry Date")]
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy}")]
         public DateTime ExpiryDate { get; set; }
 
         public bool IsApproved { get; set; }

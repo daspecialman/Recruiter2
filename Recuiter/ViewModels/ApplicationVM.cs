@@ -2,6 +2,7 @@
 using Data.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Recruiter.ViewModels
 {
@@ -14,6 +15,7 @@ namespace Recruiter.ViewModels
 	{
         public int Id { get; set; }
 
+        [Display(Name = "Job Title")]
         public string JobTitle { get; set; }
 
 		public DateTime? Date { get; set; }

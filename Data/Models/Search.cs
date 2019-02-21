@@ -10,10 +10,11 @@ namespace Data.Models
 	public class Search
 	{
 		public int Id { get; set; }
+        public string SkillSearch { get; set; }
 
-		public int? Contract { get; set; }
+        public int[] JobType { get; set; }
 
-		public int? Expereince { get; set; }
+		public int[] Experience { get; set; }
 	}
 
 }

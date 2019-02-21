@@ -3,6 +3,26 @@
     ViewBag.Title = "Job Details";
     Layout = "~/Views/Shared/ProfileLayout.cshtml";
 }
+<style>
+    .btn-outline-secondary {
+        padding: 0.5px;
+        font-size: 14px;
+        width: 124px;
+        height: 33px;
+        border-color: #707070;
+        border-radius: 17px;
+        color: #000000;
+    }
+    a {
+        color:black
+    }
+    a:hover{
+        color:blue;
+    }
+
+
+</style>
+
 <div class="img-banner">
     <div class="header-primary">
         
@@ -54,14 +74,14 @@
 
         </div>
         <div class="col-sm-4 bg-white p-3" id="square">
-            @Html.ActionLink("Apply Now", "ApplicantProfileEdit", new { Id = Model.Id, @class = "btn btn-II mx-1 mb-4" })
+           
             <div class="omega  d-flex justify-content-between mx-0">
                 <p>Share this job:</p>
-                <i class="fab fa-facebook-square"></i>
-                <i class="fab fa-google-plus"></i>
-                <i class="fab fa-linkedin"></i>
-                <i class="fab fa-twitter-square"></i>
-                <i class="fab fa-instagram"></i>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://plus.google.com" target="_blank"><i class="fab fa-google-plus"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
             <div>
                 <p class="top">Top Applied Jobs</p>
@@ -73,7 +93,7 @@
                             <div class="d-flex card-body2" style="padding:10px;">
                                 <div class="deets">
                                     <p><a href="@Url.Action("Jobdetails", "Applicants", new {id = job.Id })">@job.Title</a></p>
-                                    <p><small>Expiry Date: @job.ExpiryDate</small></p>
+                                    <p><small>Expiry Date: @Html.DisplayFor(m => m.ExpiryDate)</small></p>
                                     @*<p>Job Function: @Html.DisplayFor(m => m.Department)</p>*@
                                 </div>
                                 @*<button type="button" class="btn btn-outline-secondaryy mx-1 mb-4">NEW</button>*@
