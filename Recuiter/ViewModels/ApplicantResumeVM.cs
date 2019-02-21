@@ -17,7 +17,7 @@ namespace Recruiter.ViewModels
 
 	public class EducationVM
 	{
-		public string Qualification { get; set; }
+		public MinimumQualificationType Qualification { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
@@ -51,7 +51,11 @@ namespace Recruiter.ViewModels
         [DataType(DataType.Date)]
         public DateTime ToDate { get; set; }
 
-		public string Company { get; set; }
+        public string FromDateFormat => FromDate.ToString("dd/MM/yyyy");
+
+        public string ToDateFormat => ToDate.ToString("dd/MM/yyyy");
+
+        public string Company { get; set; }
 	}
 
 
@@ -63,7 +67,7 @@ namespace Recruiter.ViewModels
 
         public ExperienceLevelType Skilllevel { get; set; }
 
-        public string SkillLevelFormat => Skilllevel.DescriptionAttr();
+       // public string SkillLevelFormat => ExperienceLevelType.DescriptionAttr();
 
         public string Achievement { get; set; }
 

@@ -26,7 +26,7 @@ public class Education
 
     public int Id { get; set; }
 
-    public string Qualification { get; set; }
+    public MinimumQualificationType Qualification { get; set; }
 
     public DateTime FromDate { get; set; }
 

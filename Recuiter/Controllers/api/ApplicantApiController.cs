@@ -189,6 +189,7 @@ namespace Recruiter.Controllers.api
             else
             {
                 db.Experiences.Remove(experience);
+                db.SaveChanges();
                 return Ok("Deleted");
             }
 
@@ -290,6 +291,7 @@ namespace Recruiter.Controllers.api
             else
             {
                 db.Skills.Remove(skill);
+                db.SaveChanges();
                 return Ok("Deleted");
             }
 
@@ -306,8 +308,11 @@ namespace Recruiter.Controllers.api
             {
                 var skillModel = new SkillVM
                 {
-
-                };
+                    Id = skill.Id,
+                    SkillTitle = skill.SkillTitle,
+                    Skilllevel = skill.Skilllevel
+                   
+            };
 
                 result.HasError = false;
                 result.Message = "Successusfully entered Skills";
@@ -315,6 +320,7 @@ namespace Recruiter.Controllers.api
             }
             else
             {
+
                 return NotFound();
 
             }

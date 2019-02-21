@@ -30,7 +30,9 @@ public enum ExperienceLevelType
 {
     [Description("Expert")]
     Expert = 1,
+    [Description("Intermediate")]
     Intermediate,
+    [Description("Beginner")]
     Beginner
 }
 public enum SkillLevel

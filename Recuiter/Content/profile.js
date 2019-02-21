@@ -26,10 +26,10 @@
                 success: function (response) {
                     
                     var htmlString = '<tr data-id="' + response.Data.Id +'">' +
-                        '<td><b>' + response.Data.Qualification + ' in ' + response.Data.CourseStudies + '</b></td>' +
-                        '<td>' + response.Data.FromDateFormat + ' to ' + response.Data.ToDateFormat + '</td>' +
+                        '<td><b>' + response.Data.Qualification + ' In ' + response.Data.CourseStudies + '</b></td>' +
+                        '<td>' + response.Data.FromDateFormat + ' - ' + response.Data.ToDateFormat + '</td>' +
                         '<td>' + response.Data.Institution + '</td> ' +
-                        '<td class=" fa-edit"><i class="far fa-edit ml-5"></i> <a class="edit-action" href="#">Edit</a></td>' +
+                        '<td><i class="far fa-edit ml-5"></i> <a class="edit-action" href="#">Edit</a></td>' +
                         '<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>' +
                         '</tr>';
 
@@ -70,6 +70,10 @@
             success: function (response) {
 
                 jQuery('#form-edu input[name="Institution"]').val(response.Data.Institution);
+                jQuery('#form-edu input[name="Qualification"]').val(response.Data.Qualification);
+                jQuery('#form-edu input[name="FromDate"]').val(response.Data.FromDateFormat);
+                jQuery('#form-edu input[name="ToDate"]').val(response.Data.ToDateFormat);
+                jQuery('#form-edu input[name="CourseStudies"]').val(response.Data.CourseStudies);
                 jQuery('#form-edu input[name="Id"]').val(response.Data.Id);
                 jQuery('#form-edu').removeClass('hide-form');
                 // bind hidden field with id
@@ -141,7 +145,7 @@ jQuery(document).ready(function () {
                         '<td>' + responses.Data.Title + '</td>' +
                         '<td>' + responses.Data.Company + '</td> ' +
                         '<td>' + responses.Data.FromDateFormat + ' - ' + responses.Data.ToDateFormat + '</td>' +                       
-                        '<td class=" fa-edit"><i class="far fa-edit ml-5"></i> <a class="edit-action" href="#">Edit</a></td>' +
+                        '<td><i class="far fa-edit ml-5"></i> <a class="edit-action" href="#">Edit</a></td>' +
                         '<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>' +
                         '</tr>';
 
@@ -182,6 +186,9 @@ jQuery(document).ready(function () {
             success: function (responses) {
 
                 jQuery('#form-exp input[name="Title"]').val(responses.Data.Title);
+                jQuery('#form-exp input[name="FromDate"]').val(response.Data.FromDateFormat);
+                jQuery('#form-exp input[name="ToDate"]').val(response.Data.ToDateFormat);
+                jQuery('#form-exp input[name="Company"]').val(response.Data.Company);
                 jQuery('#form-exp input[name="Id"]').val(responses.Data.Id);
                 jQuery('#form-exp').removeClass('hide-form');
                 // bind hidden field with id
@@ -251,8 +258,8 @@ jQuery(document).ready(function () {
 
                     var htmlString = '<tr data-id="' + responses.Data.Id + '">' +
                         '<td>' + responses.Data.SkillTitle + '</td>' +
-                        '<td>' + responses.Data.SkillLevelFormat + '</td> ' +
-                        '<td class=" fa-edit"><i class="far fa-edit ml-5"></i> <a class="edit-action" href="#">Edit</a></td>'+
+                        '<td>' + responses.Data.Skilllevel + '</td> ' +
+                        '<td><i class="far fa-edit ml-5"></i> <a class="edit-action" href="#">Edit</a></td>'+
                         '<td class="del"><i class="far fa-trash-alt ml-5"></i> Delete</td>' +
                         '</tr>';
 
@@ -294,6 +301,8 @@ jQuery(document).ready(function () {
 
                 jQuery('#form-skill input[name="SkillTitle"]').val(responses.Data.SkillTitle);
                 jQuery('#form-skill input[name="Id"]').val(responses.Data.Id);
+                jQuery('#form-skill input[name="Skilllevel"]').val(response.Data.SkillLevel);
+                
                 jQuery('#form-skill').removeClass('hide-form');
                 // bind hidden field with id
             },

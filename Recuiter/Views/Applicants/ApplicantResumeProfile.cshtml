@@ -1,6 +1,6 @@
 ﻿@model Recruiter.ViewModels.ApplicantResumeVM
 @{
-    ViewBag.Title = "ApplicantResumeProfile";
+    ViewBag.Title = "Applicant Resume Profile";
     Layout = "~/Views/Shared/ProfileLayout.cshtml";
 }
 <style>
@@ -80,7 +80,7 @@
                         {
                             <tr data-id="@education.Id">
                                 <td scope="row"><b>@Html.DisplayFor(x => education.Qualification) In @Html.DisplayFor(x => education.CourseStudies)</b></td>
-                                <td>@Html.DisplayFor(x => education.FromDate) - @Html.DisplayFor(x => education.ToDate)</td>
+                                <td>@Html.DisplayFor(x => education.FromDateFormat) - @Html.DisplayFor(x => education.ToDateFormat)</td>
                                 <td>@Html.DisplayFor(x => education.Institution)</td>
                                 <td><i class="far fa-edit ml-5"></i><a class="edit-action" href="#">Edit</a></td>
                                 <td class="del"><i class="far fa-trash-alt ml-5"></i><a class="delete-action" href="#">Delete</a></td>
@@ -100,10 +100,10 @@
                         <input type="text" name="Institution" placeholder="Name of Institute" class="form-control" />
                     </div>
                     <div class="col mt-3">
-                         @Html.DropDownList("EducationLevel",
+                         @Html.DropDownList("Qualification",
                                                     new SelectList(Enum.GetValues(typeof(MinimumQualificationType))),
                                                     "Select Qualification",
-                                                    new { @class = "form-control" }
+                                                    new { @class = "form-control", @name="Qualification" }
                                )
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                             <tr data-id="@experience.Id">
                                 <td scope="row">@Html.DisplayFor(x => experience.Title) </td>
                                 <td>@Html.DisplayFor(x => experience.Company)</td>
-                                <td>@Html.DisplayFor(x => experience.FromDate) - @Html.DisplayFor(x => experience.ToDate)</td>
+                                <td>@Html.DisplayFor(x => experience.FromDateFormat) - @Html.DisplayFor(x => experience.ToDateFormat)</td>
                                 @*<td>@Html.DisplayFor(x => experience.Institution)</td>*@
                                 <td><i class="far fa-edit ml-5"></i><a class="edit-action" href="#">Edit</a></td>
                                 <td class="del"><i class="far fa-trash-alt ml-5"></i><a class="delete-action" href="#">Delete</a></td>
@@ -257,9 +257,9 @@
                     </div>
                     <div class="col-4 mt-3">
                         <select class="form-control" name="Skilllevel" type="text" placeholder=" Skill Level">
-                            <option value="1">Beginner</option>
+                            <option value="3">Beginner</option>
                             <option value="2">Intermediate</option>
-                            <option value="3">Expert</option>
+                            <option value="1">Expert</option>
                         </select>
                     </div>
                     <div class="col-sm-3">

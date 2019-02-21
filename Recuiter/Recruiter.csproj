@@ -393,20 +393,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902110909168_Monday11.cs" />
-    <Compile Include="Migrations\201902110909168_Monday11.Designer.cs"/>
-      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
-    <Compile Include="Migrations\201902091844444_initial.cs" />
-    <Compile Include="Migrations\201902091844444_initial.Designer.cs">
-      <DependentUpon>201902091844444_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201902211237116_Thursday.cs" />
+    <Compile Include="Migrations\201902211237116_Thursday.Designer.cs">
+      <DependentUpon>201902211237116_Thursday.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902201156126_WednesD.cs" />
-    <Compile Include="Migrations\201902201156126_WednesD.Designer.cs">
-      <DependentUpon>201902201156126_WednesD.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902201205556_contract.cs" />
-    <Compile Include="Migrations\201902201205556_contract.Designer.cs">
-      <DependentUpon>201902201205556_contract.cs</DependentUpon>
+    <Compile Include="Migrations\201902211504000_Qualification.cs" />
+    <Compile Include="Migrations\201902211504000_Qualification.Designer.cs">
+      <DependentUpon>201902211504000_Qualification.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -518,17 +511,11 @@
     <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902110909168_Monday11.resx">
-      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902211237116_Thursday.resx">
+      <DependentUpon>201902211237116_Thursday.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902091844444_initial.resx">
-      <DependentUpon>201902091844444_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902201156126_WednesD.resx">
-      <DependentUpon>201902201156126_WednesD.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902201205556_contract.resx">
-      <DependentUpon>201902201205556_contract.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902211504000_Qualification.resx">
+      <DependentUpon>201902211504000_Qualification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,8 +13,9 @@ namespace Data.Models
 		public virtual User User { get; set; }
 
 		public int ApplicantId { get; set; }
+        public int UserId { get; set; }
 
-		public string Address { get; set; }
+        public string Address { get; set; }
 
 		[DataType(DataType.PhoneNumber)]
 		[DisplayName("Phone Number")]
@@ -32,6 +33,7 @@ namespace Data.Models
 
         public Job Job { get; set; }
 
+        public string JobTitle { get; set; }
         public string Specialization { get; set; }
 
         public string Languages { get; set; }
