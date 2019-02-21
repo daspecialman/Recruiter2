@@ -29,7 +29,7 @@ namespace Recruiter.App_Start.Filters
 				var currentUserId = (Membership.GetUser(user.Identity.Name) as CustomMembershipUser).UserId;
 				using (RecruiterContext dbContext = new RecruiterContext())
 				{
-					var applicant = dbContext.Applicants.Where(a => a.UserId == currentUserId).FirstOrDefault();
+					var applicant = dbContext.Applicants.Where(a => a.ApplicantId == currentUserId).FirstOrDefault();
 					if (applicant == null && !applicant.IsValid())
 					{
 						filterContext.Result = new RedirectResult("/applicant/applicantprofileedit");

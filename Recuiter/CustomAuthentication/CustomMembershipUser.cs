@@ -9,9 +9,10 @@ namespace Recruiter.CustomAuthentication
 {
     public class CustomMembershipUser : MembershipUser
     {
-        #region User Properties
+		private Applicant applicant;
+		#region User Properties
 
-        public int UserId { get; set; }
+		public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public ICollection<UserRole> Roles { get; set; }
@@ -29,7 +30,12 @@ namespace Recruiter.CustomAuthentication
             ApplicantId = applicantId;
         }
 
-        internal object ChangePassword(string v1, object oldPassword, string v2, object newPassword)
+		public CustomMembershipUser(Applicant applicant)
+		{
+			this.applicant = applicant;
+		}
+
+		internal object ChangePassword(string v1, object oldPassword, string v2, object newPassword)
         {
             throw new NotImplementedException();
         }

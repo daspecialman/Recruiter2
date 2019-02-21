@@ -16,18 +16,13 @@ namespace Data.Models
         [Display(Name = "Department")]
         public Department Department { get; set; }
 
-        //[Display(Name = "Department")]
-        //[Required]
-        //public int DepartmentId { get; set; }
+		public int? DepartmentId { get; set; }
 
-        [Display(Name = "Job Title")]
+		[Display(Name = "Job Title")]
         [Required]
         public string Title { get; set; }
 
-
-        //[Display(Name = "Job Summary")]
-        //[Required]
-        //public string Summary { get; set; }
+		
 
         [Display(Name = "Job Description")]
         [Required]

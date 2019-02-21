@@ -295,6 +295,7 @@
     <Content Include="Content\profile.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Hubs\skyscraper-day-fun.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="bin\Recruiter.dll.config" />
@@ -392,9 +393,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902200740499_Wednesday.cs" />
-    <Compile Include="Migrations\201902200740499_Wednesday.Designer.cs">
-      <DependentUpon>201902200740499_Wednesday.cs</DependentUpon>
+    <Compile Include="Migrations\201902110909168_Monday11.cs" />
+    <Compile Include="Migrations\201902110909168_Monday11.Designer.cs"/>
+      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
+    <Compile Include="Migrations\201902091844444_initial.cs" />
+    <Compile Include="Migrations\201902091844444_initial.Designer.cs">
+      <DependentUpon>201902091844444_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201902201156126_WednesD.cs" />
     <Compile Include="Migrations\201902201156126_WednesD.Designer.cs">
@@ -419,6 +423,8 @@
     <Compile Include="ViewModels\JobViewModel.cs" />
     <Compile Include="ViewModels\LoginView.cs" />
     <Compile Include="ViewModels\PastEducationViewModel.cs" />
+    <Compile Include="ViewModels\PostedJobVM.cs" />
+    <Compile Include="ViewModels\TotalApplicantAppliedVM.cs" />
     <Compile Include="ViewModels\UserVM.cs" />
     <Compile Include="ViewModels\DepartmentVM.cs" />
   </ItemGroup>
@@ -486,6 +492,9 @@
     <Content Include="Views\Applicants\AppliedJobs.cshtml" />
     <Content Include="Views\Applicants\ApplicantProfilePage.cshtml" />
     <Content Include="Views\Applicants\Dashboard.cshtml" />
+    <Content Include="Views\Hr\TotalApplicantApplied.cshtml" />
+    <Content Include="Views\Hr\PostedJobs.cshtml" />
+    <Content Include="Views\Hr\MostResentApplications.cshtml" />
     <Content Include="Views\InterviewQuestion\Create.cshtml" />
     <Content Include="Views\InterviewQuestion\Delete.cshtml" />
     <Content Include="Views\InterviewQuestion\Details.cshtml" />
@@ -509,8 +518,11 @@
     <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902200740499_Wednesday.resx">
-      <DependentUpon>201902200740499_Wednesday.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902110909168_Monday11.resx">
+      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902091844444_initial.resx">
+      <DependentUpon>201902091844444_initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902201156126_WednesD.resx">
       <DependentUpon>201902201156126_WednesD.cs</DependentUpon>

@@ -57,7 +57,5 @@ namespace Recruiter.Context
 		}
 
 		public System.Data.Entity.DbSet<Data.Models.Role> Roles { get; set; }
-
-        public System.Data.Entity.DbSet<Recruiter.ViewModels.JobViewModel> JobViewModels { get; set; }
-    }
+	}
 }

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Recruiter.ViewModels.TotalApplicantAppliedVM>
+
+@{
+    ViewBag.Title = "MostResentApplications";
+}
+
+<h2>MostResentApplications</h2>
+
+<div class="container">
+	<div class="form-group">
+		<div class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+			<input type="text" id="Search" placeholder="Search By Department" class="form-control"/>
+		</div>
+	</div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateApplied)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateApplied)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FirstName }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FirstName }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FirstName })
+        </td>*@
+    </tr>
+}
+
+</table>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+	$(document).ready(function () {
+		function Contains(text_One, text_two) {
+			if (text_One.indexOf(text_two) != -1)
+				return true;
+		}
+		$("#Search").keyup(function () {
+			var searchText = $("#Search").val().toLowerCase();
+			$(".Search").each(function () {
+				if (!Contains($(this).text().toLowerCase(), searchText)) {
+					$(this).hide();
+				}
+				else {
+					$(this).show();
+				}
+			});
+		});
+	});
+</script>

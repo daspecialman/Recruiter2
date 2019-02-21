@@ -176,7 +176,7 @@ namespace Recruiter.Controllers
 					var applicant = new Applicant()
 					{
 						//Username = applicantProfileViewModel.Username,
-						UserId = currentUserId,
+						ApplicantId = currentUserId,
 						CreatedById = currentUserId,
 						LastModifiedById = currentUserId,
 						CreatedDate = DateTime.Now,
@@ -247,10 +247,10 @@ namespace Recruiter.Controllers
 			var url = string.Format("/Account/ActivationAccount/emailFor/{0}", activationCode);
 			var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, url);
 
-			var fromEmail = new MailAddress("azure_f67a410035eec701d8c31f0bc42abe69@azure.com", "Account Activation - AKKA");
+			var fromEmail = new MailAddress("postmaster@emediaries.com", "Account Activation - AKKA");
 			var toEmail = new MailAddress(email);
 
-			var fromEmailPassword = "testgrid@1234";
+			var fromEmailPassword = "f8a739a057e3c505cce9619336086a69-2d27312c-3736dd73";
 			string subject = "Your Account is Successfully created!";
 
 			string body = "<br/> Please click on the following link in order to activate your account" + "<br/><a href='" + link + "'> Activation Account ! </a>";
@@ -272,7 +272,7 @@ namespace Recruiter.Controllers
 
 			var smtp = new SmtpClient
 			{
-				Host = "smtp.sendgrid.net",
+				Host = "smtp.mailgun.org",
 				Port = 25,
 				EnableSsl = true,
 				DeliveryMethod = SmtpDeliveryMethod.Network,
