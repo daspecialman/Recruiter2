@@ -95,7 +95,7 @@ namespace Recruiter.Controllers
             if ((Id is null) || Id == 0)
 			{
 				var userId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
-				var applicantId = (db.Applicants.Where(a => a.UserId == userId).FirstOrDefault()).Id;
+				var applicantId = (db.Applicants.Where(a => a.ApplicantId == userId).FirstOrDefault()).Id;
                 var now = DateTime.Now;
 
                 var aleadyApplied = db.Applications
@@ -134,7 +134,7 @@ namespace Recruiter.Controllers
             if(applicantId == null)
             {
                 var userId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
-                applicantId = (db.Applicants.Where(a => a.UserId == userId).FirstOrDefault()).Id;
+                applicantId = (db.Applicants.Where(a => a.ApplicantId == userId).FirstOrDefault()).Id;
             }
 			var dashboard = new DashboardVM();
             dashboard.ApplicantId = applicantId.Value;
@@ -168,7 +168,7 @@ namespace Recruiter.Controllers
 
 				//// learn how to join tables using linq;
 				var query = (from p in dbContext.Applicants.Include(x => x.User)
-							 where p.UserId == currentUserId
+							 where p.ApplicantId == currentUserId
 							 select new ApplicantProfileViewModels
 							 {
 								 Age = p.Age,
@@ -203,7 +203,7 @@ namespace Recruiter.Controllers
 			using (RecruiterContext dbContext = new RecruiterContext())
 			{
 				var query = (from p in dbContext.Applicants.Include(x => x.User)
-							 where p.UserId == currentUserId
+							 where p.ApplicantId == currentUserId
 							 select new ApplicantProfileViewModels
 							 {
                                  Id = p.Id,
@@ -220,7 +220,7 @@ namespace Recruiter.Controllers
 								 FirstName = p.User.FirstName,
 								 LastName = p.User.LastName,
                                  Specialization = p.Specialization,
-                                 JobTitle = p.JobTitle,
+                                 JobTitle = p.Job.Title,
                                  Language = p.Languages,
                                  ImagePath = p.User.ImagePath,
 
@@ -251,7 +251,7 @@ namespace Recruiter.Controllers
 				var currentUserId = (Membership.GetUser(User.Identity.Name) as CustomMembershipUser).UserId;
 				using (RecruiterContext dbContext = new RecruiterContext())
 				{
-					var applicant = dbContext.Applicants.Where(a => a.UserId == currentUserId).FirstOrDefault();
+					var applicant = dbContext.Applicants.Where(a => a.ApplicantId == currentUserId).FirstOrDefault();
                     var user = dbContext.Users.Where(u => u.Id == currentUserId).FirstOrDefault();
 					if (applicant != null)
 					{
@@ -274,7 +274,7 @@ namespace Recruiter.Controllers
 
                             try
                             {
-                                applicant.JobTitle = applicantProfileVM.JobTitle;
+                                applicant.Job.Title = applicantProfileVM.JobTitle;
                                 applicant.Specialization = applicantProfileVM.Specialization;
                                 applicant.PhoneNumber = applicantProfileVM.PhoneNumber;
                                 applicant.Address = applicantProfileVM.CompleteAddress;
@@ -335,7 +335,7 @@ namespace Recruiter.Controllers
 			using (RecruiterContext dbContext = new RecruiterContext())
 			{
 				var applicantEntity = dbContext.Applicants
-										.Where(a => a.UserId == currentUserId)
+										.Where(a => a.ApplicantId == currentUserId)
 										.Include(x => x.User)
 										.Include(x => x.PastEducation)
 										.Include(x => x.Skills)
@@ -392,7 +392,7 @@ namespace Recruiter.Controllers
 				using (RecruiterContext dbContext = new RecruiterContext())
 				{
 					var applicantEntity = dbContext.Applicants
-											.Where(a => a.UserId == currentUserId)
+											.Where(a => a.ApplicantId == currentUserId)
 											.Include(x => x.User)
 											.Include(x => x.PastEducation)
 											.Include(x => x.Skills)
@@ -501,7 +501,7 @@ namespace Recruiter.Controllers
 
 				var check = (from p in dbContext.Applicants.Include(x => x.User).Include(x => x.PastEducation).Include(x => x.Skills).Include(x => x.ApplicantDocuments)
 								 .Include(x => x.Institutions)
-							 where p.UserId == loggedInUserId
+							 where p.ApplicantId == loggedInUserId
 							 //join image in dbContext.Images on new { Key1 = p.UserId, Key2 = false } equals new { Key1 = image.UserId, Key2 = image.IsDeleted } into P1
 							 //from P2 in P1.DefaultIfEmpty()
 
@@ -564,45 +564,7 @@ namespace Recruiter.Controllers
             return topJobs;
         }
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+       
 
 
 
@@ -645,7 +607,7 @@ namespace Recruiter.Controllers
 			}
 			ViewBag.CreatedById = new SelectList(db.Users, "Id", "Username", applicant.CreatedById);
 			ViewBag.LastModifiedById = new SelectList(db.Users, "Id", "Username", applicant.LastModifiedById);
-			ViewBag.UserId = new SelectList(db.Users, "Id", "Username", applicant.UserId);
+			ViewBag.UserId = new SelectList(db.Users, "Id", "Username", applicant.ApplicantId);
 			return View(applicant);
 		}
 		// GET: Applicants/Edit/5
@@ -662,7 +624,7 @@ namespace Recruiter.Controllers
 			}
 			ViewBag.CreatedById = new SelectList(db.Users, "Id", "Username", applicant.CreatedById);
 			ViewBag.LastModifiedById = new SelectList(db.Users, "Id", "Username", applicant.LastModifiedById);
-			ViewBag.UserId = new SelectList(db.Users, "Id", "Username", applicant.UserId);
+			ViewBag.UserId = new SelectList(db.Users, "Id", "Username", applicant.ApplicantId);
 			return View(applicant);
 		}
 		// POST: Applicants/Edit/5
@@ -680,7 +642,7 @@ namespace Recruiter.Controllers
 			}
 			ViewBag.CreatedById = new SelectList(db.Users, "Id", "Username", applicant.CreatedById);
 			ViewBag.LastModifiedById = new SelectList(db.Users, "Id", "Username", applicant.LastModifiedById);
-			ViewBag.UserId = new SelectList(db.Users, "Id", "Username", applicant.UserId);
+			ViewBag.UserId = new SelectList(db.Users, "Id", "Username", applicant.ApplicantId);
 			return View(applicant);
 		}
 		// GET: Applicants/Delete/5
@@ -802,7 +764,7 @@ namespace Recruiter.Controllers
 
             var applicant = db.Applicants
                                 .Include(u => u.User)
-                                .Where(x => x.UserId == customUser.UserId)
+                                .Where(x => x.ApplicantId == customUser.UserId)
                                 .FirstOrDefault();
             var jobList = db.Jobs.ToList();
 
@@ -834,7 +796,7 @@ namespace Recruiter.Controllers
 			using (RecruiterContext dbContext = new RecruiterContext())
 			{
 				var applicantEntity = dbContext.Applicants
-										.Where(a => a.UserId == currentUserId)
+										.Where(a => a.ApplicantId == currentUserId)
 										.Include(x => x.User)
 										.Include(x => x.Applications).FirstOrDefault();
 				returnObject = new ApplicationListVM
@@ -865,7 +827,7 @@ namespace Recruiter.Controllers
 				using (RecruiterContext dbContext = new RecruiterContext())
 				{
 					var applicantEntity = dbContext.Applicants
-											.Where(a => a.UserId == currentUserId)
+											.Where(a => a.ApplicantId == currentUserId)
 											.Include(x => x.User)
 											.Include(x => x.Applications).FirstOrDefault();
 

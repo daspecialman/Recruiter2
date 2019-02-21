@@ -12,7 +12,7 @@ namespace Data.Models
 	{
 		public virtual User User { get; set; }
 
-		public int UserId { get; set; }
+		public int ApplicantId { get; set; }
 
 		public string Address { get; set; }
 
@@ -30,7 +30,7 @@ namespace Data.Models
 
 		public int Age { get; set; }
 
-        public string JobTitle { get; set; }
+        public Job Job { get; set; }
 
         public string Specialization { get; set; }
 

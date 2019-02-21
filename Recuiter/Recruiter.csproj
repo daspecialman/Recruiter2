@@ -292,6 +292,7 @@
     <Content Include="Content\profile.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Hubs\skyscraper-day-fun.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="bin\Recruiter.dll.config" />
@@ -388,12 +389,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\NotificationHub.cs" />
-    <Compile Include="Migrations\201902110909168_Monday11.cs" />
-    <Compile Include="Migrations\201902110909168_Monday11.Designer.cs"/>
-      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
-    <Compile Include="Migrations\201902091844444_initial.cs" />
-    <Compile Include="Migrations\201902091844444_initial.Designer.cs">
-      <DependentUpon>201902091844444_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201902191518486_newdatabase.cs" />
+    <Compile Include="Migrations\201902191518486_newdatabase.Designer.cs">
+      <DependentUpon>201902191518486_newdatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191525325_newdatabase12.cs" />
+    <Compile Include="Migrations\201902191525325_newdatabase12.Designer.cs">
+      <DependentUpon>201902191525325_newdatabase12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902211031294_newEmailCredentials.cs" />
+    <Compile Include="Migrations\201902211031294_newEmailCredentials.Designer.cs">
+      <DependentUpon>201902211031294_newEmailCredentials.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -410,6 +416,8 @@
     <Compile Include="ViewModels\JobViewModel.cs" />
     <Compile Include="ViewModels\LoginView.cs" />
     <Compile Include="ViewModels\PastEducationViewModel.cs" />
+    <Compile Include="ViewModels\PostedJobVM.cs" />
+    <Compile Include="ViewModels\TotalApplicantAppliedVM.cs" />
     <Compile Include="ViewModels\UserVM.cs" />
     <Compile Include="ViewModels\DepartmentVM.cs" />
   </ItemGroup>
@@ -477,6 +485,9 @@
     <Content Include="Views\Applicants\AppliedJobs.cshtml" />
     <Content Include="Views\Applicants\ApplicantProfilePage.cshtml" />
     <Content Include="Views\Applicants\Dashboard.cshtml" />
+    <Content Include="Views\Hr\TotalApplicantApplied.cshtml" />
+    <Content Include="Views\Hr\PostedJobs.cshtml" />
+    <Content Include="Views\Hr\MostResentApplications.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -495,11 +506,14 @@
     <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902110909168_Monday11.resx">
-      <DependentUpon>201902110909168_Monday11.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902191518486_newdatabase.resx">
+      <DependentUpon>201902191518486_newdatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902091844444_initial.resx">
-      <DependentUpon>201902091844444_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902191525325_newdatabase12.resx">
+      <DependentUpon>201902191525325_newdatabase12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902211031294_newEmailCredentials.resx">
+      <DependentUpon>201902211031294_newEmailCredentials.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

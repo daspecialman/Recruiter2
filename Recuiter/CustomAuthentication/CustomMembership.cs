@@ -122,11 +122,13 @@ namespace Recruiter.CustomAuthentication
 				{
 					return null;
 				}
+
 				var selectedUser = new CustomMembershipUser(user);
 
 				return selectedUser;
 			}
 		}
+
 
 		public override string GetUserNameByEmail(string email)
 		{
@@ -262,10 +264,11 @@ namespace Recruiter.CustomAuthentication
 
 		public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
 		{
+
 			throw new NotImplementedException();
 		}
 
-		public override int GetNumberOfUsersOnline()
+	public override int GetNumberOfUsersOnline()
 		{
 			throw new NotImplementedException();
 		}

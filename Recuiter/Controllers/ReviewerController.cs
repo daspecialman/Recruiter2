@@ -52,7 +52,7 @@ namespace Recruiter.Controllers
                 //ApplicantId = assessment.ApplicantId,
                 ReviewerId = reviewerId,
                 CreatedById = reviewerId,
-                ApplicantId = (db.Applicants.Where(a => a.UserId == assessment.ApplicantId).FirstOrDefault()).Id,
+                ApplicantId = (db.Applicants.Where(a => a.ApplicantId == assessment.ApplicantId).FirstOrDefault()).Id,
                 Appearance = assessment.Appearance,
                 Disposition = assessment.Disposition,
                 Communication = assessment.Communication,
